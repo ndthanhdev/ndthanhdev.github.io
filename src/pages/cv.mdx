@@ -1,0 +1,176 @@
+import Avatar from "../images/avatar.jpg";
+import { SkillBadge } from "../components/shields-io/variants/skill-badge";
+import { Box, Themed } from "theme-ui";
+
+<Box
+  sx={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  }}
+>
+  <img src={Avatar} height="200" />
+  <Themed.h1>Thanh, Nguyen</Themed.h1>
+</Box>
+
+---
+
+<Box
+  sx={{
+    textAlign: "center",
+  }}
+>
+  Quick learning, positive, open-minded, self-driven and passionate developer
+  with over one year experience and computer science background. Experienced in
+  developing, testing for cloud projects. Providing enthusiastically support and
+  assistance to colleagues.
+</Box>
+
+<Box
+  sx={{
+    paddingTop: "1rem",
+    textAlign: "center",
+    ".ndt-skill-badge": {
+      marginRight: "0.25rem",
+    },
+  }}
+>
+
+<SkillBadge logo="typescript" fluent />
+<SkillBadge logo="javascript" fluent />
+
+<SkillBadge logo="react" fluent />
+<SkillBadge logo="redux" logoColor="#764ABC" fluent />
+
+<SkillBadge logo="sass" fluent />
+
+<br />
+
+<SkillBadge logo="angular" logoColor="#DD0031" />
+<SkillBadge logo="electron" />
+<SkillBadge logo="nodedotjs" name="node.js" />
+<SkillBadge logo="express" logoColor="#000000" name="express" />
+
+<SkillBadge logo="elixir" logoColor="#4B275F" />
+
+<SkillBadge logo="graphql" logoColor="#E10098" />
+
+<SkillBadge logo="mongodb" />
+<SkillBadge logo="postgresql" name="postgre" />
+
+<SkillBadge logo="docker" />
+<SkillBadge logo="kubernetes" />
+
+</Box>
+
+# Work experience
+
+---
+
+**Zalo**
+
+- **Senior Software Engineer**  
+  _2021 Sep - Present_
+- **Software Engineer**  
+  _2020 Apr - 2021 Sep_
+- **Accociate Software Engineer**  
+  _2019 Jun - 2020 Apr_
+
+**SAP Labs Vietnam**
+
+- **Accociate Software Engineer**  
+  _2019 Jun - 2018 Sep_
+- **Intern**
+  _2018 Jan - 2019 Jun_
+
+## Projects
+
+**Zalo - Web & PC**  
+_Zalo is a popular cross-platform messaging, video call app_
+
+- Structured and developed rich features in media and message modules
+- Built reusable ui components, which has been used in multiple modules
+- Improved the readability and maintainability of the codebase by setting up prettyfing and linting
+
+**SAP Analytics Cloud - KPI Plugin**  
+ _Analytics Cloud is a pluggable SaaS BI platform and KPI plugin is builder of KPIs_
+
+- Implemented webpack config that bundles project to be a SAP Analytics Cloud plugin
+- Developed and test UI/UX with React, Redux, Jest
+
+**SAP HANA Cockpit - Analytics Builder**  
+_Analytics Builder is a graphical SQL design studio to enable flexible queries on top of tables_
+
+- Reduced 75% rendering time by implementing Grunt task that helps packing frontend source and libraries
+- Developed and tested UI/UX with UI5
+
+**Open Bucket**  
+_Open Bucket is an incognito P2P storage system, users are paid etherum if they share their disk space with others_
+
+- Developed Desktop app with React, Redux, Electron
+- Developed Deamon is a service on the user's machine that interacts with Tracker and smart contracts, built with NodeJs, web3.js
+- Developed Tracker that mainly connects users together
+
+**SStore**  
+_A combination of e-commerce website and vending machines, these components communicate via MQTT protocol_
+
+- Developws admin service with PostgreSQL, ASP.NET
+- Developed a single page web app for admin and customer with Angular 2
+- Programed and build a simple vending machine with Arduino and hardware
+
+# Awards
+
+**Certificate Of Agile Software Development With Scrum**  
+_Axon Active Vietnam - 2016_  
+**Microsoft Imagine Cup Innovation Competition Certificate**  
+_Microsoft Vietnam - 2015_  
+**2ND Prize App Studio**  
+_Ton Duc Thang University & Microsoft Vietnam - 2014_
+
+# Education
+
+**BSc in Computer Science**  
+_Ton Duc Thang University, Ho Chi Minh - 2018_
+
+# Personal info
+
+<div style="display: flex">
+  <div style="flex-grow: 1">
+    <img src="../images/perm_identity.svg" width="16px" /> Nguyễn Duy Thanh
+    <br />
+    <img src="../images/gender.svg" width="16px" /> Male
+    <br />
+    <img src="../images/cake.svg" width="16px" /> 1996
+    <br />
+    <img src="../images/location_on.svg" width="16px" /> 505 Doan Van Bo, Ward
+    14, District 4, Ho Chi Minh
+    <br />
+  </div>
+  <div style="flex-grow: 1">
+    <img src="../images/phone.svg" width="16px" /> (+84) 988 907 164
+    <br />
+    <img src="../images/mail.svg" width="16px" /> ndthanhdev@outlook.com
+    <br />
+    <img src="../images/github.svg" width="16px" /> /ndthanhdev
+    <br />
+    <img src="../images/linkedin.svg" width="16px" /> /in/ndthanhdev
+    <br />
+  </div>
+</div>
+
+#
+
+<p align="center">
+  Made with <img src="../images/markdown.svg" width="16px" />. Latest at{" "}
+  <a href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</a>
+</p>
+
+export default ({ children }) => (
+  <div
+    style={{
+      padding: "0 15%",
+    }}
+  >
+    {children}
+  </div>
+);

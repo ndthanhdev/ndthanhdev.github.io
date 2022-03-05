@@ -3,9 +3,6 @@ exports.onCreatePage = ({ page, actions }) => {
 
   if (page.path.match(/cv/)) {
     page.context.layout = "cv";
-  } else {
-    page.context.layout = "default";
+    createPage(page);
   }
-
-  createPage(page);
 };
