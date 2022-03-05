@@ -1,6 +1,18 @@
 import Avatar from "../images/avatar.jpg";
 import { SkillBadge } from "../components/shields-io/variants/skill-badge";
 import { Box, Themed } from "theme-ui";
+import { css as transformStyleObject } from "@theme-ui/css";
+import { css as createClassName, cx } from "@emotion/css";
+
+import PermIdentity from "../images/perm_identity.svg";
+import Cake from "../images/cake.svg";
+import Gender from "../images/gender.svg";
+import Github from "../images/github.svg";
+import LinkedIn from "../images/linkedin.svg";
+import LocationOn from "../images/location_on.svg";
+import Mail from "../images/mail.svg";
+import Markdown from "../images/markdown.svg";
+import Phone from "../images/phone.svg";
 
 <Box
   sx={{
@@ -21,7 +33,7 @@ import { Box, Themed } from "theme-ui";
   }}
 >
   Quick learning, positive, open-minded, self-driven and passionate developer
-  with over one year experience and computer science background. Experienced in
+  with over 3 years experience and computer science background. Experienced in
   developing, testing for cloud projects. Providing enthusiastically support and
   assistance to colleagues.
 </Box>
@@ -135,40 +147,44 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 # Personal info
 
 <div style="display: flex">
-  <div style="flex-grow: 1">
-    <img src="../images/perm_identity.svg" width="16px" /> Nguyễn Duy Thanh
+  <div style="flex-grow: 1; padding-right: 8px;">
+    <img src={PermIdentity} width="16px" /> Nguyễn Duy Thanh
     <br />
-    <img src="../images/gender.svg" width="16px" /> Male
+    <img src={Gender} width="16px" /> Male
     <br />
-    <img src="../images/cake.svg" width="16px" /> 1996
+    <img src={Cake} width="16px" /> 1996
     <br />
-    <img src="../images/location_on.svg" width="16px" /> 505 Doan Van Bo, Ward
-    14, District 4, Ho Chi Minh
+    <img src={LocationOn} width="16px" /> 138 45th Street, Ward Tan Quy,
+    District 7, Ho Chi Minh
     <br />
   </div>
   <div style="flex-grow: 1">
-    <img src="../images/phone.svg" width="16px" /> (+84) 988 907 164
+    <img src={Phone} width="16px" /> (+84) 988 907 164
     <br />
-    <img src="../images/mail.svg" width="16px" /> ndthanhdev@outlook.com
+    <img src={Mail} width="16px" /> ndthanhdev@outlook.com
     <br />
-    <img src="../images/github.svg" width="16px" /> /ndthanhdev
+    <img src={Github} width="16px" /> /ndthanhdev
     <br />
-    <img src="../images/linkedin.svg" width="16px" /> /in/ndthanhdev
+    <img src={LinkedIn} width="16px" /> /in/ndthanhdev
     <br />
   </div>
 </div>
 
 #
 
-<p align="center">
-  Made with <img src="../images/markdown.svg" width="16px" />. Latest at{" "}
+<Box
+  sx={{
+    textAlign: "center",
+  }}
+>
+  Made with <img src={Markdown} width="16px" />. Latest at{" "}
   <a href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</a>
-</p>
+</Box>
 
 export default ({ children }) => (
   <div
     style={{
-      padding: "0 15%",
+      padding: "0 10%",
     }}
   >
     {children}
