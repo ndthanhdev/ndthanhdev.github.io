@@ -92,7 +92,7 @@ import Phone from "../images/phone.svg";
 
 - **Accociate Software Engineer**  
   _2019 Jun - 2018 Sep_
-- **Intern**
+- **Intern**  
   _2018 Jan - 2019 Jun_
 
 ## Projects
@@ -184,7 +184,10 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 export default ({ children }) => (
   <div
     style={{
-      padding: "0 10%",
+      padding: "0 5%",
+      "@media print": {
+        padding: "4px",
+      },
     }}
   >
     {children}
