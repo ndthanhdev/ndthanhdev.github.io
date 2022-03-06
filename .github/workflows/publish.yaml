@@ -23,4 +23,6 @@ jobs:
 
       - name: Publish
         run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
           yarn publish
