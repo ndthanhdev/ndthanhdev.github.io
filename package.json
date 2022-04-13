@@ -26,6 +26,7 @@
     "@theme-ui/presets": "^0.14.2",
     "@types/react-helmet": "^6.1.5",
     "gatsby": "^4.11.3",
+    "gatsby-plugin-google-gtag": "^4.12.1",
     "gatsby-plugin-image": "^2.11.1",
     "gatsby-plugin-layout": "^3.11.0",
     "gatsby-plugin-manifest": "^4.11.1",
