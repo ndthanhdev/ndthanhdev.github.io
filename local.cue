@@ -74,10 +74,5 @@ dagger.#Plan & {
 			// 	path:  "/src/build"
 			// }
 		}
-
-		hello: #AddHello & {
-			dir: client.filesystem.".".read.contents
-			name: "dagger"
-		}
 	}
 }
