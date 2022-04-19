@@ -9,32 +9,13 @@ import (
 	"universe.dagger.io/docker"
 )
 
-// Write a greeting to a file, and add it to a directory
-#AddHello: {
-	// The input directory
-	dir: dagger.#FS
-
-	// The name of the person to greet
-	name: string | *"world"
-
-	write: core.#WriteFile & {
-		input: dir
-		path: "hello-\(name).txt"
-		contents: "hello, \(name)!"
-	}
-
-	// The directory with greeting message added
-	result: write.output
-}
-
-
 dagger.#Plan & {
 
 	_nodeModulesMount: "/src/node_modules": {
 		dest:     "/src/node_modules"
 		type:     "cache"
 		contents: core.#CacheDir & {
-			id: "todoapp-modules-cache"
+			id: "ndthanhdev-modules-cache"
 		}
 
 	}
@@ -79,37 +60,19 @@ dagger.#Plan & {
 		}
 
 		build: {
-			// echo: dagger.#Exec & {
-			//     args: ["echo", "\"abcd1234\""]
-			// }
+			run: bash.#Run & {
+				input:   deps.output
+				mounts:  _nodeModulesMount
+				workdir: "/src"
+				script: contents: #"""
+					yarn run build
+					"""#
+			}
 
-			// echo2: bash.#Run & {
-			//     script: contents: "echo Hello World! > ./public/hello.txt"
-			//     export: files: "./public/hello.txt": string
+			// contents: core.#Subdir & {
+			// 	input: run.output.rootfs
+			// 	path:  "/src/build"
 			// }
-
-			// nodeVersion: dagger.#Exec & {
-			//     args: ["node", "--version"]
-			// }
-
-			// echo: powershell.#Build & {
-			//     script: contents: "echo"
-			//     args: ["hello"]
-			//     // script: "install"
-			// }
-
-			// install: powershell.#Build & {
-			//     script: contents: "yarn"
-			//     args: ["install"]
-			//     // script: "install"
-			// }
-
-			// build: yarn.#Build & {
-			// 	source: client.filesystem.".".read.contents
-			// 	buildDir: "public"
-			// }
-
-			// output: build.output
 		}
 
 		hello: #AddHello & {
