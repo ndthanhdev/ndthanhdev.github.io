@@ -29,7 +29,7 @@ dagger.#Plan & {
 				]
 			}
 
-		"./public": write: contents: actions.build.output
+		"./public": write: contents: actions.build.contents.output
 	}
 
 	actions: {
@@ -50,7 +50,7 @@ dagger.#Plan & {
 					bash.#Run & {
 						workdir: "/src"
 						mounts: {
-							_nodeModulesMount
+							// _nodeModulesMount
 						}
 						script: contents: #"""
 							yarn install
@@ -62,17 +62,17 @@ dagger.#Plan & {
 		build: {
 			run: bash.#Run & {
 				input:   deps.output
-				mounts:  _nodeModulesMount
+				// mounts:  _nodeModulesMount
 				workdir: "/src"
 				script: contents: #"""
 					yarn run build
 					"""#
 			}
 
-			// contents: core.#Subdir & {
-			// 	input: run.output.rootfs
-			// 	path:  "/src/build"
-			// }
+			contents: core.#Subdir & {
+				input: run.output.rootfs
+				path:  "/src/public"
+			}
 		}
 	}
 }
