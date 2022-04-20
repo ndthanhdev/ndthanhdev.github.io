@@ -89,7 +89,8 @@ dagger.#Plan & {
 				script: contents: """
 					git config --global user.email "dagger-bot@users.noreply.github.com"
 					git config --global user.name "Dagger Bot"
-					yarn publish -r https://${GITHUB_TOKEN}@github.com/ndthanhdev/ndthanhdev.github.io.git
+					git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/ndthanhdev/ndthanhdev.github.io.git
+					yarn publish
 				"""
 			}
 		}
