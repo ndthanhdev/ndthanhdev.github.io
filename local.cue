@@ -15,21 +15,26 @@ dagger.#Plan & {
 		dest:     "/src/node_modules"
 		type:     "cache"
 		contents: core.#CacheDir & {
-			id: "ndthanhdev-modules-cache"
+			id: "node_modules-cache"
 		}
 
 	}
 
-	client: filesystem: {
-		"./": read: {
-				contents: dagger.#FS,
-				exclude: [
-					"node_modules",
-					"public",
-				]
-			}
+	client: {
+		filesystem: {
+			"./": read: {
+					contents: dagger.#FS,
+					exclude: [
+						"node_modules",
+						"public",
+					]
+				}
 
-		"./public": write: contents: actions.build.contents.output
+			"./public": write: contents: actions.build.contents.output
+		}
+		env: {
+			GITHUB_TOKEN: dagger.#Secret
+		}
 	}
 
 	actions: {
@@ -61,17 +66,27 @@ dagger.#Plan & {
 
 		build: {
 			run: bash.#Run & {
-				input:   deps.output
+				input: deps.output
 				// mounts:  _nodeModulesMount
 				workdir: "/src"
 				script: contents: #"""
-					yarn run build
+					yarn build
 					"""#
 			}
 
 			contents: core.#Subdir & {
 				input: run.output.rootfs
 				path:  "/src/public"
+			}
+		}
+
+		deploy: {
+			run: bash.#Run & {
+				input: build.contents.output
+				workdir: "/src"
+				script: contents: "yarn public -r https://" +
+					client.env.GITHUB_TOKEN +
+					"@github.com/ndthanhdev/ndthanhdev.github.io.git"
 			}
 		}
 	}
