@@ -82,11 +82,16 @@ dagger.#Plan & {
 
 		deploy: {
 			run: bash.#Run & {
-				input: build.contents.output
+				input: build.run.output
 				workdir: "/src"
-				script: contents: "yarn public -r https://" +
-					client.env.GITHUB_TOKEN +
-					"@github.com/ndthanhdev/ndthanhdev.github.io.git"
+				env: {
+					GITHUB_TOKEN: client.env.GITHUB_TOKEN
+				}
+				script: contents: """
+					git config --global user.email "dagger-bot@users.noreply.github.com"
+					git config --global user.name "Dagger Bot"
+					yarn publish -r https://${GITHUB_TOKEN}@github.com/ndthanhdev/ndthanhdev.github.io.git
+				"""
 			}
 		}
 	}
