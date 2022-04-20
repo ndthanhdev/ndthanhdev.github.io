@@ -3,7 +3,6 @@ package ndthanhdev
 import (
 	"dagger.io/dagger"
 	"dagger.io/dagger/core"
-	// "universe.dagger.io/yarn"
 	"universe.dagger.io/alpine"
 	"universe.dagger.io/bash"
 	"universe.dagger.io/docker"
@@ -11,14 +10,14 @@ import (
 
 dagger.#Plan & {
 
-	_nodeModulesMount: "/src/node_modules": {
-		dest:     "/src/node_modules"
-		type:     "cache"
-		contents: core.#CacheDir & {
-			id: "node_modules-cache"
-		}
+	// _nodeModulesMount: "/src/node_modules": {
+	// 	dest:     "/src/node_modules"
+	// 	type:     "cache"
+	// 	contents: core.#CacheDir & {
+	// 		id: "node_modules-cache"
+	// 	}
 
-	}
+	// }
 
 	client: {
 		filesystem: {
