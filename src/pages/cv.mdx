@@ -15,27 +15,27 @@ import Markdown from "../images/markdown.svg";
 import Phone from "../images/phone.svg";
 
 <Box
-  sx={{
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-  }}
+	sx={{
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+	}}
 >
-  <img src={Avatar} height="200" />
-  <Themed.h1>Thanh, Nguyen</Themed.h1>
+	<img src={Avatar} height="200" />
+	<Themed.h1>Thanh, Nguyen</Themed.h1>
 </Box>
 
 ---
 
 <Box
-  sx={{
-    textAlign: "center",
-  }}
+	sx={{
+		textAlign: "center",
+	}}
 >
-  Quick learning, positive, open-minded, self-driven and passionate developer
-  with over 3 years experience and computer science background. Experienced in
-  developing, testing for cloud projects. Providing enthusiastically support and
-  assistance to colleagues.
+	Quick learning, positive, open-minded, self-driven and passionate developer
+	with over 3 years experience and computer science background. Experienced in
+	developing, testing for cloud projects. Providing enthusiastically support and
+	assistance to colleagues.
 </Box>
 
 <Box
@@ -48,22 +48,27 @@ import Phone from "../images/phone.svg";
   }}
 >
 
+Experienced with
+
 <SkillBadge logo="typescript" fluent />
 <SkillBadge logo="javascript" fluent />
 
 <SkillBadge logo="react" fluent />
 <SkillBadge logo="redux" logoColor="#764ABC" fluent />
 
-<SkillBadge logo="sass" fluent />
-
 <br />
+
+Code with
+
+<SkillBadge logo="go" />
+<SkillBadge logo="elixir" logoColor="#4B275F" />
+<SkillBadge logo="sass" />
+<SkillBadge logo="css" />
 
 <SkillBadge logo="angular" logoColor="#DD0031" />
 <SkillBadge logo="electron" />
 <SkillBadge logo="nodedotjs" name="node.js" />
 <SkillBadge logo="express" logoColor="#000000" name="express" />
-
-<SkillBadge logo="elixir" logoColor="#4B275F" />
 
 <SkillBadge logo="graphql" logoColor="#E10098" />
 
@@ -147,49 +152,46 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 # Personal info
 
 <div style="display: flex">
-  <div style="flex-grow: 1; padding-right: 8px;">
-    <img src={PermIdentity} width="16px" /> Nguyễn Duy Thanh
-    <br />
-    <img src={Gender} width="16px" /> Male
-    <br />
-    <img src={Cake} width="16px" /> 1996
-    <br />
-    <img src={LocationOn} width="16px" /> 138 45th Street, Tan Quy Ward,
-    District 7, Ho Chi Minh
-    <br />
-  </div>
-  <div style="flex-grow: 1">
-    <img src={Phone} width="16px" /> (+84) 988 907 164
-    <br />
-    <img src={Mail} width="16px" /> ndthanhdev@outlook.com
-    <br />
-    <img src={Github} width="16px" /> /ndthanhdev
-    <br />
-    <img src={LinkedIn} width="16px" /> /in/ndthanhdev
-    <br />
-  </div>
+	<div style="flex-grow: 1; padding-right: 8px;">
+		<img src={PermIdentity} width="16px" /> Nguyễn Duy Thanh
+		<br />
+		<img src={Gender} width="16px" /> Male
+		<br />
+		<img src={Cake} width="16px" /> 1996
+		<br />
+		<img src={LocationOn} width="16px" /> 138 45th Street, Tan Quy Ward,
+		District 7, Ho Chi Minh
+		<br />
+	</div>
+	<div style="flex-grow: 1">
+		<img src={Phone} width="16px" /> (+84) 988 907 164
+		<br />
+		<img src={Mail} width="16px" /> ndthanhdev@outlook.com
+		<br />
+		<img src={Github} width="16px" /> /ndthanhdev
+		<br />
+		<img src={LinkedIn} width="16px" /> /in/ndthanhdev
+		<br />
+	</div>
 </div>
 
 #
 
 <Box
-  sx={{
-    textAlign: "center",
-  }}
+	sx={{
+		textAlign: "center",
+	}}
 >
-  Made with <img src={Markdown} width="16px" />. Latest at{" "}
-  <a href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</a>
+	Latest at{" "}
+	<a href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</a>
 </Box>
 
 export default ({ children }) => (
-  <div
-    style={{
-      padding: "0 5%",
-      "@media print": {
-        padding: "4px",
-      },
-    }}
-  >
-    {children}
-  </div>
+	<div
+		style={{
+			padding: "2%",
+		}}
+	>
+		{children}
+	</div>
 );

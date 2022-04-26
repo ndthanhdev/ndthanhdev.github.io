@@ -5,42 +5,42 @@ import { css as transformStyleObject } from "@theme-ui/css";
 import { css as createClassName, cx } from "@emotion/css";
 
 type SkillBadge = {
-  logo: string;
-  name: string;
-  fluent: boolean;
+	logo: string;
+	name: string;
 } & ShieldsIO;
 
 let SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
-  let { logo, name, className: classNameProp, fluent, ...otherProps } = props;
+	let { logo, name, className: classNameProp, ...otherProps } = props;
 
-  name = name ?? logo;
+	name = name ?? logo;
 
-  let theme = useThemeUI();
+	let theme = useThemeUI();
 
-  let classNames = React.useMemo(() => {
-    const styles = transformStyleObject({
-      borderColor: (theme) => theme.colors?.text,
-      borderRadius: "4px",
-      borderWidth: "0.0625rem",
-      borderStyle: "solid",
-    })(theme);
+	let classNames = React.useMemo(() => {
+		const styles = transformStyleObject({
+			borderColor: (theme) => theme.colors?.text,
+			borderRadius: "4px",
+			borderWidth: "0.0625rem",
+			borderStyle: "solid",
+		})(theme as any); // FIXME: theme-ui typings are wrong
 
-    return createClassName(styles);
-  }, [theme]);
+		return createClassName(styles);
+	}, [theme]);
 
-  return (
-    <ShieldsIO
-      {...otherProps}
-      ref={ref}
-      className={cx("ndt-skill-badge", classNames, classNameProp)}
-      logo={logo}
-      label=""
-      message={name}
-      color="#f0f0f0"
-      shieldStyle={fluent ? ShieldsStyle.ForTheBadge : ShieldsStyle.Flat}
-      labelColor="white"
-    />
-  );
+	return (
+		<ShieldsIO
+			{...otherProps}
+			ref={ref}
+			className={cx("ndt-skill-badge", classNames, classNameProp)}
+			logo={logo}
+			label=""
+			message={name}
+			color="#f0f0f0"
+			shieldStyle={ShieldsStyle.ForTheBadge}
+			labelColor="white"
+			alt={name}
+		/>
+	);
 });
 
 export { SkillBadge };

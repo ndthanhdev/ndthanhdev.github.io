@@ -30,7 +30,7 @@ function Index() {
 	return (
 		<>
 			<h2>
-				I have not built the homepage yet 😁, navigating to{" "}
+				I have not built the homepage yet 😀, navigating to{" "}
 				<Link to="/cv">my CV</Link> in {count} seconds...
 			</h2>
 		</>
