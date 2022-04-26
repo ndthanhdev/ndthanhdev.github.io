@@ -1,66 +1,66 @@
 import React from "react";
 
-type ShieldsIO = {
-  logo?: string;
-  logoColor?: string;
-  logoWidth?: number;
+type ShieldsIO<T extends React.ElementType = "img"> = {
+	logo?: string;
+	logoColor?: string;
+	logoWidth?: number;
 
-  label?: string;
-  labelColor?: string;
+	label?: string;
+	labelColor?: string;
 
-  color?: string;
+	color?: string;
 
-  message?: string;
-  shieldStyle?: ShieldsStyle;
+	message?: string;
+	shieldStyle?: ShieldsStyle;
 
-  Comp?: React.ElementType;
-} & React.HTMLAttributes<HTMLElement>;
+	Comp?: React.ElementType;
+} & React.ComponentPropsWithoutRef<T>;
 
 enum ShieldsStyle {
-  Plastic = "plastic",
-  Flat = "flat",
-  FlatSquare = "flat-square",
-  ForTheBadge = "for-the-badge",
-  Social = "social",
+	Plastic = "plastic",
+	Flat = "flat",
+	FlatSquare = "flat-square",
+	ForTheBadge = "for-the-badge",
+	Social = "social",
 }
 
 let ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
-  let {
-    logo,
-    logoColor,
-    logoWidth,
+	let {
+		logo,
+		logoColor,
+		logoWidth,
 
-    label = "",
-    labelColor,
+		label = "",
+		labelColor,
 
-    color = "",
+		color = "",
 
-    message = "",
-    shieldStyle = ShieldsStyle.Flat,
-    Comp = "img",
-    ...otherProps
-  } = props;
+		message = "",
+		shieldStyle = ShieldsStyle.Flat,
+		Comp = "img",
+		...otherProps
+	} = props;
 
-  let src = React.useMemo(() => {
-    let url = new URL(`https://img.shields.io/static/v1.svg`);
+	let src = React.useMemo(() => {
+		let url = new URL(`https://img.shields.io/static/v1.svg`);
 
-    logo && url.searchParams.append("logo", logo);
-    logoColor && url.searchParams.append("logoColor", logoColor);
-    logoWidth && url.searchParams.append("logoWidth", logoWidth.toString());
+		logo && url.searchParams.append("logo", logo);
+		logoColor && url.searchParams.append("logoColor", logoColor);
+		logoWidth && url.searchParams.append("logoWidth", logoWidth.toString());
 
-    url.searchParams.set("label", label);
-    labelColor && url.searchParams.append("labelColor", labelColor);
+		url.searchParams.set("label", label);
+		labelColor && url.searchParams.append("labelColor", labelColor);
 
-    color && url.searchParams.append("color", color);
+		color && url.searchParams.append("color", color);
 
-    message && url.searchParams.set("message", message);
+		message && url.searchParams.set("message", message);
 
-    shieldStyle && url.searchParams.append("style", shieldStyle);
+		shieldStyle && url.searchParams.append("style", shieldStyle);
 
-    return url.toString();
-  }, [logo]);
+		return url.toString();
+	}, [logo]);
 
-  return <Comp {...otherProps} ref={ref} src={src} />;
+	return <Comp {...otherProps} ref={ref} src={src} />;
 });
 
 export { ShieldsIO, ShieldsStyle };
