@@ -1,6 +1,8 @@
-import Avatar from "../images/avatar.jpg";
+import Avatar from "../images/avatar.png";
+import Cover from "../images/cover.png";
 import { SkillBadge } from "../components/shields-io/variants/skill-badge";
-import { Box, Themed } from "theme-ui";
+import { HR } from "../components/print-hr";
+import { Themed, Box, Flex } from "theme-ui";
 import { css as transformStyleObject } from "@theme-ui/css";
 import { css as createClassName, cx } from "@emotion/css";
 
@@ -14,22 +16,42 @@ import Mail from "../images/mail.svg";
 import Markdown from "../images/markdown.svg";
 import Phone from "../images/phone.svg";
 
-<Box
+<img
+	src={Cover}
 	sx={{
-		display: "flex",
+		zIndex: -1,
+		objectFit: "cover",
+		position: "absolute",
+		left: 0,
+		right: 0,
+		bottom: "calc(100% - 200px)",
+		width: "100%",
+	}}
+/>
+
+<Flex
+	sx={{
 		flexDirection: "column",
 		alignItems: "center",
+		paddingTop: "60px",
 	}}
 >
-	<img src={Avatar} height="200" />
+	<img
+		src={Avatar}
+		sx={{
+			flexShrink: 1,
+			width: "200px",
+		}}
+	/>
 	<Themed.h1>Thanh, Nguyen</Themed.h1>
-</Box>
+</Flex>
 
----
+<HR />
 
 <Box
 	sx={{
 		textAlign: "center",
+		paddingTop: 1,
 	}}
 >
 	Quick learning, positive, open-minded, self-driven and passionate developer
@@ -63,7 +85,7 @@ Code with
 <SkillBadge logo="go" />
 <SkillBadge logo="elixir" logoColor="#4B275F" />
 <SkillBadge logo="sass" />
-<SkillBadge logo="css" />
+<SkillBadge logo="css3" logoColor="#1572B6" name="css" />
 
 <SkillBadge logo="angular" logoColor="#DD0031" />
 <SkillBadge logo="electron" />
@@ -82,7 +104,7 @@ Code with
 
 # Work experience
 
----
+<HR />
 
 **Zalo**
 
@@ -151,8 +173,13 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 
 # Personal info
 
-<div style="display: flex">
-	<div style="flex-grow: 1; padding-right: 8px;">
+<Flex>
+	<Box
+		sx={{
+			flexGrow: 1,
+			paddingRight: 1,
+		}}
+	>
 		<img src={PermIdentity} width="16px" /> Nguyễn Duy Thanh
 		<br />
 		<img src={Gender} width="16px" /> Male
@@ -162,8 +189,13 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 		<img src={LocationOn} width="16px" /> 138 45th Street, Tan Quy Ward,
 		District 7, Ho Chi Minh
 		<br />
-	</div>
-	<div style="flex-grow: 1">
+	</Box>
+	<Box
+		sx={{
+			flexGrow: 1,
+			paddingLeft: 1,
+		}}
+	>
 		<img src={Phone} width="16px" /> (+84) 988 907 164
 		<br />
 		<img src={Mail} width="16px" /> ndthanhdev@outlook.com
@@ -172,26 +204,21 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 		<br />
 		<img src={LinkedIn} width="16px" /> /in/ndthanhdev
 		<br />
-	</div>
-</div>
+	</Box>
+</Flex>
 
 #
+
+<HR />
 
 <Box
 	sx={{
 		textAlign: "center",
+		paddingTop: 1,
 	}}
 >
 	Latest at{" "}
 	<a href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</a>
 </Box>
 
-export default ({ children }) => (
-	<div
-		style={{
-			padding: "2%",
-		}}
-	>
-		{children}
-	</div>
-);
+export default ({ children }) => children;

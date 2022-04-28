@@ -10,6 +10,7 @@ const CvLayout: React.FC<{
 			<div
 				style={{
 					maxWidth: "210mm",
+					padding: "0 10mm 10mm 10mm",
 				}}
 			>
 				{children}
