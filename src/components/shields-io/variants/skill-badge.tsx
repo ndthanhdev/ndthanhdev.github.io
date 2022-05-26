@@ -5,14 +5,14 @@ import { css as transformStyleObject } from "@theme-ui/css";
 import { css as createClassName, cx } from "@emotion/css";
 
 type SkillBadge = {
-	logo: string;
-	name: string;
-} & ShieldsIO;
+	skillLogo?: string;
+	skill: string;
+} & React.ComponentPropsWithoutRef<"img">;
 
 let SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
-	let { logo, name, className: classNameProp, ...otherProps } = props;
+	let { skillLogo, skill, className: classNameProp, ...otherProps } = props;
 
-	name = name ?? logo;
+	skillLogo = skillLogo ?? skill;
 
 	let theme = useThemeUI();
 
@@ -20,7 +20,7 @@ let SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
 		const styles = transformStyleObject({
 			borderColor: (theme) => theme.colors?.text,
 			borderRadius: "4px",
-			borderWidth: "0.0625rem",
+			borderWidth: "0.0125rem",
 			borderStyle: "solid",
 		})(theme as any); // FIXME: theme-ui typings are wrong
 
@@ -32,13 +32,12 @@ let SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
 			{...otherProps}
 			ref={ref}
 			className={cx("ndt-skill-badge", classNames, classNameProp)}
-			logo={logo}
-			label=""
-			message={name}
-			color="#f0f0f0"
+			logo={skillLogo}
+			leftText=""
+			leftBg="white"
+			rightText={skill}
 			shieldStyle={ShieldsStyle.ForTheBadge}
-			labelColor="white"
-			alt={name}
+			alt={skill}
 		/>
 	);
 });
