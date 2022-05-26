@@ -5,12 +5,12 @@ type ShieldsIO<T extends React.ElementType = "img"> = {
 	logoColor?: string;
 	logoWidth?: number;
 
-	label?: string;
-	labelColor?: string;
+	leftText?: string;
+	leftBg?: string;
 
-	color?: string;
+	rightText?: string;
+	rightBg?: string;
 
-	message?: string;
 	shieldStyle?: ShieldsStyle;
 
 	Comp?: React.ElementType;
@@ -30,32 +30,48 @@ let ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
 		logoColor,
 		logoWidth,
 
-		label = "",
-		labelColor,
+		leftText = "",
+		leftBg,
 
-		color = "",
+		rightText,
 
-		message = "",
+		// This is for by pass the case that leftText and rightText are both undefined
+		// shieldIO will return error if using query type
+		// if using path type one of 3 must be defined
+		// so we use color because using any character will affect the width of the shield
+		rightBg = "#f0f0f0",
+
 		shieldStyle = ShieldsStyle.Flat,
+
 		Comp = "img",
+
 		...otherProps
 	} = props;
 
 	let src = React.useMemo(() => {
-		let url = new URL(`https://img.shields.io/static/v1.svg`);
+		let sUrl = "https://img.shields.io/badge/";
+
+		sUrl += leftText ? `${leftText}-` : "-";
+		sUrl += rightText ? `${rightText}-` : "-";
+		sUrl += encodeURIComponent(rightBg);
+
+		// FIXME: support other extensions1
+		// sUrl += ".svg";
+
+		let url = new URL(sUrl);
 
 		logo && url.searchParams.append("logo", logo);
 		logoColor && url.searchParams.append("logoColor", logoColor);
 		logoWidth && url.searchParams.append("logoWidth", logoWidth.toString());
 
-		url.searchParams.set("label", label);
-		labelColor && url.searchParams.append("labelColor", labelColor);
+		// url.searchParams.set("label", leftText);
+		leftBg && url.searchParams.append("labelColor", leftBg);
 
-		color && url.searchParams.append("color", color);
+		// url.searchParams.append("color", rightBg);
 
-		message && url.searchParams.set("message", message);
+		// rightText && url.searchParams.set("message", rightText);
 
-		shieldStyle && url.searchParams.append("style", shieldStyle);
+		url.searchParams.append("style", shieldStyle);
 
 		return url.toString();
 	}, [logo]);
