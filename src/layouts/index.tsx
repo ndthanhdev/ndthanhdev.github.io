@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider, merge } from "theme-ui";
-import { Helmet } from "react-helmet";
+import { SEO } from "../components/seo";
 
 const CvLayout: React.FC<{
 	children: React.ReactNode;
