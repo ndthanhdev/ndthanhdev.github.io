@@ -25,11 +25,20 @@ let Layout: React.FC<{
 }> = function Layout(props) {
 	const { children, pageContext } = props;
 
+	let content = null;
+
 	if (pageContext?.layout === "cv") {
-		return <CvLayout>{children}</CvLayout>;
+		content = <CvLayout>{children}</CvLayout>;
 	}
 
-	return <div>{children}</div>;
+	content = <div>{children}</div>;
+
+	return (
+		<>
+			<SEO />
+			{content}
+		</>
+	);
 };
 
 export default Layout;

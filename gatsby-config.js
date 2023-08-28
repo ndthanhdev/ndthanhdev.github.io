@@ -66,5 +66,12 @@ module.exports = {
 				},
 			},
 		},
+		{
+			resolve: "gatsby-plugin-google-tagmanager",
+			options: {
+				id: "GTM-KX72TPPN",
+				includeInDevelopment: true,
+			},
+		},
 	],
 };
