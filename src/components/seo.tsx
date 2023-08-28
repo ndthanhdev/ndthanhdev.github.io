@@ -1,5 +1,7 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+import { Helmet as _Helmet } from "react-helmet";
+
+const Helmet = _Helmet as any;
 
 export const SEO = () => (
 	<Helmet>
