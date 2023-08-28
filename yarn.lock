@@ -1502,6 +1502,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.20.13":
+  version: 7.22.11
+  resolution: "@babel/runtime@npm:7.22.11"
+  dependencies:
+    regenerator-runtime: ^0.14.0
+  checksum: a5cd6683a8fcdb8065cb1677f221e22f6c67ec8f15ad1d273b180b93ab3bd86c66da2c48f500d4e72d8d2cfa85ff4872a3f350e5aa3855630036af5da765c001
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.12.7, @babel/template@npm:^7.16.7":
   version: 7.16.7
   resolution: "@babel/template@npm:7.16.7"
@@ -8912,6 +8921,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-plugin-google-tagmanager@npm:^5.12.0":
+  version: 5.12.0
+  resolution: "gatsby-plugin-google-tagmanager@npm:5.12.0"
+  dependencies:
+    "@babel/runtime": ^7.20.13
+    web-vitals: ^1.1.2
+  peerDependencies:
+    gatsby: ^5.0.0-next
+    react: ^18.0.0 || ^0.0.0
+    react-dom: ^18.0.0 || ^0.0.0
+  checksum: 7e555a47bf04679d35f5d2d90d247725eb05cdebe28a1fea4e7977de7c34c1c9763d5df765c5824fbd9643b8614390be5f824c3f444252e26abf1304673a14c6
+  languageName: node
+  linkType: hard
+
 "gatsby-plugin-image@npm:^2.13.0":
   version: 2.13.0
   resolution: "gatsby-plugin-image@npm:2.13.0"
@@ -12606,6 +12629,7 @@ __metadata:
     "@types/react-helmet": ^6.1.5
     gatsby: ^4.13.0
     gatsby-plugin-google-gtag: ^4.13.0
+    gatsby-plugin-google-tagmanager: ^5.12.0
     gatsby-plugin-image: ^2.13.0
     gatsby-plugin-layout: ^3.13.0
     gatsby-plugin-manifest: ^4.13.0
@@ -14669,6 +14693,13 @@ __metadata:
   version: 0.13.9
   resolution: "regenerator-runtime@npm:0.13.9"
   checksum: 65ed455fe5afd799e2897baf691ca21c2772e1a969d19bb0c4695757c2d96249eb74ee3553ea34a91062b2a676beedf630b4c1551cc6299afb937be1426ec55e
+  languageName: node
+  linkType: hard
+
+"regenerator-runtime@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "regenerator-runtime@npm:0.14.0"
+  checksum: 1c977ad82a82a4412e4f639d65d22be376d3ebdd30da2c003eeafdaaacd03fc00c2320f18120007ee700900979284fc78a9f00da7fb593f6e6eeebc673fba9a3
   languageName: node
   linkType: hard
 
@@ -17541,6 +17572,13 @@ __metadata:
   version: 1.1.4
   resolution: "web-namespaces@npm:1.1.4"
   checksum: 5149842ccbfbc56fe4f8758957b3f8c8616a281874a5bb84aa1b305e4436a9bad853d21c629a7b8f174902449e1489c7a6c724fccf60965077c5636bd8aed42b
+  languageName: node
+  linkType: hard
+
+"web-vitals@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "web-vitals@npm:1.1.2"
+  checksum: 92071029089277166e11141b735831d9011e85737d32c1360034676db898ab0ca95f19041ee01904f2189ad6e711b9da6b17567e4831290a429a586c98bc573f
   languageName: node
   linkType: hard
 
