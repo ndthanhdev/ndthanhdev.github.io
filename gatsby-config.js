@@ -8,6 +8,7 @@ module.exports = {
 		"gatsby-plugin-layout",
 		"gatsby-plugin-sass",
 		"gatsby-plugin-theme-ui",
+		"gatsby-plugin-emotion",
 		"gatsby-plugin-image",
 		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-sitemap",
@@ -18,8 +19,6 @@ module.exports = {
 			},
 		},
 		"gatsby-plugin-mdx",
-		"gatsby-plugin-sharp",
-		"gatsby-transformer-sharp",
 		{
 			resolve: "gatsby-source-filesystem",
 			options: {

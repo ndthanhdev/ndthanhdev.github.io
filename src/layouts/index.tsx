@@ -1,18 +1,12 @@
 import React from "react";
-import { ThemeProvider, merge } from "theme-ui";
-import { SEO } from "../components/seo";
+import { Headers } from "../components/headers";
 
 const CvLayout: React.FC<{
 	children: React.ReactNode;
 }> = function CvLayout({ children }) {
 	return (
 		<div style={{ display: "flex", justifyContent: "center" }}>
-			<div
-				style={{
-					maxWidth: "210mm",
-					padding: "0 10mm 10mm 10mm",
-				}}
-			>
+			<div css={{ maxWidth: "210mm", padding: "0 10mm 10mm 10mm" }}>
 				{children}
 			</div>
 		</div>
@@ -27,7 +21,7 @@ let Layout: React.FC<{
 
 	children = (
 		<>
-			<SEO />
+			<Headers />
 			{children}
 		</>
 	);

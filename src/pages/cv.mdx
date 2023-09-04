@@ -1,11 +1,12 @@
+{/* * @jsx jsx */}
+import { jsx } from "theme-ui"
 import Avatar from "../images/avatar.png";
 import Cover from "../images/cover.png";
 import { SkillBadge } from "../components/shields-io/variants/skill-badge";
 import { Connect } from "../components/shields-io/variants/connect";
 import { HR } from "../components/print-hr";
-import { Themed, Box, Flex } from "theme-ui";
-import { css as transformStyleObject } from "@theme-ui/css";
-import { css as createClassName, cx } from "@emotion/css";
+import { Box, Flex } from "theme-ui";
+import { Themed } from "@theme-ui/mdx";
 
 import PermIdentity from "../images/perm_identity.svg";
 import Cake from "../images/cake.svg";
@@ -196,7 +197,7 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 <Flex>
 	<Box
 		sx={{
-			flexGrow: 1,
+			flex: "1 1 auto",
 			paddingRight: 1,
 			width: "50%",
 		}}
@@ -211,7 +212,7 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 	</Box>
 	<Box
 		sx={{
-			flexGrow: 1,
+			flex: "1 1 auto",
 			paddingLeft: 1,
 			width: "50%",
 		}}
