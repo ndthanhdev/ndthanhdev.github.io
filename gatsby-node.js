@@ -1,10 +1,22 @@
+// @ts-check
+
+/**
+ * @types {import('gatsby').GatsbyNode['onCreatePage']}
+ */
 exports.onCreatePage = ({ page, actions }) => {
 	const { createPage } = actions;
 
-	if (page.path.match(/cv/)) {
-		page.context.layout = "cv";
+	/**
+	 * @type {any}
+	 */
+	const pageContext = page.context;
+
+	if (page.path.match(/^\/cv\/?.*$/)) {
+		pageContext.layout = "cv";
+	} else if (page.path.match(/^\/blogs\/?.*$/)) {
+		pageContext.layout = "blog";
 	} else {
-		page.context.layout = "default";
+		pageContext.layout = "none";
 	}
 
 	createPage(page);

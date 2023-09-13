@@ -1,7 +1,11 @@
-/** @type {import('gatsby').GatsbyConfig} */
-module.exports = {
+// @ts-check
+
+/**
+ * @type {import('gatsby').GatsbyConfig}
+ */
+const config = {
 	siteMetadata: {
-		title: `new`,
+		title: `ndthanhdev`,
 		siteUrl: `https://ndthanhdev.github.io`,
 	},
 	plugins: [
@@ -10,7 +14,6 @@ module.exports = {
 		"gatsby-plugin-theme-ui",
 		"gatsby-plugin-emotion",
 		"gatsby-plugin-image",
-		"gatsby-plugin-react-helmet",
 		"gatsby-plugin-sitemap",
 		{
 			resolve: "gatsby-plugin-manifest",
@@ -74,3 +77,5 @@ module.exports = {
 		},
 	],
 };
+
+module.exports = config;
