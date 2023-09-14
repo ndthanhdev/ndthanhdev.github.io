@@ -1,7 +1,7 @@
 export enum PageLayout {
 	None = "none",
+	Post = "post",
 	CV = "cv",
-	Blog = "blog",
 }
 
 export type PageContext = {

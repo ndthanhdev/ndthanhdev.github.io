@@ -2,7 +2,7 @@ import React from "react";
 import type { PageProps } from "gatsby";
 import { PageContext } from "../types/page-context";
 import { CvLayout } from "../layouts/cv";
-import { BlogLayout } from "../layouts/blog";
+import { PostLayout } from "../layouts/post";
 import type { ShellProps } from "./shell";
 
 export const AutoLayout: React.FC<ShellProps> = function Layout(props) {
@@ -11,8 +11,8 @@ export const AutoLayout: React.FC<ShellProps> = function Layout(props) {
 
 	if (pageContext?.layout === "cv") {
 		return <CvLayout>{children}</CvLayout>;
-	} else if (pageContext?.layout === "blog") {
-		return <BlogLayout>{children}</BlogLayout>;
+	} else if (pageContext?.layout === "post") {
+		return <>{children}</>;
 	}
 
 	return <>{children}</>;

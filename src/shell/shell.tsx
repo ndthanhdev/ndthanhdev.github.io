@@ -1,21 +1,23 @@
 import * as React from "react";
-import type { PageProps } from "gatsby";
-import { AutoLayout } from "./auto-layout";
-import { Headers } from "./headers";
+import { CommonHeaders } from "./headers";
 
-import "@fontsource/roboto";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { AppMDXProvider } from "./mdx-provider";
 
-export type ShellProps = React.PropsWithChildren<
-	{
-		children?: React.ReactNode;
-	} & PageProps
->;
+export type ShellProps = React.PropsWithChildren<{
+	children?: React.ReactNode;
+}>;
 
-export const Shell = (props: ShellProps) => {
+export const Shell = ({ children }: ShellProps) => {
 	return (
 		<>
-			<Headers />
-			<AutoLayout {...props} />
+			<AppMDXProvider>
+				<CommonHeaders />
+				{children}
+			</AppMDXProvider>
 		</>
 	);
 };

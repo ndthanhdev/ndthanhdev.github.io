@@ -6,14 +6,17 @@
 const config = {
 	siteMetadata: {
 		title: `ndthanhdev`,
+		description: `ndthanhdev's personal website`,
 		siteUrl: `https://ndthanhdev.github.io`,
 	},
+	graphqlTypegen: true,
 	plugins: [
 		"gatsby-plugin-layout",
 		"gatsby-plugin-sass",
-		"gatsby-plugin-theme-ui",
+		// "gatsby-plugin-theme-ui",
 		"gatsby-plugin-emotion",
 		"gatsby-plugin-image",
+		"gatsby-transformer-sharp",
 		"gatsby-plugin-sitemap",
 		{
 			resolve: "gatsby-plugin-manifest",
@@ -37,6 +40,13 @@ const config = {
 				path: "./src/pages/",
 			},
 			__key: "pages",
+		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				name: `posts`,
+				path: `${__dirname}/content/posts`,
+			},
 		},
 		{
 			resolve: `gatsby-plugin-google-gtag`,
