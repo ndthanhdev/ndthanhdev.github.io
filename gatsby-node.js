@@ -5,6 +5,9 @@ const path = require("path");
 const postsDir = path.resolve(`./content/posts`);
 const postTemplate = path.resolve(`./src/templates/post.tsx`);
 
+const myCVTemplate = path.resolve(`./src/templates/my-cv.tsx`);
+const myCVFile = path.resolve(`./content/my-cv/my-cv.mdx`);
+
 /**
  * @type {import('gatsby').GatsbyNode['onCreatePage']}
  */
@@ -31,18 +34,32 @@ const postTemplate = path.resolve(`./src/templates/post.tsx`);
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
 exports.createPages = async (args) => {
+	const slugify = (await import("@sindresorhus/slugify")).default;
+
 	await createPosts();
+	await createCV();
+
+	async function createCV() {
+		const { graphql, actions, reporter } = args;
+
+		const { createPage } = actions;
+
+		createPage({
+			path: `/my-cv`,
+			component: `${myCVTemplate}?__contentFilePath=${myCVFile}`,
+		});
+	}
 
 	async function createPosts() {
 		const { graphql, actions, reporter } = args;
-
-		const slugify = (await import("@sindresorhus/slugify")).default;
 
 		const { createPage } = actions;
 
 		const result = await graphql(`
 			query {
-				allMdx {
+				allMdx(
+					filter: { internal: { contentFilePath: { glob: "**/posts/**" } } }
+				) {
 					nodes {
 						id
 						frontmatter {
