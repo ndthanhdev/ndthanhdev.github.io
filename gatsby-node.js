@@ -5,8 +5,8 @@ const path = require("path");
 const postsDir = path.resolve(`./content/posts`);
 const postTemplate = path.resolve(`./src/templates/post.tsx`);
 
-const myCVTemplate = path.resolve(`./src/templates/my-cv.tsx`);
-const myCVFile = path.resolve(`./content/my-cv/my-cv.mdx`);
+const myCVTemplate = path.resolve(`./src/templates/cv.tsx`);
+const myCVFile = path.resolve(`./content/cv/cv.mdx`);
 
 /**
  * @type {import('gatsby').GatsbyNode['onCreatePage']}
@@ -44,9 +44,30 @@ exports.createPages = async (args) => {
 
 		const { createPage } = actions;
 
+		const result = await graphql(`
+			query {
+				mdx(
+					internal: {
+						contentFilePath: {
+							eq: "${myCVFile}"
+						}
+					}
+				) {
+					id
+				}
+			}
+		`);
+
+		if (result.errors) {
+			reporter.panicOnBuild("Error loading MDX result", result.errors);
+		}
+
+		const data = result.data;
+
 		createPage({
-			path: `/my-cv`,
+			path: `/cv`,
 			component: `${myCVTemplate}?__contentFilePath=${myCVFile}`,
+			context: { id: data.mdx.id },
 		});
 	}
 

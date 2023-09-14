@@ -1,8 +1,8 @@
 import React from "react";
 
-export const CvLayout: React.FC<{
+export const MyCVLayout: React.FC<{
 	children: React.ReactNode;
-}> = function CvLayout({ children }) {
+}> = ({ children }) => {
 	return (
 		<div css={{ display: "flex", justifyContent: "center" }}>
 			<div css={{ maxWidth: "210mm", padding: "0 10mm 10mm 10mm" }}>

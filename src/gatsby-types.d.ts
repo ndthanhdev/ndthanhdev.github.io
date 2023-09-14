@@ -2579,6 +2579,13 @@ type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: st
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
 
+type MyCVQueryQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+type MyCVQueryQuery = { readonly mdx: { readonly frontmatter: { readonly title: string | null } | null } | null };
+
 type PostTemplateQueryVariables = Exact<{
   id: Scalars['String'];
 }>;

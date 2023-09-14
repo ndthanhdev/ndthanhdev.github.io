@@ -21,18 +21,10 @@ const config = {
 		{
 			resolve: "gatsby-plugin-manifest",
 			options: {
-				icon: "src/images/icon.png",
+				icon: "src/shell/icon.png",
 			},
 		},
 		"gatsby-plugin-mdx",
-		{
-			resolve: "gatsby-source-filesystem",
-			options: {
-				name: "images",
-				path: "./src/images/",
-			},
-			__key: "images",
-		},
 		{
 			resolve: "gatsby-source-filesystem",
 			options: {
