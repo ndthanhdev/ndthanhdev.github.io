@@ -47,7 +47,6 @@ exports.createPages = async (args) => {
 						id
 						frontmatter {
 							title
-							slug
 						}
 						internal {
 							contentFilePath
@@ -66,10 +65,8 @@ exports.createPages = async (args) => {
 
 		// you'll call `createPage` for each result
 		posts.forEach((node) => {
-			const postPath = node.frontmatter.slug
-				? node.frontmatter.slug
-				: node.frontmatter.tittle
-				? `/${slugify(node.frontmatter.title)}`
+			const postPath = node.frontmatter.title
+				? `/posts/${slugify(node.frontmatter.title)}`
 				: `/posts/${path.relative(node.internal.contentFilePath, postsDir)}`;
 
 			createPage({
@@ -93,7 +90,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 	actions.setWebpackConfig({
 		resolve: {
 			alias: {
-				"@/components": path.resolve(__dirname, "src/components"),
+				"@": path.resolve(__dirname, "src/"),
 			},
 		},
 	});

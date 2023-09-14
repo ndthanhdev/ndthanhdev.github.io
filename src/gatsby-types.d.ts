@@ -1339,7 +1339,6 @@ type MdxFilterListInput = {
 
 type MdxFrontmatter = {
   readonly date: Maybe<Scalars['Date']>;
-  readonly slug: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
 };
 
@@ -1353,19 +1352,16 @@ type MdxFrontmatter_dateArgs = {
 
 type MdxFrontmatterFieldSelector = {
   readonly date: InputMaybe<FieldSelectorEnum>;
-  readonly slug: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
 };
 
 type MdxFrontmatterFilterInput = {
   readonly date: InputMaybe<DateQueryOperatorInput>;
-  readonly slug: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
 };
 
 type MdxFrontmatterSortInput = {
   readonly date: InputMaybe<SortOrderEnum>;
-  readonly slug: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
 };
 
@@ -2557,11 +2553,6 @@ type WebPOptions = {
   readonly quality: InputMaybe<Scalars['Int']>;
 };
 
-type CommonHeadersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type CommonHeadersQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly description: string | null } | null } | null };
-
 type GatsbyImageSharpFixedFragment = { readonly base64: string | null, readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
 
 type GatsbyImageSharpFixed_noBase64Fragment = { readonly width: number, readonly height: number, readonly src: string, readonly srcSet: string };
@@ -2594,6 +2585,11 @@ type PostTemplateQueryVariables = Exact<{
 
 
 type PostTemplateQuery = { readonly mdx: { readonly frontmatter: { readonly title: string | null } | null } | null };
+
+type SiteMetadataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SiteMetadataQuery = { readonly site: { readonly siteMetadata: { readonly title: string | null, readonly description: string | null } | null } | null };
 
 
 }

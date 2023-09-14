@@ -4,6 +4,7 @@ import { graphql, PageProps } from "gatsby";
 import { Shell } from "../shell";
 import { Merge } from "type-fest";
 import { MyHelmet } from "@/components/my-helmet";
+import { useSiteMetadata } from "@/shell/default-headers";
 
 export type PostTemplateProps = Merge<
 	PageProps<Queries.PostTemplateQuery>,
@@ -11,13 +12,17 @@ export type PostTemplateProps = Merge<
 >;
 
 const PostTemplate = ({ children, data }: PostTemplateProps) => {
+	const siteMetadata = useSiteMetadata();
+
 	return (
 		<>
 			<Shell>
 				<PostLayout>{children}</PostLayout>
 			</Shell>
 			<MyHelmet>
-				<title>{data?.mdx?.frontmatter?.title}</title>
+				<title>
+					{data?.mdx?.frontmatter?.title} | {siteMetadata.title}
+				</title>
 			</MyHelmet>
 		</>
 	);
