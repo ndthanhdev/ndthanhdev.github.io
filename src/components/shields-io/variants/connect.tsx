@@ -2,8 +2,6 @@ import React from "react";
 import { ShieldsIO, ShieldsStyle } from "../shields-io";
 import Link from "@mui/material/Link";
 import { useTheme } from "@emotion/react";
-// import { useThemeUI } from "theme-ui";
-// import { css as transformStyleObject } from "@theme-ui/css";
 import { cx } from "@emotion/css";
 import { iconShieldStyles } from "../shared-styles";
 

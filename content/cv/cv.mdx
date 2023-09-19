@@ -14,6 +14,7 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { SkillBadge } from "@/components/shields-io/variants/skill-badge";
 import { Connect } from "@/components/shields-io/variants/connect";
+import Grid from '@mui/material/Unstable_Grid2';
 
 <Box
 	sx={{
@@ -50,13 +51,11 @@ import { Connect } from "@/components/shields-io/variants/connect";
 
 <Divider
 	mt={8}
-	sx={{
-		width: "100%",
+	css={{
+		width: "66%",
 	}}
 >
-	<Typography variant="h4" gutterBottom>
-		{"Thanh, Nguyen"}
-	</Typography>
+	#### Thanh, Nguyen
 </Divider>
 
 </Stack>
@@ -69,8 +68,8 @@ import { Connect } from "@/components/shields-io/variants/connect";
 	with open-source community.
 </Typography>
 
-<Typography pt={1} variant="body1" gutterBottom textAlign="center">
-	Experienced with
+<Typography mt={1} variant="body1" textAlign="center" gutterBottom>
+	{"Experienced with"}
 </Typography>
 
 <Stack
@@ -79,33 +78,35 @@ import { Connect } from "@/components/shields-io/variants/connect";
 	spacing={1}
 	useFlexGap
 	flexWrap="wrap"
+	mb={2}
 >
 	<SkillBadge skill="typescript" />
 	<SkillBadge skill="javascript" />
 
-	<SkillBadge skill="react" />
-	<SkillBadge skill="redux" logoColor="#764ABC" />
+    	<SkillBadge skill="react" />
+    	<SkillBadge skill="redux" logoColor="#764ABC" />
 
-	<SkillBadge skill="sass" />
-	<SkillBadge skill="css" skillLogo="css3" logoColor="#1572B6" />
+    	<SkillBadge skill="sass" />
+    	<SkillBadge skill="css" skillLogo="css3" logoColor="#1572B6" />
 
-	<SkillBadge skill="electron" />
+    	<SkillBadge skill="electron" />
 
-	<SkillBadge skill="node.js" skillLogo="nodedotjs" />
-	<SkillBadge skill="go" />
-	<SkillBadge skill="elixir" logoColor="#4B275F" />
+    	<SkillBadge skill="node.js" skillLogo="nodedotjs" />
+    	<SkillBadge skill="go" />
+    	<SkillBadge skill="elixir" logoColor="#4B275F" />
 
-	<SkillBadge skill="graphql" logoColor="#E10098" />
+    	<SkillBadge skill="graphql" logoColor="#E10098" />
 
-	<SkillBadge skill="mongodb" />
-	<SkillBadge skill="postgres" skillLogo="postgresql" />
+    	<SkillBadge skill="mongodb" />
+    	<SkillBadge skill="postgres" skillLogo="postgresql" />
 
-	<SkillBadge skill="docker" />
-	<SkillBadge skill="kubernetes" />
+    	<SkillBadge skill="docker" />
+    	<SkillBadge skill="kubernetes" />
+
 </Stack>
 
-<Typography pt={1} variant="body1" gutterBottom textAlign="center">
-	Connect with me (@ndthanhdev) on
+<Typography mt={1} variant="body1" textAlign="center" gutterBottom>
+	{"Connect with me (@ndthanhdev) on"}
 </Typography>
 
 <Stack
@@ -126,3 +127,91 @@ import { Connect } from "@/components/shields-io/variants/connect";
 		url="https://www.linkedin.com/in/ndthanhdev/"
 	/>
 </Stack>
+
+<Stack
+	direction="row"
+	mt={6}
+	mb={2}
+	justifyContent="center"
+	css={{
+		width: "100%",
+	}}
+>
+	<Divider
+		textAlign="center"
+		css={{
+			width: "100%",
+		}}
+	>
+		##### Work experience
+	</Divider>
+</Stack>
+
+**Zalo**
+
+- **Senior Software Engineer**
+  _2021 Sep - Present_
+- **Software Engineer**
+  _2020 Apr - 2021 Sep_
+- **Accociate Software Engineer**
+  _2019 Jun - 2020 Apr_
+
+**SAP Labs Vietnam**
+
+- **Accociate Software Engineer**
+  _2019 Jun - 2018 Sep_
+- **Intern**
+  _2018 Jan - 2019 Jun_
+
+##### Projects
+
+**Zalo - Web & PC**
+_Zalo is a popular cross-platform messaging, video call app and more_
+
+- Designing and building rich new features for the web and desktop version of Zalo
+- Building reusable ui components, which have been used in multiple modules
+- Continuosly improving the app performance as well as refactoring the codebase
+
+**SAP Analytics Cloud - KPI Plugin**
+_Analytics Cloud is a pluggable SaaS BI platform and KPI plugin is builder of KPIs_
+
+- Designing and configurating bundler to publising the project as a Plugin for SAP Analytics Cloud
+- Developing and writing test for new features as a part of the plugin
+
+**SAP HANA Cockpit - Analytics Builder**
+_Analytics Builder is a graphical SQL design studio to enable flexible queries on top of tables_
+
+- Implementing Grunt task to transpile & minify that helps speed up project development and improve the load time of the web app
+- Developing new and cutomizing existing features using UI5
+
+**Open Bucket**
+_Open Bucket is an incognito P2P storage system, users are paid etherum if they share their disk space with others_
+
+- Developing Desktop app with React, Redux, Electron
+- Developing Daemon, a service on the user's machine that interacts with Tracker and smart contracts, built with NodeJs, web3.js
+- Developing Tracker that mainly connects users together
+
+**SStore**
+_A combination of e-commerce website and vending machines, these components communicate via MQTT protocol_
+
+- Developing admin service with PostgreSQL, ASP.NET
+- Developing a single page web app for admin and customer with Angular 2
+- Developing and build a simple vending machine with Arduino and other hardwares
+
+##### Achievements
+
+**Certificate Of Agile Software Development With Scrum**
+_Axon Active Vietnam - 2016_
+
+**Microsoft Imagine Cup Innovation Competition Certificate**
+_Microsoft Vietnam - 2015_
+
+**2ND Prize App Studio**
+_Ton Duc Thang University & Microsoft Vietnam - 2014_
+
+##### Education
+
+**BSc in Computer Science**
+_Ton Duc Thang University, Ho Chi Minh - 2018_
+
+##### Contact info

@@ -7,7 +7,11 @@ export const MyCVLayout: React.FC<{
 	return (
 		<div css={{ display: "flex", justifyContent: "center" }}>
 			<Stack
-				sx={{ maxWidth: "210mm", padding: "0 10mm 10mm 10mm", width: "100%" }}
+				css={{
+					maxWidth: "210mm",
+					padding: "0 10mm 10mm 10mm",
+					width: "100%",
+				}}
 			>
 				{children}
 			</Stack>
