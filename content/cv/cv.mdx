@@ -3,6 +3,126 @@ title: ndthanhdev's cv
 date: 2023-09-15
 ---
 
-# My cv
+{/* * @jsx jsx */}
+import { jsx } from "theme-ui";
+import Avatar from "./images/avatar.png";
+import Cover from "./images/cover.png";
+import Box from "@mui/material/Box";
+import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
+import Typography from '@mui/material/Typography';
+import { SkillBadge } from "@/components/shields-io/variants/skill-badge";
+import { Connect } from "@/components/shields-io/variants/connect";
 
-my cv go here
+<Box
+	sx={{
+		zIndex: -1,
+		position: "absolute",
+		top: 0,
+		left: 0,
+		right: 0,
+		height: "200px",
+	}}
+>
+	<img
+		src={Cover}
+		css={{
+			objectFit: "cover",
+			width: "100%",
+			height: "100%",
+		}}
+	/>
+</Box>
+
+<Stack alignItems="center" spacing={2} mt={8}
+	sx={{
+		width: "100%",
+	}}
+>
+	<img
+		src={Avatar}
+		css={{
+			flexShrink: 1,
+			width: "200px",
+		}}
+	/>
+
+<Divider
+	mt={8}
+	sx={{
+		width: "100%",
+	}}
+>
+	<Typography variant="h4" gutterBottom>
+		{"Thanh, Nguyen"}
+	</Typography>
+</Divider>
+
+</Stack>
+
+<Typography pt={1} variant="body1" gutterBottom textAlign="center">
+	Open minded developer with 4+ years of comprehensive expertise in Web App
+	Development with willingness to learn and master Full-stack Development. I
+	take great care in the code quality, readability, automator, architecture of
+	the things I build. I'm also an open-source enthusiast and love to collaborate
+	with open-source community.
+</Typography>
+
+<Typography pt={1} variant="body1" gutterBottom textAlign="center">
+	Experienced with
+</Typography>
+
+<Stack
+	direction="row"
+	justifyContent="center"
+	spacing={1}
+	useFlexGap
+	flexWrap="wrap"
+>
+	<SkillBadge skill="typescript" />
+	<SkillBadge skill="javascript" />
+
+	<SkillBadge skill="react" />
+	<SkillBadge skill="redux" logoColor="#764ABC" />
+
+	<SkillBadge skill="sass" />
+	<SkillBadge skill="css" skillLogo="css3" logoColor="#1572B6" />
+
+	<SkillBadge skill="electron" />
+
+	<SkillBadge skill="node.js" skillLogo="nodedotjs" />
+	<SkillBadge skill="go" />
+	<SkillBadge skill="elixir" logoColor="#4B275F" />
+
+	<SkillBadge skill="graphql" logoColor="#E10098" />
+
+	<SkillBadge skill="mongodb" />
+	<SkillBadge skill="postgres" skillLogo="postgresql" />
+
+	<SkillBadge skill="docker" />
+	<SkillBadge skill="kubernetes" />
+</Stack>
+
+<Typography pt={1} variant="body1" gutterBottom textAlign="center">
+	Connect with me (@ndthanhdev) on
+</Typography>
+
+<Stack
+	direction="row"
+	justifyContent="center"
+	spacing={1}
+	useFlexGap
+	flexWrap="wrap"
+>
+	<Connect
+		connect="github"
+		connectColor="#000000"
+		url="https://github.com/ndthanhdev"
+	/>
+	<Connect
+		connect="linkedin"
+		connectColor="#0A66C2"
+		url="https://www.linkedin.com/in/ndthanhdev/"
+	/>
+</Stack>

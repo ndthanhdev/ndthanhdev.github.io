@@ -7,6 +7,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { AppMDXProvider } from "./mdx-provider";
 import { GlobalStyles } from "./global-styles";
+import { AppTheme } from "./theme";
 
 export type ShellProps = React.PropsWithChildren<{
 	children?: React.ReactNode;
@@ -14,12 +15,12 @@ export type ShellProps = React.PropsWithChildren<{
 
 export const Shell = ({ children }: ShellProps) => {
 	return (
-		<>
+		<AppTheme>
 			<AppMDXProvider>
 				<DefaultHeaders />
 				<GlobalStyles />
 				{children}
 			</AppMDXProvider>
-		</>
+		</AppTheme>
 	);
 };
