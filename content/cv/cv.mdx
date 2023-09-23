@@ -15,6 +15,17 @@ import Typography from '@mui/material/Typography';
 import { SkillBadge } from "@/components/shields-io/variants/skill-badge";
 import { Connect } from "@/components/shields-io/variants/connect";
 import Grid from '@mui/material/Unstable_Grid2';
+import Link from '@mui/material/Link';
+
+import PermIdentity from "./images/perm_identity.svg";
+import Cake from "./images/cake.svg";
+import Gender from "./images/gender.svg";
+import Github from "./images/github.svg";
+import LinkedIn from "./images/linkedin.svg";
+import LocationOn from "./images/location_on.svg";
+import Mail from "./images/mail.svg";
+import Markdown from "./images/markdown.svg";
+import Phone from "./images/phone.svg";
 
 <Box
 	sx={{
@@ -215,3 +226,68 @@ _Ton Duc Thang University & Microsoft Vietnam - 2014_
 _Ton Duc Thang University, Ho Chi Minh - 2018_
 
 ##### Contact info
+
+<Box
+	css={{
+		display: "grid",
+		gridTemplateColumns: "20px 1fr 20px 1fr",
+		gridAutoRows: "auto",
+		gridGap: "8px",
+		alignItems: "center",
+		justifyItems: "start",
+	}}
+>
+	<img src={PermIdentity} />
+	<Typography>
+		{"Nguyễn Duy Thanh"}
+	</Typography>
+    	<img src={Mail} />
+    	<Typography>
+    		{"ndthanhdev@outlook.com"}
+    	</Typography>
+
+    	<img src={Gender} />
+    	<Typography>
+    		{"Male"}
+    	</Typography>
+
+    	<img src={LocationOn} width="16px" />
+    	<Typography>
+    		{"District 7, Ho Chi Minh, Vietnam"}
+    	</Typography>
+
+    	<img src={Cake} />
+    	<Typography>
+    		{"1996"}
+    	</Typography>
+
+</Box>
+
+<Stack
+	direction="row"
+	mt={6}
+	mb={2}
+	justifyContent="center"
+	css={{
+		width: "100%",
+	}}
+>
+	<Divider
+		css={{
+			width: "100%",
+		}}
+	/>
+</Stack>
+
+<Stack
+	direction="row"
+	mt={0}
+	mb={2}
+	justifyContent="center"
+	css={{
+		width: "100%",
+	}}
+>
+	Latest at{" "}
+	<Link href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</Link>
+</Stack>
