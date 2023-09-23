@@ -1,10 +1,10 @@
 import * as React from "react";
-import { PostLayout } from "../layouts/post";
 import { graphql, PageProps } from "gatsby";
 import { Shell } from "../shell";
 import { Merge } from "type-fest";
 import { MyHelmet } from "@/components/my-helmet";
 import { MyCVLayout } from "@/layouts/cv";
+import { ThemeMode } from "@/shell/theme";
 
 export type MyCVTemplateProps = Merge<
 	PageProps<Queries.MyCVQueryQuery>,
@@ -14,7 +14,11 @@ export type MyCVTemplateProps = Merge<
 const MyCVTemplate = ({ children, data }: MyCVTemplateProps) => {
 	return (
 		<>
-			<Shell>
+			<Shell
+				themeProps={{
+					overrideThemeMode: ThemeMode.Light,
+				}}
+			>
 				<MyHelmet>
 					<title>{data.mdx?.frontmatter?.title}</title>
 				</MyHelmet>
