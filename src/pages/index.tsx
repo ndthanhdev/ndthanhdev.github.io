@@ -6,7 +6,6 @@ import Stack from "@mui/material/Stack";
 import { Wip } from "@/components/wip";
 
 function Index() {
-	//
 	return (
 		<Shell>
 			<MainLayoutContainer>
