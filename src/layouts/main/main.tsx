@@ -1,21 +1,24 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import CssBaseline from "@mui/material/CssBaseline";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Slide from "@mui/material/Slide";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
-import { AppTheme, ThemeMode } from "@/shell/theme";
+import { AppTheme, AppThemeProvider, ThemeMode } from "@/shell/theme";
 import { css } from "@emotion/react";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import { useToggle } from "rooks";
+import Stack from "@mui/material/Stack";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import { Link as GatsbyLink } from "gatsby";
+import IconButton from "@mui/material/IconButton";
 
 export type MainLayoutProps = React.PropsWithChildren<{
 	onOpenSettings?: (e: any) => void;
+
+	themeMode?: ThemeMode;
+	onToggleThemeMode?: (e: any) => void;
 }>;
 
 const styles = {
@@ -27,6 +30,22 @@ const styles = {
 			backgroundColor: theme.palette.background.paper,
 		}),
 
+	left: {
+		root: (theme: AppTheme) =>
+			css({
+				gap: theme.spacing(2),
+				gridArea: "left",
+				textTransform: "uppercase",
+			}),
+
+		brand: (theme: AppTheme) => css({}),
+	},
+
+	right: {
+		root: (theme: AppTheme) =>
+			css({ gap: theme.spacing(2), gridArea: "right" }),
+	},
+
 	toolbar: (theme: AppTheme) =>
 		css({
 			flex: 1,
@@ -34,42 +53,61 @@ const styles = {
 			maxWidth: theme.breakpoints.values.lg,
 			display: "grid",
 			gridTemplateColumns: "auto 1fr auto",
-			gridTemplateRows: "auto",
+			gridTemplateRows: "1fr",
 			gridTemplateAreas: `\
 				"left . right"
 			`,
 			alignItems: "center",
 		}),
-
-	brand: (theme: AppTheme) =>
-		css({
-			gridArea: "left",
-			// color: theme.palette.primary.contrastText,
-			textTransform: "uppercase",
-		}),
-
-	setting: (theme: AppTheme) =>
-		css({
-			gridArea: "right",
-		}),
 };
 
-export const MainLayout = ({ children, onOpenSettings }: MainLayoutProps) => {
+export const MainLayout = ({
+	children,
+	onOpenSettings,
+	themeMode,
+	onToggleThemeMode,
+}: MainLayoutProps) => {
 	return (
 		<>
 			<HideOnScroll>
 				<AppBar css={styles.appBar}>
 					<Toolbar css={styles.toolbar}>
-						<Link css={styles.brand} variant="h6" underline="none" href="/">
-							ndthanhdev
-						</Link>
-						<Button
-							css={styles.setting}
-							variant="outlined"
-							onClick={onOpenSettings}
-						>
-							<SettingsOutlinedIcon />
-						</Button>
+						<Stack css={styles.left.root} direction="row" alignItems="center">
+							<Link
+								component={GatsbyLink}
+								css={styles.left.brand}
+								variant="h6"
+								underline="none"
+								to="/"
+							>
+								ndthanhdev
+							</Link>
+							<Button
+								component={GatsbyLink}
+								variant="text"
+								size="large"
+								to="/posts"
+							>
+								Posts
+							</Button>
+						</Stack>
+						<Stack css={styles.right.root} direction="row" alignItems="center">
+							<IconButton
+								size="large"
+								edge="end"
+								color="primary"
+								onClick={onToggleThemeMode}
+							>
+								{themeMode === ThemeMode.Light ? (
+									<LightModeOutlinedIcon />
+								) : (
+									<DarkModeOutlinedIcon />
+								)}
+							</IconButton>
+							<IconButton color="primary" size="large" onClick={onOpenSettings}>
+								<MenuOutlinedIcon />
+							</IconButton>
+						</Stack>
 					</Toolbar>
 				</AppBar>
 			</HideOnScroll>

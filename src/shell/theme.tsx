@@ -50,7 +50,10 @@ export type AppThemeProps = React.PropsWithChildren<{
 	overrideThemeMode?: ThemeMode;
 }>;
 
-export const AppTheme = ({ children, overrideThemeMode }: AppThemeProps) => {
+export const AppThemeProvider = ({
+	children,
+	overrideThemeMode,
+}: AppThemeProps) => {
 	let theme = useThemeMode((state) =>
 		state.themeMode === ThemeMode.Dark ? darkTheme : lightTheme,
 	);

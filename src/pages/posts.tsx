@@ -8,7 +8,7 @@ function Index() {
 	return (
 		<Shell>
 			<MainLayoutContainer>
-				<Stack>Home</Stack>
+				<Stack>Posts</Stack>
 			</MainLayoutContainer>
 		</Shell>
 	);

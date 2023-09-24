@@ -1,6 +1,6 @@
 import { ThemeMode, useThemeMode } from "@/shell/theme";
 import { create } from "zustand";
-import { Settings } from "./settings";
+import { AppMenu } from "./menu";
 
 type SettingsState = {
 	open: boolean;
@@ -19,13 +19,13 @@ export const SettingContainer = ({ children }: SettingContainerProps) => {
 	const theme = useThemeMode();
 
 	return (
-		<Settings
+		<AppMenu
 			open={settings.open}
 			onClose={() => settings.setOpen(false)}
 			themeMode={theme.themeMode}
 			onThemeModeChange={(e, mode) => theme.setThemeMode(mode)}
 		>
 			{children}
-		</Settings>
+		</AppMenu>
 	);
 };

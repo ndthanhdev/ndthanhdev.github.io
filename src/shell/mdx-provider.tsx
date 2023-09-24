@@ -3,7 +3,7 @@ import { MDXProvider } from "@mdx-js/react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { AppTheme } from "./theme";
+import { AppTheme, AppThemeProvider } from "./theme";
 
 export type MDXProviderProps = React.PropsWithChildren<{}>;
 

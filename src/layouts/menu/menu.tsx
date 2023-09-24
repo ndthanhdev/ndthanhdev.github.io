@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppTheme, ThemeMode } from "@/shell/theme";
+import { AppTheme, AppThemeProvider, ThemeMode } from "@/shell/theme";
 import Drawer, { drawerClasses } from "@mui/material/Drawer";
 import ToggleButton, { toggleButtonClasses } from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
@@ -12,7 +12,7 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
-export type SettingsProps = React.PropsWithChildren<{
+export type AppMenuProps = React.PropsWithChildren<{
 	open?: boolean;
 	onClose?: () => void;
 	themeMode?: ThemeMode;
@@ -58,13 +58,13 @@ export const styles = {
 		}),
 };
 
-export const Settings = ({
+export const AppMenu = ({
 	children,
 	open,
 	onClose,
 	themeMode,
 	onThemeModeChange,
-}: SettingsProps) => {
+}: AppMenuProps) => {
 	return (
 		<Drawer css={styles.root} anchor="right" open={open} onClose={onClose}>
 			<Box css={styles.header}>
@@ -77,12 +77,14 @@ export const Settings = ({
 			</Box>
 			<Divider />
 			<Box css={styles.section.root}>
-				<Typography css={styles.section.heading}>Mode</Typography>
+				<Typography css={styles.section.heading}>Theme Mode</Typography>
 				<ToggleButtonGroup
 					css={styles.toggleGroup}
 					value={themeMode}
 					exclusive
-					onChange={(e, mode) => onThemeModeChange?.(e, mode as ThemeMode)}
+					onChange={(e, mode) =>
+						mode && onThemeModeChange?.(e, mode as ThemeMode)
+					}
 				>
 					<ToggleButton value={ThemeMode.Light}>
 						<LightModeIcon />
