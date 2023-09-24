@@ -2,7 +2,7 @@ name: Build and publish to production branch
 
 on:
   push:
-    branches: ["release-2022.0"]
+    branches: ["release-2023.0"]
 
 jobs:
   build-and-publish:
