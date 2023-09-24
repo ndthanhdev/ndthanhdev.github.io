@@ -4,7 +4,7 @@ import { Shell } from "../shell";
 import { Merge } from "type-fest";
 import { MyHelmet } from "@/components/my-helmet";
 import { useSiteMetadata } from "@/shell/default-headers";
-import { MainLayout } from "@/layouts/main";
+import { MainLayoutContainer } from "@/layouts/main";
 
 export type PostTemplateProps = Merge<
 	PageProps<Queries.PostTemplateQuery>,
@@ -17,7 +17,7 @@ const PostTemplate = ({ children, data }: PostTemplateProps) => {
 	return (
 		<>
 			<Shell>
-				<MainLayout>{children}</MainLayout>
+				<MainLayoutContainer>{children}</MainLayoutContainer>
 			</Shell>
 			<MyHelmet>
 				<title>
