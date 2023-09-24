@@ -1,6 +1,6 @@
-import { merge } from "theme-ui";
-import { sketchy, swiss, polaris, roboto } from "@theme-ui/presets";
+import { Theme, merge } from "theme-ui";
+import { roboto } from "@theme-ui/presets";
 
-let appTheme = merge(roboto, {});
+let appTheme = merge(roboto as Theme, {});
 
 export default appTheme;

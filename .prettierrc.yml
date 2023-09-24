@@ -1,0 +1,5 @@
+# yaml-language-server: http://json.schemastore.org/prettierrc
+trailingComma: all
+useTabs: true
+semi: true
+endOfLine: lf

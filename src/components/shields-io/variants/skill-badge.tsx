@@ -1,8 +1,7 @@
 import React from "react";
 import { ShieldsIO, ShieldsStyle } from "../shields-io";
-import { useThemeUI } from "theme-ui";
-import { css as transformStyleObject } from "@theme-ui/css";
-import { css as createClassName, cx } from "@emotion/css";
+import { cx } from "@emotion/css";
+import { iconShieldStyles } from "../shared-styles";
 
 type SkillBadge = {
 	skillLogo?: string;
@@ -14,24 +13,12 @@ let SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
 
 	skillLogo = skillLogo ?? skill;
 
-	let theme = useThemeUI();
-
-	let classNames = React.useMemo(() => {
-		const styles = transformStyleObject({
-			borderColor: (theme) => theme.colors?.text,
-			borderRadius: "4px",
-			borderWidth: "0.0125rem",
-			borderStyle: "solid",
-		})(theme as any); // FIXME: theme-ui typings are wrong
-
-		return createClassName(styles);
-	}, [theme]);
-
 	return (
 		<ShieldsIO
 			{...otherProps}
+			css={iconShieldStyles.wrapper}
 			ref={ref}
-			className={cx("ndt-skill-badge", classNames, classNameProp)}
+			className={cx("ndt-skill-badge", classNameProp)}
 			logo={skillLogo}
 			leftText=""
 			leftBg="white"
