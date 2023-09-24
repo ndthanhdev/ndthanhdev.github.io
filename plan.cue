@@ -41,6 +41,7 @@ dagger.#Plan & {
 		deps: docker.#Build & {
 				steps: [
 					alpine.#Build & {
+						version: "3.18.3"
 						packages: {
 							bash: {}
 							yarn: {}
