@@ -3,6 +3,7 @@ import {
 	ThemeProvider as MuiThemeProvider,
 	createTheme,
 	Theme as MuiTheme,
+	ThemeOptions,
 } from "@mui/material";
 import * as React from "react";
 import { create } from "zustand";
@@ -19,9 +20,24 @@ export enum ThemeMode {
 	Dark = "dark",
 }
 
-export const lightTheme = createTheme({});
-export const darkTheme = createTheme({
+const themeOption = {
 	palette: {
+		primary: {
+			main: "#6750A4",
+		},
+		secondary: {
+			main: "#958da4",
+		},
+	},
+} satisfies ThemeOptions;
+
+export const lightTheme = createTheme({
+	...themeOption,
+});
+export const darkTheme = createTheme({
+	...themeOption,
+	palette: {
+		...themeOption.palette,
 		mode: "dark",
 	},
 });
@@ -34,7 +50,7 @@ export type ThemeModeState = {
 export const useThemeMode = create(
 	persist<ThemeModeState>(
 		(set) => ({
-			themeMode: ThemeMode.Light,
+			themeMode: ThemeMode.Dark,
 			setThemeMode: (mode) =>
 				set((state) => ({
 					themeMode: mode,

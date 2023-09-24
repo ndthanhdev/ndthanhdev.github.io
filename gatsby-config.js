@@ -21,7 +21,7 @@ const config = {
 		{
 			resolve: "gatsby-plugin-manifest",
 			options: {
-				icon: "src/shell/icon.png",
+				icon: "src/shell/icon.svg",
 			},
 		},
 		"gatsby-plugin-mdx",

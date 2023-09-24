@@ -37,8 +37,6 @@ const styles = {
 				gridArea: "left",
 				textTransform: "uppercase",
 			}),
-
-		brand: (theme: AppTheme) => css({}),
 	},
 
 	right: {
@@ -59,6 +57,11 @@ const styles = {
 			`,
 			alignItems: "center",
 		}),
+
+	brand: (theme: AppTheme) =>
+		css({
+			fontWeight: theme.typography.fontWeightBold,
+		}),
 };
 
 export const MainLayout = ({
@@ -75,7 +78,7 @@ export const MainLayout = ({
 						<Stack css={styles.left.root} direction="row" alignItems="center">
 							<Link
 								component={GatsbyLink}
-								css={styles.left.brand}
+								css={styles.brand}
 								variant="h6"
 								underline="none"
 								to="/"
@@ -86,9 +89,17 @@ export const MainLayout = ({
 								component={GatsbyLink}
 								variant="text"
 								size="large"
-								to="/posts"
+								to="/about"
 							>
-								Posts
+								about
+							</Button>
+							<Button
+								component={GatsbyLink}
+								variant="text"
+								size="large"
+								to="/projects"
+							>
+								Projects
 							</Button>
 						</Stack>
 						<Stack css={styles.right.root} direction="row" alignItems="center">

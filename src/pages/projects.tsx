@@ -3,15 +3,16 @@ import { Link, navigate } from "gatsby";
 import { Shell } from "@/shell";
 import { MainLayoutContainer } from "@/layouts/main";
 import Stack from "@mui/material/Stack";
+import { Wip } from "@/components/wip";
 
-function Index() {
+function Projects() {
 	return (
 		<Shell>
 			<MainLayoutContainer>
-				<Stack>Posts</Stack>
+				<Wip />
 			</MainLayoutContainer>
 		</Shell>
 	);
 }
 
-export default Index;
+export default Projects;
