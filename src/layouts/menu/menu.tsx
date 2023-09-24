@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AppTheme, AppThemeProvider, ThemeMode } from "@/shell/theme";
+import { AppTheme, ThemeMode } from "@/shell/theme";
 import Drawer, { drawerClasses } from "@mui/material/Drawer";
 import ToggleButton, { toggleButtonClasses } from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
