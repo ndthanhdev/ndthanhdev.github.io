@@ -8,6 +8,7 @@ import {
 import * as React from "react";
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import localForage from "localforage";
 
 export interface AppTheme extends MuiTheme {}
 
@@ -58,6 +59,7 @@ export const useThemeMode = create(
 		}),
 		{
 			name: "app-theme-mode",
+			storage: createJSONStorage(() => localForage as any),
 		},
 	),
 );

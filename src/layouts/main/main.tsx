@@ -5,7 +5,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
-import { AppTheme, AppThemeProvider, ThemeMode } from "@/shell/theme";
+import { AppTheme, ThemeMode } from "@/shell/theme";
 import { css } from "@emotion/react";
 import Stack from "@mui/material/Stack";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
