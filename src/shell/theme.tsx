@@ -60,6 +60,7 @@ export const useThemeMode = create(
 		{
 			name: "app-theme-mode",
 			storage: createJSONStorage(() => localForage as any),
+			skipHydration: true,
 		},
 	),
 );
