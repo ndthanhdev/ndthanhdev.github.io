@@ -80,6 +80,10 @@ export const AppThemeProvider = ({
 		theme = overrideThemeMode === ThemeMode.Light ? lightTheme : darkTheme;
 	}
 
+	React.useEffect(() => {
+		useThemeMode.persist.rehydrate();
+	}, []);
+
 	return (
 		<MuiThemeProvider theme={theme}>
 			<EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
