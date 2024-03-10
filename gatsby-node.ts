@@ -2,11 +2,12 @@
 import type { GatsbyNode } from "gatsby";
 import path from "path";
 import { isValidNanoId } from "./src/utils/is-valid-nano-id";
+import { cvPage, postPages } from "./src/utils/queries";
 
 const postTemplate = path.resolve(`./src/templates/post.tsx`);
 
 const myCVTemplate = path.resolve(`./src/templates/cv.tsx`);
-const myCVFile = path.resolve(`./content/cv/cv.mdx`);
+const cvFile = path.resolve(`./content/cv/cv.mdx`);
 
 /**
  * @type {import('gatsby').GatsbyNode['onCreatePage']}
@@ -39,32 +40,19 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 
 		const { createPage } = actions;
 
-		const result = await graphql<Queries.Query>(`
-			query {
-				mdx(
-					internal: {
-						contentFilePath: {
-							eq: "${myCVFile}"
-						}
-					}
-				) {
-					id
-				}
-			}
-		`);
+		const result = await graphql<Queries.Query>(cvPage, {
+			cvFile,
+		});
 
 		if (result.errors) {
 			reporter.panicOnBuild("Error loading MDX result", result.errors);
 		}
 
-		/**
-		 * @type {Queries.Query}
-		 */
 		const data = result.data!;
 
 		createPage({
 			path: `/cv`,
-			component: `${myCVTemplate}?__contentFilePath=${myCVFile}`,
+			component: `${myCVTemplate}?__contentFilePath=${cvFile}`,
 			context: { id: data.mdx!.id },
 		});
 	}
@@ -74,31 +62,13 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 
 		const { createPage } = actions;
 
-		const result = await graphql<Queries.Query>(`
-			query {
-				allMdx(
-					filter: { internal: { contentFilePath: { glob: "**/posts/**" } } }
-				) {
-					nodes {
-						id
-						frontmatter {
-							title
-							nanoId
-							date
-						}
-						internal {
-							contentFilePath
-						}
-					}
-				}
-			}
-		`);
+		const result = await graphql<Queries.Query>(postPages);
 
 		if (result.errors) {
 			reporter.panicOnBuild("Error loading MDX result", result.errors);
 		}
 
-		const data = result.data!
+		const data = result.data!;
 
 		// Create blog post pages.
 		const posts = data.allMdx.nodes;
