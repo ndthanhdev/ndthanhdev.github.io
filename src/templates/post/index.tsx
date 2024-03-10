@@ -1,10 +1,10 @@
 import * as React from "react";
 import { graphql, PageProps } from "gatsby";
-import { Shell } from "../shell";
 import { Merge } from "type-fest";
-import { MyHelmet } from "@/components/my-helmet";
 import { useSiteMetadata } from "@/shell/default-headers";
-import { MainLayoutContainer } from "@/layouts/main";
+import { MyHelmet } from "@/components/atoms/my-helmet";
+import { MainTemplate } from "../main";
+import { AppMDXProvider } from "@/providers/mdx-provider";
 
 export type PostTemplateProps = Merge<
 	PageProps<Queries.PostTemplateQuery>,
@@ -15,16 +15,14 @@ const PostTemplate = ({ children, data }: PostTemplateProps) => {
 	const siteMetadata = useSiteMetadata();
 
 	return (
-		<>
-			<Shell>
-				<MainLayoutContainer>{children}</MainLayoutContainer>
-			</Shell>
+		<AppMDXProvider>
+			<MainTemplate>{children}</MainTemplate>
 			<MyHelmet>
 				<title>
 					{data?.mdx?.frontmatter?.title} | {siteMetadata.title}
 				</title>
 			</MyHelmet>
-		</>
+		</AppMDXProvider>
 	);
 };
 

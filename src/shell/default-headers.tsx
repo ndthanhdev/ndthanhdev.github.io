@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
-import { MyHelmet } from "@/components/my-helmet";
+import { MyHelmet } from "@/components/atoms/my-helmet";
 import * as R from "ramda";
 
 import "modern-normalize/modern-normalize.css";

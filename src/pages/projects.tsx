@@ -1,17 +1,12 @@
 import * as React from "react";
-import { Link, navigate } from "gatsby";
-import { Shell } from "@/shell";
-import { MainLayoutContainer } from "@/layouts/main";
-import Stack from "@mui/material/Stack";
-import { Wip } from "@/components/wip";
+import { MainTemplate } from "@/templates/main";
+import { Wip } from "@/components/organisms/wip";
 
 function Projects() {
 	return (
-		<Shell>
-			<MainLayoutContainer>
-				<Wip />
-			</MainLayoutContainer>
-		</Shell>
+		<MainTemplate>
+			<Wip />
+		</MainTemplate>
 	);
 }
 

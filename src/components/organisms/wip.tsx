@@ -1,8 +1,8 @@
-import { AppTheme } from "@/shell/theme";
 import { css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import * as React from "react";
+import { AppTheme } from "@/theme";
 
 export type WipProps = React.PropsWithChildren<{}>;
 

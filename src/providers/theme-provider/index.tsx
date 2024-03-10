@@ -2,24 +2,12 @@ import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import {
 	ThemeProvider as MuiThemeProvider,
 	createTheme,
-	Theme as MuiTheme,
 	ThemeOptions,
 } from "@mui/material";
 import * as React from "react";
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import localForage from "localforage";
-
-export interface AppTheme extends MuiTheme {}
-
-declare module "@emotion/react" {
-	export interface Theme extends AppTheme {}
-}
-
-export enum ThemeMode {
-	Light = "light",
-	Dark = "dark",
-}
+import { useThemeMode } from "../../stores/use-theme-mode";
+import { ThemeMode } from "@/theme";
+import { GlobalStyles } from "./global-styles";
 
 const themeOption = {
 	palette: {
@@ -43,28 +31,6 @@ export const darkTheme = createTheme({
 	},
 });
 
-export type ThemeModeState = {
-	themeMode: ThemeMode;
-	setThemeMode: (mode: ThemeMode) => void;
-};
-
-export const useThemeMode = create(
-	persist<ThemeModeState>(
-		(set) => ({
-			themeMode: ThemeMode.Dark,
-			setThemeMode: (mode) =>
-				set((state) => ({
-					themeMode: mode,
-				})),
-		}),
-		{
-			name: "app-theme-mode",
-			storage: createJSONStorage(() => localForage as any),
-			skipHydration: true,
-		},
-	),
-);
-
 export type AppThemeProps = React.PropsWithChildren<{
 	overrideThemeMode?: ThemeMode;
 }>;
@@ -81,13 +47,18 @@ export const AppThemeProvider = ({
 		theme = overrideThemeMode === ThemeMode.Light ? lightTheme : darkTheme;
 	}
 
+	console.log("theme", theme);
+
 	React.useEffect(() => {
 		useThemeMode.persist.rehydrate();
 	}, []);
 
 	return (
 		<MuiThemeProvider theme={theme}>
-			<EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
+			<EmotionThemeProvider theme={theme}>
+				<GlobalStyles />
+				{children}
+			</EmotionThemeProvider>
 		</MuiThemeProvider>
 	);
 };

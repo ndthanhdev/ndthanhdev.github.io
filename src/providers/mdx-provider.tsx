@@ -1,11 +1,9 @@
 import * as React from "react";
 import { MDXProvider } from "@mdx-js/react";
 import Typography from "@mui/material/Typography";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import { AppTheme } from "./theme";
+import { AppTheme } from "@/theme";
 
-export type MDXProviderProps = React.PropsWithChildren<{}>;
+export type AppMDXProviderProps = React.PropsWithChildren<{}>;
 
 const h1 = (props: any) => <Typography gutterBottom variant="h1" {...props} />;
 const h2 = (props: any) => <Typography gutterBottom variant="h2" {...props} />;
@@ -58,6 +56,6 @@ const defaultComponents = {
 	li,
 } satisfies React.ComponentProps<typeof MDXProvider>["components"];
 
-export const AppMDXProvider = ({ children }: MDXProviderProps) => {
+export const AppMDXProvider = ({ children }: AppMDXProviderProps) => {
 	return <MDXProvider components={defaultComponents}>{children}</MDXProvider>;
 };

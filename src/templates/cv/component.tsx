@@ -1,7 +1,7 @@
 import React from "react";
 import Stack from "@mui/material/Stack";
 
-export const MyCVLayout: React.FC<{
+export const CVLayout: React.FC<{
 	children: React.ReactNode;
 }> = ({ children }) => {
 	return (

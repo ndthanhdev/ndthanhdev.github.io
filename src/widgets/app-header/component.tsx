@@ -5,71 +5,28 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import Link from "@mui/material/Link";
 import Button from "@mui/material/Button";
-import { AppTheme, ThemeMode } from "@/shell/theme";
-import { css } from "@emotion/react";
 import Stack from "@mui/material/Stack";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import { Link as GatsbyLink } from "gatsby";
 import IconButton from "@mui/material/IconButton";
+import { ThemeMode } from "@/theme";
+import { styles } from "./styles";
 
-export type MainLayoutProps = React.PropsWithChildren<{
+export type AppHeaderProps = React.PropsWithChildren<{
 	onOpenSettings?: (e: any) => void;
 
 	themeMode?: ThemeMode;
 	onToggleThemeMode?: (e: any) => void;
 }>;
 
-const styles = {
-	appBar: (theme: AppTheme) =>
-		css({
-			display: "flex",
-			flexDirection: "column",
-			alignItems: "center",
-			backgroundColor: theme.palette.background.paper,
-		}),
-
-	left: {
-		root: (theme: AppTheme) =>
-			css({
-				gap: theme.spacing(2),
-				gridArea: "left",
-				textTransform: "uppercase",
-			}),
-	},
-
-	right: {
-		root: (theme: AppTheme) =>
-			css({ gap: theme.spacing(2), gridArea: "right" }),
-	},
-
-	toolbar: (theme: AppTheme) =>
-		css({
-			flex: 1,
-			width: "100%",
-			maxWidth: theme.breakpoints.values.lg,
-			display: "grid",
-			gridTemplateColumns: "auto 1fr auto",
-			gridTemplateRows: "1fr",
-			gridTemplateAreas: `\
-				"left . right"
-			`,
-			alignItems: "center",
-		}),
-
-	brand: (theme: AppTheme) =>
-		css({
-			fontWeight: theme.typography.fontWeightBold,
-		}),
-};
-
-export const MainLayout = ({
+export const AppHeader = ({
 	children,
 	onOpenSettings,
 	themeMode,
 	onToggleThemeMode,
-}: MainLayoutProps) => {
+}: AppHeaderProps) => {
 	return (
 		<>
 			<HideOnScroll>

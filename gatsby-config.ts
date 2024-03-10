@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import Path from "path";
 
 const config: GatsbyConfig = {
 	siteMetadata: {
@@ -8,7 +9,12 @@ const config: GatsbyConfig = {
 	},
 	graphqlTypegen: true,
 	plugins: [
-		"gatsby-plugin-layout",
+		{
+			resolve: "gatsby-plugin-layout",
+			options: {
+				component: Path.resolve("./src/shell/index.tsx"),
+			},
+		},
 		"gatsby-plugin-sass",
 		// "gatsby-plugin-theme-ui",
 		"gatsby-plugin-emotion",
