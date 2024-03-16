@@ -13,10 +13,10 @@ import { ThemeMode } from "@/theme";
 import { styles } from "./styles";
 
 export type AppDrawerProps = React.PropsWithChildren<{
-	open?: boolean;
-	onClose?: () => void;
-	themeMode?: ThemeMode;
-	onThemeModeChange?: (e: any, mode: ThemeMode) => void;
+	open: boolean;
+	onClose: () => void;
+	themeMode: ThemeMode;
+	onThemeModeChange: (e: any, mode: ThemeMode) => void;
 }>;
 
 export const AppDrawer = ({

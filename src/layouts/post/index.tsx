@@ -1,19 +1,15 @@
 import * as React from "react";
 import { graphql, PageProps } from "gatsby";
-import { Merge } from "type-fest";
 import { useSiteMetadata } from "@/shell/default-headers";
 import { MyHelmet } from "@/components/atoms/my-helmet";
-import { MainTemplate } from "@/components/templates/main";
+import { PostTemplate } from "@/components/templates/post";
 import { AppMDXProvider } from "@/providers/mdx-provider";
 import { useAppDrawerStore } from "@/stores/use-app-drawer-store";
 import { useThemeModeStore } from "@/stores/use-theme-mode-store";
 
-export type PostTemplateProps = Merge<
-	PageProps<Queries.PostTemplateQuery>,
-	React.PropsWithChildren<{}>
->;
+export type PostLayoutProps = PageProps<Queries.PostTemplateQuery>;
 
-const PostTemplate = ({ children, data }: PostTemplateProps) => {
+const PostLayout = ({ children, data }: PostLayoutProps) => {
 	const siteMetadata = useSiteMetadata();
 	const drawer = useAppDrawerStore();
 	const theme = useThemeModeStore();
@@ -25,7 +21,7 @@ const PostTemplate = ({ children, data }: PostTemplateProps) => {
 					{data?.mdx?.frontmatter?.title} | {siteMetadata.title}
 				</title>
 			</MyHelmet>
-			<MainTemplate
+			<PostTemplate
 				appDrawerProps={{
 					onClose: drawer.closeDrawer,
 					open: drawer.open,
@@ -39,12 +35,12 @@ const PostTemplate = ({ children, data }: PostTemplateProps) => {
 				}}
 			>
 				{children}
-			</MainTemplate>
+			</PostTemplate>
 		</AppMDXProvider>
 	);
 };
 
-export default PostTemplate;
+export default PostLayout;
 
 export const pageQuery = graphql`
 	query PostTemplate($id: String!) {

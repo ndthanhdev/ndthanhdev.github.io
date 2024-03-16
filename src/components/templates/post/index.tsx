@@ -3,21 +3,21 @@ import { Container } from "@mui/material";
 import { AppDrawer, AppDrawerProps } from "@/components/organisms/app-drawer";
 import { AppHeader, AppHeaderProps } from "@/components/organisms/app-header";
 
-export type PostLayoutProps = React.PropsWithChildren<{
+export type PostTemplateProps = React.PropsWithChildren<{
 	appDrawerProps: AppDrawerProps;
 	appHeaderProps: AppHeaderProps;
 }>;
 
-export const PostLayout = ({
+export const PostTemplate = ({
 	appDrawerProps,
 	appHeaderProps,
 	children,
-}: any) => {
+}: PostTemplateProps) => {
 	return (
 		<>
 			<AppHeader {...appHeaderProps} />
 			<AppDrawer {...appDrawerProps} />
-			<Container maxWidth="xl">{children}</Container>
+			<Container maxWidth="lg">{children}</Container>
 		</>
 	);
 };

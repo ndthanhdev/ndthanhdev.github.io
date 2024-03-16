@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql, PageProps } from "gatsby";
 import { Merge } from "type-fest";
 import { MyHelmet } from "@/components/atoms/my-helmet";
-import { CVTemplate } from "../components/templates/cv";
+import { CVTemplate } from "../../components/templates/cv";
 import { ThemeMode } from "@/theme";
 import { AppThemeProvider } from "@/providers/theme-provider";
 import { AppMDXProvider } from "@/providers/mdx-provider";

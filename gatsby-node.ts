@@ -4,9 +4,9 @@ import path from "path";
 import { isValidNanoId } from "./src/utils/is-valid-nano-id";
 import { cvPage, postPages } from "./src/utils/queries";
 
-const postTemplate = path.resolve(`./src/pages/post/index.tsx`);
+const postTemplate = path.resolve(`./src/layouts/post/index.tsx`);
 
-const myCVTemplate = path.resolve(`./src/pages/cv/index.tsx`);
+const myCVTemplate = path.resolve(`./src/layouts/cv/index.tsx`);
 const cvFile = path.resolve(`./content/cv/cv.mdx`);
 
 /**
