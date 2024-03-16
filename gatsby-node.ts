@@ -9,28 +9,6 @@ const postTemplate = path.resolve(`./src/layouts/post/index.tsx`);
 const myCVTemplate = path.resolve(`./src/layouts/cv/index.tsx`);
 const cvFile = path.resolve(`./content/cv/cv.mdx`);
 
-/**
- * @type {import('gatsby').GatsbyNode['onCreatePage']}
- */
-// exports.onCreatePage = ({ page, actions }) => {
-// 	const { createPage } = actions;
-
-// 	/**
-// 	 * @type {any}
-// 	 */
-// 	const pageContext = page.context;
-
-// 	if (page.path.match(/^\/cv\/?.*$/)) {
-// 		pageContext.layout = "cv";
-// 	} else if (page.path.match(/^\/posts\/?.*$/)) {
-// 		pageContext.layout = "post";
-// 	} else {
-// 		pageContext.layout = "none";
-// 	}
-
-// 	createPage(page);
-// };
-
 export const createPages: GatsbyNode["createPages"] = async (args) => {
 	await createPosts();
 	await createCV();
