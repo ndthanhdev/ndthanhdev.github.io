@@ -15,10 +15,10 @@ import { ThemeMode } from "@/theme";
 import { styles } from "./styles";
 
 export type AppHeaderProps = React.PropsWithChildren<{
-	onOpenSettings?: (e: any) => void;
+	onOpenSettings: (e: any) => void;
 
-	themeMode?: ThemeMode;
-	onToggleThemeMode?: (e: any) => void;
+	themeMode: ThemeMode;
+	onToggleThemeMode: (e: any) => void;
 }>;
 
 export const AppHeader = ({

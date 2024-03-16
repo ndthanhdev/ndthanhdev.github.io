@@ -1,14 +1,28 @@
 import * as React from "react";
-import { Link, navigate } from "gatsby";
-import { Shell } from "@/shell";
 import Stack from "@mui/material/Stack";
 import { Wip } from "@/components/organisms/wip";
-import { MainTemplate } from "@/templates/main";
+import { useAppDrawerStore } from "@/stores/use-app-drawer-store";
+import { useThemeModeStore } from "@/stores/use-theme-mode-store";
+import { MainTemplate } from "@/components/templates/main";
 
 function Index() {
-	// test
+	const drawer = useAppDrawerStore();
+	const theme = useThemeModeStore();
+
 	return (
-		<MainTemplate>
+		<MainTemplate
+			appDrawerProps={{
+				onClose: drawer.closeDrawer,
+				open: drawer.open,
+				themeMode: theme.themeMode,
+				onThemeModeChange: (_, mode) => theme.setThemeMode(mode),
+			}}
+			appHeaderProps={{
+				onOpenSettings: drawer.openDrawer,
+				themeMode: theme.themeMode,
+				onToggleThemeMode: theme.toggleThemeMode,
+			}}
+		>
 			<Wip />
 		</MainTemplate>
 	);

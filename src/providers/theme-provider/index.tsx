@@ -5,7 +5,7 @@ import {
 	ThemeOptions,
 } from "@mui/material";
 import * as React from "react";
-import { useThemeMode } from "../../stores/use-theme-mode";
+import { useThemeModeStore } from "../../stores/use-theme-mode-store";
 import { ThemeMode } from "@/theme";
 import { GlobalStyles } from "./global-styles";
 
@@ -39,7 +39,7 @@ export const AppThemeProvider = ({
 	children,
 	overrideThemeMode,
 }: AppThemeProps) => {
-	let theme = useThemeMode((state) =>
+	let theme = useThemeModeStore((state) =>
 		state.themeMode === ThemeMode.Dark ? darkTheme : lightTheme,
 	);
 
@@ -47,10 +47,8 @@ export const AppThemeProvider = ({
 		theme = overrideThemeMode === ThemeMode.Light ? lightTheme : darkTheme;
 	}
 
-	console.log("theme", theme);
-
 	React.useEffect(() => {
-		useThemeMode.persist.rehydrate();
+		useThemeModeStore.persist.rehydrate();
 	}, []);
 
 	return (

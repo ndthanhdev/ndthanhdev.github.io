@@ -16,7 +16,6 @@ const config: GatsbyConfig = {
 			},
 		},
 		"gatsby-plugin-sass",
-		// "gatsby-plugin-theme-ui",
 		"gatsby-plugin-emotion",
 		"gatsby-plugin-image",
 		"gatsby-transformer-sharp",

@@ -4,7 +4,9 @@ import { css } from "@emotion/react";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { AppTheme } from "@/theme";
-import { MainTemplate } from "@/templates/main";
+import { MainTemplate } from "@/components/templates/main";
+import { useAppDrawerStore } from "@/stores/use-app-drawer-store";
+import { useThemeModeStore } from "@/stores/use-theme-mode-store";
 
 const styles = {
 	mainWrapper: (theme: AppTheme) =>
@@ -19,8 +21,23 @@ const styles = {
 };
 
 function Index() {
+	const drawer = useAppDrawerStore();
+	const theme = useThemeModeStore();
+
 	return (
-		<MainTemplate>
+		<MainTemplate
+			appDrawerProps={{
+				onClose: drawer.closeDrawer,
+				open: drawer.open,
+				themeMode: theme.themeMode,
+				onThemeModeChange: (_, mode) => theme.setThemeMode(mode),
+			}}
+			appHeaderProps={{
+				onOpenSettings: drawer.openDrawer,
+				themeMode: theme.themeMode,
+				onToggleThemeMode: theme.toggleThemeMode,
+			}}
+		>
 			<Container maxWidth="lg">
 				<Stack
 					css={styles.mainWrapper}

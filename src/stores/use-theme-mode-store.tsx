@@ -6,15 +6,23 @@ import { ThemeMode } from "@/theme";
 export type ThemeModeState = {
 	themeMode: ThemeMode;
 	setThemeMode: (mode: ThemeMode) => void;
+	toggleThemeMode: () => void;
 };
 
-export const useThemeMode = create(
+export const useThemeModeStore = create(
 	persist<ThemeModeState>(
 		(set) => ({
 			themeMode: ThemeMode.Dark,
 			setThemeMode: (mode) =>
 				set((state) => ({
 					themeMode: mode,
+				})),
+			toggleThemeMode: () =>
+				set((state) => ({
+					themeMode:
+						state.themeMode === ThemeMode.Dark
+							? ThemeMode.Light
+							: ThemeMode.Dark,
 				})),
 		}),
 		{
