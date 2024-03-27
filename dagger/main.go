@@ -25,16 +25,22 @@ func (m *NdthanhdevGithubIo) ContainerEcho(stringArg string) *Container {
 	return dag.Container().From("alpine:latest").WithExec([]string{"echo", stringArg})
 }
 
-// Returns a container that echoes whatever string argument is provided
-func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directory {
+func (m *NdthanhdevGithubIo) Init(dir *Directory) *Container {
 	return dag.
 		Container().
 		From("alpine:3.19.1").
 		WithExec([]string{"apk", "update"}).
-		WithExec([]string{"apk", "add", "--no-cache", "nodejs", "yarn", "util-linux"}).
-		WithMountedDirectory("/mnt", dir).
-		WithWorkdir("/mnt").
-		WithExec([]string{"yarn", "install"}).
+		WithExec([]string{"apk", "add", "--no-cache", "bash", "curl", "util-linux", "git", "unzip", "gzip", "xz"}).
+		WithDefaultTerminalCmd([]string{"/bin/bash", "-c"}).
+		WithExec([]string{"curl", "-fsSL", "https://moonrepo.dev/install/proto.sh", "|", "bash", "-s", "--", "0.32.1", "--yes"}).
+		WithMountedDirectory("/mnt", dir)
+	// WithWorkdir("/mnt").
+	// WithExec([]string{"proto", "use"})
+}
+
+func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directory {
+	return m.Init(dir).
+		WithWorkdir("/mnt/app").
 		WithExec([]string{"rm", "-rf", "./public"}).
 		WithExec([]string{"yarn", "build"}).
 		Directory("./public")
