@@ -32,9 +32,13 @@ func (m *NdthanhdevGithubIo) Init(dir *Directory) *Container {
 		WithExec([]string{"apk", "update"}).
 		WithExec([]string{"apk", "add", "--no-cache", "bash", "curl", "util-linux", "git", "unzip", "gzip", "xz"}).
 		WithDefaultTerminalCmd([]string{"/bin/bash", "-c"}).
-		WithExec([]string{"curl", "-fsSL", "https://moonrepo.dev/install/proto.sh", "|", "bash", "-s", "--", "0.32.1", "--yes"}).
-		WithMountedDirectory("/mnt", dir)
-	// WithWorkdir("/mnt").
+		WithExec([]string{"curl", "-fsSL", "https://moonrepo.dev/install/proto.sh", "-o", "/tmp/proto.sh"}).
+		WithExec([]string{"chmod", "+x", "/tmp/proto.sh"}).
+		WithExec([]string{"bash", "/tmp/proto.sh", "0.32.1", "--yes"}).
+		WithEnvVariable("PATH", "/root/.proto/bin:$PATH").
+		WithMountedDirectory("/mnt", dir).
+		WithWorkdir("/mnt").
+		WithDefaultTerminalCmd([]string{"/bin/bash"})
 	// WithExec([]string{"proto", "use"})
 }
 
