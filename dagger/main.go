@@ -35,11 +35,10 @@ func (m *NdthanhdevGithubIo) Init(dir *Directory) *Container {
 		WithExec([]string{"curl", "-fsSL", "https://moonrepo.dev/install/proto.sh", "-o", "/tmp/proto.sh"}).
 		WithExec([]string{"chmod", "+x", "/tmp/proto.sh"}).
 		WithExec([]string{"bash", "/tmp/proto.sh", "0.32.1", "--yes"}).
-		WithEnvVariable("PATH", "/root/.proto/bin:$PATH").
+		WithExec([]string{"echo", "export PATH=$PATH:/root/.proto/bin", ">>", "/root/.bashrc"}).
 		WithMountedDirectory("/mnt", dir).
 		WithWorkdir("/mnt").
-		WithDefaultTerminalCmd([]string{"/bin/bash"})
-	// WithExec([]string{"proto", "use"})
+		WithExec([]string{"proto", "use"})
 }
 
 func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directory {
