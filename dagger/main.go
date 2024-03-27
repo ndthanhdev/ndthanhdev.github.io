@@ -36,6 +36,7 @@ func (m *NdthanhdevGithubIo) Init(dir *Directory) *Container {
 		WithExec([]string{"chmod", "+x", "/tmp/proto.sh"}).
 		WithExec([]string{"bash", "/tmp/proto.sh", "0.32.1", "--yes"}).
 		WithExec([]string{"echo", "export PATH=$PATH:/root/.proto/bin", ">>", "/root/.bashrc"}).
+		WithExec([]string{"source", "/root/.bashrc"}).
 		WithMountedDirectory("/mnt", dir).
 		WithWorkdir("/mnt").
 		WithExec([]string{"proto", "use"})
