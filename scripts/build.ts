@@ -1,9 +1,10 @@
-#!../node_modules/.bin/bun
+#!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
-import { workDirs } from "./utils/work-dir";
+import { workDirs } from "~/utils/work-dir";
+import { cleanBuild } from "./utils/clean-build";
 
 cd(workDirs.app.path);
 
-await $`rm -rf ${workDirs.app.public.path}`;
+await cleanBuild();
 
 await $`yarn build`;

@@ -18,35 +18,51 @@ import (
 	"context"
 )
 
-type NdthanhdevGithubIo struct{}
+type NdthanhdevGithubIo struct {
+}
 
 // Returns a container that echoes whatever string argument is provided
 func (m *NdthanhdevGithubIo) ContainerEcho(stringArg string) *Container {
 	return dag.Container().From("alpine:latest").WithExec([]string{"echo", stringArg})
 }
 
-func (m *NdthanhdevGithubIo) Init(dir *Directory) *Container {
+func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Container {
+	source := dag.Directory().WithDirectory("/", dir, DirectoryWithDirectoryOpts{
+		Exclude: []string{"node_modules", ".cache"},
+	})
+
 	return dag.
 		Container().
 		From("alpine:3.19.1").
-		WithExec([]string{"apk", "update"}).
-		WithExec([]string{"apk", "add", "--no-cache", "bash", "curl", "util-linux", "git", "unzip", "gzip", "xz"}).
-		WithDefaultTerminalCmd([]string{"/bin/bash", "-c"}).
-		WithExec([]string{"curl", "-fsSL", "https://moonrepo.dev/install/proto.sh", "-o", "/tmp/proto.sh"}).
-		WithExec([]string{"chmod", "+x", "/tmp/proto.sh"}).
-		WithExec([]string{"bash", "/tmp/proto.sh", "0.32.1", "--yes"}).
-		WithEnvVariable("PATH", "$PATH:/root/.proto/bin", ContainerWithEnvVariableOpts{Expand: true}).
-		WithMountedDirectory("/mnt", dir).
+		WithExec([]string{"apk", "add", "--no-cache", "nodejs", "yarn",
+			// zx deps
+			"bash",
+		}).
+		// add zx
+		WithExec([]string{"yarn", "global", "add", "zx"}).
+		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
-		WithExec([]string{"proto", "use"})
+		WithExec([]string{"yarn", "install", "--immutable"})
 }
 
 func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directory {
-	return m.Init(dir).
-		WithWorkdir("/mnt/app").
-		WithExec([]string{"rm", "-rf", "./public"}).
-		WithExec([]string{"yarn", "build"}).
-		Directory("./public")
+	return m.Init(ctx, dir).
+		WithWorkdir("/mnt/scripts").
+		WithExec([]string{"./build.ts"}).
+		Directory("/mnt/app/public")
+}
+
+func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode string, token *Secret) (bool, error) {
+
+	tokenString, _ := token.Plaintext(ctx)
+
+	m.Init(ctx, dir).
+		WithEnvVariable("GH_TOKEN", tokenString).
+		WithEnvVariable("MODE", mode).
+		WithWorkdir("/mnt/scripts").
+		WithExec([]string{"./publish.ts"})
+
+	return true, nil
 }
 
 // Returns lines that match a pattern in the files of the provided Directory
