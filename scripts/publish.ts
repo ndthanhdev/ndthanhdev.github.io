@@ -1,4 +1,4 @@
-#!/usr/bin/env -S yarn dlx tsx
+#!yarn tsx
 import "zx/globals";
 import { workDirs } from "~/utils/work-dir";
 import { getPublishRemote } from "~/utils/get-publish-remote";

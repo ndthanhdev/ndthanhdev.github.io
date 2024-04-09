@@ -34,12 +34,15 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 	return dag.
 		Container().
 		From("alpine:3.19.1").
-		WithExec([]string{"apk", "add", "--no-cache", "nodejs", "yarn",
+		WithExec([]string{"apk", "add", "--no-cache",
+			"nodejs",
+			"yarn",
 			// zx deps
 			"bash",
+			"unzip ",
 		}).
 		// add zx
-		WithExec([]string{"yarn", "global", "add", "zx"}).
+		// WithExec([]string{"yarn", "global", "add", "tsx"}).
 		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
 		WithExec([]string{"yarn", "install", "--immutable"})

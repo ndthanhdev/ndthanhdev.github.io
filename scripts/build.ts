@@ -1,10 +1,10 @@
-#!/usr/bin/env -S yarn dlx tsx
+#!yarn tsx
 import "zx/globals";
 import { workDirs } from "~/utils/work-dir";
 import { cleanBuild } from "./utils/clean-build";
 
-cd(workDirs.app.path);
-
 await cleanBuild();
+
+cd(workDirs.app.path);
 
 await $`yarn build`;
