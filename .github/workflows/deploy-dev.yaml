@@ -27,4 +27,4 @@ jobs:
         run: ./release-dev.ts
         env:
           MODE: "dev"
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN_DEV }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN_DEV }}
