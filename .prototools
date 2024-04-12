@@ -1,0 +1,4 @@
+node = "^20.0.0"
+yarn = "^1.0.0"
+go = "~1.21.7"
+dagger = "latest"
