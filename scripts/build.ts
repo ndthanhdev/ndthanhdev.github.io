@@ -1,4 +1,4 @@
-#!yarn tsx
+#!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
 import { workDirs } from "~/utils/work-dir";
 import { cleanBuild } from "./utils/clean-build";

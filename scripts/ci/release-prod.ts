@@ -1,11 +1,11 @@
-#!yarn tsx
+#!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
 import { workDirs } from "~/utils/work-dir";
 import { cleanBuild } from "~/utils/clean-build";
 
-cd(workDirs.path);
-
 await cleanBuild();
+
+cd(workDirs.path);
 
 await $`dagger call build --dir . export --path ${workDirs.app.public.path}`;
 

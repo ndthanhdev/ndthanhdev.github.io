@@ -33,16 +33,8 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 
 	return dag.
 		Container().
-		From("alpine:3.19.1").
-		WithExec([]string{"apk", "add", "--no-cache",
-			"nodejs",
-			"yarn",
-			// zx deps
-			"bash",
-			"unzip ",
-		}).
-		// add zx
-		// WithExec([]string{"yarn", "global", "add", "tsx"}).
+		From("node:lts").
+		WithExec([]string{"yarn", "global", "add", "tsx"}).
 		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
 		WithExec([]string{"yarn", "install", "--immutable"})
@@ -55,17 +47,16 @@ func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directo
 		Directory("/mnt/app/public")
 }
 
-func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode string, token *Secret) (bool, error) {
+func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode string, token *Secret) (string, error) {
 
 	tokenString, _ := token.Plaintext(ctx)
 
-	m.Init(ctx, dir).
+	return m.Init(ctx, dir).
 		WithEnvVariable("GH_TOKEN", tokenString).
 		WithEnvVariable("MODE", mode).
 		WithWorkdir("/mnt/scripts").
-		WithExec([]string{"./publish.ts"})
-
-	return true, nil
+		WithExec([]string{"./publish.ts"}).
+		Stdout(ctx)
 }
 
 // Returns lines that match a pattern in the files of the provided Directory
