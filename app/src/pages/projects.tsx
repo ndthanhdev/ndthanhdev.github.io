@@ -21,6 +21,7 @@ function Projects() {
 				themeMode: theme.themeMode,
 				onToggleThemeMode: theme.toggleThemeMode,
 			}}
+			appFooterProps={{}}
 		>
 			<Wip />
 		</MainTemplate>
