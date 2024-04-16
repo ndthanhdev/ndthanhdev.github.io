@@ -37,6 +37,7 @@ function Index() {
 				themeMode: theme.themeMode,
 				onToggleThemeMode: theme.toggleThemeMode,
 			}}
+			appFooterProps={{}}
 		>
 			<Container maxWidth="lg">
 				<Stack
