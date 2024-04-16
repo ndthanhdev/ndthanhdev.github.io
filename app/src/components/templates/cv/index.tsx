@@ -7,11 +7,7 @@ export const CVTemplate: React.FC<{
 }> = ({ children }) => {
 	return (
 		<div css={styles.root}>
-			<Stack
-				css={styles.stack}
-			>
-				{children}
-			</Stack>
+			<Stack css={styles.stack}>{children}</Stack>
 		</div>
 	);
 };
