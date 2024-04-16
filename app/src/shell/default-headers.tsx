@@ -23,7 +23,7 @@ export const useSiteMetadata = () => {
 			title: "",
 			description: "",
 		} satisfies SetNonNullable<typeof data>,
-		data ?? {}
+		data ?? {},
 	);
 };
 
