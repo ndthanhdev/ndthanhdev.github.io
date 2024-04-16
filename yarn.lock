@@ -4554,6 +4554,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/luxon@npm:^3.4.2":
+  version: 3.4.2
+  resolution: "@types/luxon@npm:3.4.2"
+  checksum: 10/fd89566e3026559f2bc4ddcc1e70a2c16161905ed50be9473ec0cfbbbe919165041408c4f6e06c4bcf095445535052e2c099087c76b1b38e368127e618fc968d
+  languageName: node
+  linkType: hard
+
 "@types/mdast@npm:^3.0.0":
   version: 3.0.10
   resolution: "@types/mdast@npm:3.0.10"
@@ -5477,6 +5484,7 @@ __metadata:
     "@theme-ui/css": "npm:^0.16.2"
     "@theme-ui/preset-sketchy": "npm:^0.16.2"
     "@theme-ui/presets": "npm:^0.16.2"
+    "@types/luxon": "npm:^3.4.2"
     "@types/node": "npm:^20.11.25"
     "@types/ramda": "npm:^0.29.11"
     "@types/react": "npm:^18.2.64"
@@ -16648,6 +16656,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "scripts@workspace:scripts"
   dependencies:
+    "@types/luxon": "npm:^3.4.2"
+    luxon: "npm:^3.4.4"
     tsx: "npm:^4.7.1"
     typescript: "npm:^5.4.3"
     zx: "npm:^7.2.3"

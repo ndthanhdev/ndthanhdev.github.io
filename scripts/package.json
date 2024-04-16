@@ -3,8 +3,12 @@
   "packageManager": "yarn@4.1.1",
   "type": "module",
   "devDependencies": {
+    "@types/luxon": "^3.4.2",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3",
     "zx": "^7.2.3"
+  },
+  "dependencies": {
+    "luxon": "^3.4.4"
   }
 }
