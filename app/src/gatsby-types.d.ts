@@ -1343,6 +1343,7 @@ type MdxFrontmatter = {
   readonly date: Maybe<Scalars['Date']>;
   readonly nanoId: Maybe<Scalars['String']>;
   readonly title: Maybe<Scalars['String']>;
+  readonly wip: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -1357,18 +1358,21 @@ type MdxFrontmatterFieldSelector = {
   readonly date: InputMaybe<FieldSelectorEnum>;
   readonly nanoId: InputMaybe<FieldSelectorEnum>;
   readonly title: InputMaybe<FieldSelectorEnum>;
+  readonly wip: InputMaybe<FieldSelectorEnum>;
 };
 
 type MdxFrontmatterFilterInput = {
   readonly date: InputMaybe<DateQueryOperatorInput>;
   readonly nanoId: InputMaybe<StringQueryOperatorInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
+  readonly wip: InputMaybe<BooleanQueryOperatorInput>;
 };
 
 type MdxFrontmatterSortInput = {
   readonly date: InputMaybe<SortOrderEnum>;
   readonly nanoId: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
+  readonly wip: InputMaybe<SortOrderEnum>;
 };
 
 type MdxGroupConnection = {
