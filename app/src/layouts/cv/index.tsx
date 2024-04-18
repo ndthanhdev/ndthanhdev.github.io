@@ -1,29 +1,29 @@
-import * as React from "react";
 import { graphql, PageProps } from "gatsby";
+import * as React from "react";
 import { Merge } from "type-fest";
+
 import { MyHelmet } from "@/components/atoms/my-helmet";
-import { CVTemplate } from "../../components/templates/cv";
-import { ThemeMode } from "@/theme";
-import { AppThemeProvider } from "@/providers/theme-provider";
 import { AppMDXProvider } from "@/providers/mdx-provider";
+import { AppThemeProvider } from "@/providers/theme-provider";
+import { ThemeMode } from "@/theme";
+
+import { CVTemplate } from "../../components/templates/cv";
 
 export type MyCVTemplateProps = Merge<
 	PageProps<Queries.MyCVQueryQuery>,
-	React.PropsWithChildren<{}>
+	React.PropsWithChildren<object>
 >;
 
-const CV = ({ children, data }: MyCVTemplateProps) => {
-	return (
-		<AppThemeProvider overrideThemeMode={ThemeMode.Light}>
-			<MyHelmet>
-				<title>{data.mdx?.frontmatter?.title}</title>
-			</MyHelmet>
-			<AppMDXProvider>
-				<CVTemplate>{children}</CVTemplate>
-			</AppMDXProvider>
-		</AppThemeProvider>
-	);
-};
+const CV = ({ children, data }: MyCVTemplateProps) => (
+	<AppThemeProvider overrideThemeMode={ThemeMode.Light}>
+		<MyHelmet>
+			<title>{data.mdx?.frontmatter?.title}</title>
+		</MyHelmet>
+		<AppMDXProvider>
+			<CVTemplate>{children}</CVTemplate>
+		</AppMDXProvider>
+	</AppThemeProvider>
+);
 
 export default CV;
 

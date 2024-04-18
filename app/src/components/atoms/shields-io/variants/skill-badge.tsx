@@ -1,17 +1,23 @@
-import React from "react";
-import { ShieldsIO, ShieldsStyle } from "../shields-io";
 import { cx } from "@emotion/css";
+import React from "react";
+
 import { iconShieldStyles } from "../shared-styles";
+import { ShieldsIO, ShieldsStyle } from "../shields-io";
 
 type SkillBadge = {
 	skillLogo?: string;
 	skill: string;
 } & React.ComponentPropsWithoutRef<"img">;
 
-let SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
-	let { skillLogo, skill, className: classNameProp, ...otherProps } = props;
+const SkillBadge = React.forwardRef<HTMLElement, SkillBadge>((props, ref) => {
+	const {
+		skillLogo: skillLogoProp,
+		skill,
+		className: classNameProp,
+		...otherProps
+	} = props;
 
-	skillLogo = skillLogo ?? skill;
+	const skillLogo = skillLogoProp ?? skill;
 
 	return (
 		<ShieldsIO

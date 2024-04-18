@@ -1,12 +1,14 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import {
-	ThemeProvider as MuiThemeProvider,
 	createTheme,
 	ThemeOptions,
+	ThemeProvider as MuiThemeProvider,
 } from "@mui/material";
 import * as React from "react";
-import { useThemeModeStore } from "../../stores/use-theme-mode-store";
+
 import { ThemeMode } from "@/theme";
+
+import { useThemeModeStore } from "../../stores/use-theme-mode-store";
 import { GlobalStyles } from "./global-styles";
 
 const themeOption = {
@@ -48,7 +50,7 @@ export const AppThemeProvider = ({
 	}
 
 	React.useEffect(() => {
-		useThemeModeStore.persist.rehydrate();
+		Promise.resolve(useThemeModeStore.persist.rehydrate()).catch(console.error);
 	}, []);
 
 	return (

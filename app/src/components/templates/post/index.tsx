@@ -1,5 +1,6 @@
-import React from "react";
 import { Container } from "@mui/material";
+import React from "react";
+
 import { AppDrawer, AppDrawerProps } from "@/components/organisms/app-drawer";
 import { AppHeader, AppHeaderProps } from "@/components/organisms/app-header";
 
@@ -12,12 +13,10 @@ export const PostTemplate = ({
 	appDrawerProps,
 	appHeaderProps,
 	children,
-}: PostTemplateProps) => {
-	return (
-		<>
-			<AppHeader {...appHeaderProps} />
-			<AppDrawer {...appDrawerProps} />
-			<Container maxWidth="lg">{children}</Container>
-		</>
-	);
-};
+}: PostTemplateProps) => (
+	<>
+		<AppHeader {...appHeaderProps} />
+		<AppDrawer {...appDrawerProps} />
+		<Container maxWidth="lg">{children}</Container>
+	</>
+);

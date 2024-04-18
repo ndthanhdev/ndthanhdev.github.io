@@ -1,6 +1,7 @@
+import { css } from "@emotion/react";
 import { drawerClasses } from "@mui/material/Drawer";
 import { toggleButtonClasses } from "@mui/material/ToggleButton";
-import { css } from "@emotion/react";
+
 import { AppTheme } from "@/theme";
 
 export const styles = {
@@ -33,7 +34,7 @@ export const styles = {
 			}),
 	},
 
-	toggleGroup: (theme: AppTheme) =>
+	toggleGroup: () =>
 		css({
 			width: "100%",
 			[`& .${toggleButtonClasses.root}`]: {

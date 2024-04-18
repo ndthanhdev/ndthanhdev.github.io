@@ -1,10 +1,11 @@
-import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
-import { MyHelmet } from "@/components/atoms/my-helmet";
-import * as R from "ramda";
-
 import "modern-normalize/modern-normalize.css";
+
+import { graphql, useStaticQuery } from "gatsby";
+import * as R from "ramda";
+import React from "react";
 import { SetNonNullable } from "type-fest";
+
+import { MyHelmet } from "@/components/atoms/my-helmet";
 
 export const useSiteMetadata = () => {
 	const data = useStaticQuery<Queries.SiteMetadataQuery>(graphql`
@@ -16,7 +17,7 @@ export const useSiteMetadata = () => {
 				}
 			}
 		}
-	`)?.site?.siteMetadata;
+	`).site?.siteMetadata;
 
 	return R.mergeDeepRight(
 		{

@@ -1,3 +1,5 @@
+import "@emotion/react";
+
 import type { Theme as MuiTheme } from "@mui/material";
 
 export interface AppTheme extends MuiTheme {}

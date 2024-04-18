@@ -1,9 +1,9 @@
-export enum PageLayout {
+export enum PageLayoutEnum {
 	None = "none",
 	Post = "post",
 	CV = "cv",
 }
 
-export type PageContext = {
-	layout: PageLayout;
-};
+export interface PageContext {
+	layout: PageLayoutEnum;
+}

@@ -1,7 +1,8 @@
 #!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
-import { workDirs } from "~/utils/work-dir";
+
 import { getPublishRemote } from "~/utils/get-publish-remote";
+import { workDirs } from "~/utils/work-dir";
 
 const Constants = {
 	user: {
@@ -15,9 +16,9 @@ cd(workDirs.app.path);
 try {
 	await $`git config --get user.name`;
 } catch (error) {
-	// git config --global user.email "dagger-bot@users.noreply.github.com"
+	// Git config --global user.email "dagger-bot@users.noreply.github.com"
 	await $`git config --global user.email ${Constants.user.email}`;
-	// git config --global user.name "Dagger Bot"
+	// Git config --global user.name "Dagger Bot"
 	await $`git config --global user.name ${Constants.user.name}`;
 }
 

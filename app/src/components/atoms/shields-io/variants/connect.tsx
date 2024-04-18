@@ -1,9 +1,9 @@
-import React from "react";
-import { ShieldsIO, ShieldsStyle } from "../shields-io";
-import Link from "@mui/material/Link";
-import { useTheme } from "@emotion/react";
 import { cx } from "@emotion/css";
+import Link from "@mui/material/Link";
+import React from "react";
+
 import { iconShieldStyles } from "../shared-styles";
+import { ShieldsIO, ShieldsStyle } from "../shields-io";
 
 type Connect = {
 	connect: string;
@@ -12,17 +12,18 @@ type Connect = {
 	url?: string;
 } & React.ComponentPropsWithoutRef<"img">;
 
-let Connect = React.forwardRef<HTMLAnchorElement, Connect>((props, ref) => {
-	let {
+const Connect = React.forwardRef<HTMLAnchorElement, Connect>((props, ref) => {
+	const {
 		connect,
-		connectLogo,
+		connectLogo: connectLogoProp,
 		connectColor,
 		className: classNameProp,
 		url,
 		...otherProps
 	} = props;
 
-	connectLogo = connectLogo ?? connect;
+	const connectLogo = connectLogoProp ?? connect;
+
 	return (
 		<Link
 			css={iconShieldStyles.wrapper}
