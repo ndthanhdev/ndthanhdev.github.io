@@ -4,7 +4,7 @@ import "zx/globals";
 const Constants = {
 	mode: $.env.MODE,
 	token: $.env.GH_TOKEN,
-	// owner/repo
+	// Owner/repo
 	devRepo: "dev-n8v/dev-n8v.github.io",
 	prodRepo: "ndthanhdev/ndthanhdev.github.io",
 };

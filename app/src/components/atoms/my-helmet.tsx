@@ -1,10 +1,10 @@
 import React from "react";
-import { Helmet as _Base } from "react-helmet";
+import { Helmet as BaseComp } from "react-helmet";
 
-const Base = _Base as any;
+const Base = BaseComp as React.ComponentType<React.PropsWithChildren<object>>;
 
-export type MyHelmetProps = React.PropsWithChildren<{}>;
+export type MyHelmetProps = React.PropsWithChildren<object>;
 
-export const MyHelmet = ({ children }: MyHelmetProps) => {
-	return <Base>{children}</Base>;
-};
+export const MyHelmet = ({ children }: MyHelmetProps) => (
+	<Base>{children}</Base>
+);

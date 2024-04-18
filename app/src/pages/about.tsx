@@ -1,14 +1,15 @@
-import * as React from "react";
-import Stack from "@mui/material/Stack";
 import { css } from "@emotion/react";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { AppTheme } from "@/theme";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import * as React from "react";
+
 import { MainTemplate } from "@/components/templates/main";
 import { useMainTemplateProps } from "@/hooks/use-main-template-props";
+import { AppTheme } from "@/theme";
 
 const styles = {
-	mainWrapper: (theme: AppTheme) =>
+	mainWrapper: () =>
 		css({
 			minHeight: "90vh",
 		}),

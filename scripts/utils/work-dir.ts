@@ -2,9 +2,9 @@ import "zx/globals";
 
 import * as path from "path";
 
-const root = path.resolve(import.meta.dirname, "../../");
-const app = path.resolve(root, "app");
-const scripts = path.resolve(root, "scripts");
+const root = path.resolve(import.meta.dirname, "../../"),
+	app = path.resolve(root, "app"),
+	scripts = path.resolve(root, "scripts");
 
 export const workDirs = {
 	path: root,
@@ -12,6 +12,9 @@ export const workDirs = {
 		path: app,
 		public: {
 			path: path.resolve(app, "public"),
+		},
+		cache: {
+			path: path.resolve(app, ".cache"),
 		},
 	},
 	scripts: {

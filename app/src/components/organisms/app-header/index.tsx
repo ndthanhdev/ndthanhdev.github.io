@@ -1,24 +1,26 @@
-import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Slide from "@mui/material/Slide";
-import Link from "@mui/material/Link";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
-import { Link as GatsbyLink } from "gatsby";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import AppBar from "@mui/material/AppBar";
+import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Link from "@mui/material/Link";
+import Slide from "@mui/material/Slide";
+import Stack from "@mui/material/Stack";
+import Toolbar from "@mui/material/Toolbar";
+import useScrollTrigger from "@mui/material/useScrollTrigger";
+import { Link as GatsbyLink } from "gatsby";
+import * as React from "react";
+
 import { ThemeMode } from "@/theme";
+
 import { styles } from "./styles";
 
 export type AppHeaderProps = React.PropsWithChildren<{
-	onOpenSettings: (e: any) => void;
+	onOpenSettings: (e: unknown) => void;
 
 	themeMode: ThemeMode;
-	onToggleThemeMode: (e: any) => void;
+	onToggleThemeMode: (e: unknown) => void;
 }>;
 
 export const AppHeader = ({
@@ -26,64 +28,62 @@ export const AppHeader = ({
 	onOpenSettings,
 	themeMode,
 	onToggleThemeMode,
-}: AppHeaderProps) => {
-	return (
-		<>
-			<HideOnScroll>
-				<AppBar css={styles.appBar}>
-					<Toolbar css={styles.toolbar}>
-						<Stack css={styles.left.root} direction="row" alignItems="center">
-							<Link
-								component={GatsbyLink}
-								css={styles.brand}
-								variant="h6"
-								underline="none"
-								to="/"
-							>
-								ndthanhdev
-							</Link>
-							<Button
-								component={GatsbyLink}
-								variant="text"
-								size="large"
-								to="/about"
-							>
-								about
-							</Button>
-							<Button
-								component={GatsbyLink}
-								variant="text"
-								size="large"
-								to="/projects"
-							>
-								Projects
-							</Button>
-						</Stack>
-						<Stack css={styles.right.root} direction="row" alignItems="center">
-							<IconButton
-								size="large"
-								edge="end"
-								color="primary"
-								onClick={onToggleThemeMode}
-							>
-								{themeMode === ThemeMode.Light ? (
-									<LightModeOutlinedIcon />
-								) : (
-									<DarkModeOutlinedIcon />
-								)}
-							</IconButton>
-							<IconButton color="primary" size="large" onClick={onOpenSettings}>
-								<MenuOutlinedIcon />
-							</IconButton>
-						</Stack>
-					</Toolbar>
-				</AppBar>
-			</HideOnScroll>
-			<Toolbar />
-			{children}
-		</>
-	);
-};
+}: AppHeaderProps) => (
+	<>
+		<HideOnScroll>
+			<AppBar css={styles.appBar}>
+				<Toolbar css={styles.toolbar}>
+					<Stack css={styles.left.root} direction="row" alignItems="center">
+						<Link
+							component={GatsbyLink}
+							css={styles.brand}
+							variant="h6"
+							underline="none"
+							to="/"
+						>
+							ndthanhdev
+						</Link>
+						<Button
+							component={GatsbyLink}
+							variant="text"
+							size="large"
+							to="/about"
+						>
+							about
+						</Button>
+						<Button
+							component={GatsbyLink}
+							variant="text"
+							size="large"
+							to="/projects"
+						>
+							Projects
+						</Button>
+					</Stack>
+					<Stack css={styles.right.root} direction="row" alignItems="center">
+						<IconButton
+							size="large"
+							edge="end"
+							color="primary"
+							onClick={onToggleThemeMode}
+						>
+							{themeMode === ThemeMode.Light ? (
+								<LightModeOutlinedIcon />
+							) : (
+								<DarkModeOutlinedIcon />
+							)}
+						</IconButton>
+						<IconButton color="primary" size="large" onClick={onOpenSettings}>
+							<MenuOutlinedIcon />
+						</IconButton>
+					</Stack>
+				</Toolbar>
+			</AppBar>
+		</HideOnScroll>
+		<Toolbar />
+		{children}
+	</>
+);
 
 interface Props {
 	/**
@@ -95,13 +95,15 @@ interface Props {
 }
 
 function HideOnScroll(props: Props) {
-	const { children, window } = props;
-	// Note that you normally won't need to set the window ref as useScrollTrigger
-	// will default to window.
-	// This is only being set here because the demo is in an iframe.
-	const trigger = useScrollTrigger({
-		target: window ? window() : undefined,
-	});
+	const { children, window } = props,
+		/*
+		 * Note that you normally won't need to set the window ref as useScrollTrigger
+		 * will default to window.
+		 * This is only being set here because the demo is in an iframe.
+		 */
+		trigger = useScrollTrigger({
+			target: window ? window() : undefined,
+		});
 
 	return (
 		<Slide appear={false} direction="down" in={!trigger}>

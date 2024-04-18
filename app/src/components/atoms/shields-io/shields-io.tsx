@@ -16,7 +16,7 @@ type ShieldsIO<T extends React.ElementType = "img"> = {
 	Comp?: React.ElementType;
 } & React.ComponentPropsWithoutRef<T>;
 
-enum ShieldsStyle {
+export enum ShieldsStyle {
 	Plastic = "plastic",
 	Flat = "flat",
 	FlatSquare = "flat-square",
@@ -24,59 +24,72 @@ enum ShieldsStyle {
 	Social = "social",
 }
 
-let ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
-	let {
-		logo,
-		logoColor,
-		logoWidth,
+export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
+	function ShieldsIO(props, ref) {
+		const {
+			logo,
+			logoColor,
+			logoWidth,
 
-		leftText = "",
-		leftBg,
+			leftText = "",
+			leftBg,
 
-		rightText,
+			rightText,
 
-		// This is for by pass the case that leftText and rightText are both undefined
-		// shieldIO will return error if using query type
-		// if using path type one of 3 must be defined
-		// so we use color because using any character will affect the width of the shield
-		rightBg = "#f0f0f0",
+			/*
+			 * This is for by pass the case that leftText and rightText are both undefined
+			 * shieldIO will return error if using query type
+			 * if using path type one of 3 must be defined
+			 * so we use color because using any character will affect the width of the shield
+			 */
+			rightBg = "#f0f0f0",
 
-		shieldStyle = ShieldsStyle.Flat,
+			shieldStyle = ShieldsStyle.Flat,
 
-		Comp = "img",
+			Comp = "img",
 
-		...otherProps
-	} = props;
+			...otherProps
+		} = props;
 
-	let src = React.useMemo(() => {
-		let sUrl = "https://img.shields.io/badge/";
+		const src = React.useMemo(() => {
+			let sUrl = "https://img.shields.io/badge/";
 
-		sUrl += leftText ? `${leftText}-` : "-";
-		sUrl += rightText ? `${rightText}-` : "-";
-		sUrl += encodeURIComponent(rightBg);
+			sUrl += leftText ? `${leftText}-` : "-";
+			sUrl += rightText ? `${rightText}-` : "-";
+			sUrl += encodeURIComponent(rightBg);
 
-		// FIXME: support other extensions1
-		// sUrl += ".svg";
+			/*
+			 * FIXME: support other extensions
+			 * sUrl += ".svg";
+			 */
 
-		let url = new URL(sUrl);
+			const url = new URL(sUrl);
 
-		logo && url.searchParams.append("logo", logo);
-		logoColor && url.searchParams.append("logoColor", logoColor);
-		logoWidth && url.searchParams.append("logoWidth", logoWidth.toString());
+			logo && url.searchParams.append("logo", logo);
+			logoColor && url.searchParams.append("logoColor", logoColor);
+			logoWidth && url.searchParams.append("logoWidth", logoWidth.toString());
 
-		// url.searchParams.set("label", leftText);
-		leftBg && url.searchParams.append("labelColor", leftBg);
+			// Url.searchParams.set("label", leftText);
+			leftBg && url.searchParams.append("labelColor", leftBg);
 
-		// url.searchParams.append("color", rightBg);
+			// Url.searchParams.append("color", rightBg);
 
-		// rightText && url.searchParams.set("message", rightText);
+			// RightText && url.searchParams.set("message", rightText);
 
-		url.searchParams.append("style", shieldStyle);
+			url.searchParams.append("style", shieldStyle);
 
-		return url.toString();
-	}, [logo]);
+			return url.toString();
+		}, [
+			logo,
+			logoColor,
+			logoWidth,
+			leftText,
+			leftBg,
+			rightText,
+			rightBg,
+			shieldStyle,
+		]);
 
-	return <Comp {...otherProps} ref={ref} src={src} />;
-});
-
-export { ShieldsIO, ShieldsStyle };
+		return <Comp {...otherProps} ref={ref} src={src} />;
+	},
+);

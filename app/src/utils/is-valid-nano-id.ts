@@ -3,7 +3,7 @@ export const isValidNanoId = (id?: string | null): boolean => {
 		return false;
 	}
 
-	const nanoIdRegex = /^[a-z0-9]{21}$/;
+	const nanoIdRegex = /^[a-z0-9]{21}$/u;
 
 	return nanoIdRegex.test(id);
 };

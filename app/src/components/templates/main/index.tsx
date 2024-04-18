@@ -1,7 +1,9 @@
 import * as React from "react";
-import { AppHeader, AppHeaderProps } from "@/components/organisms/app-header";
+
 import { AppDrawer, AppDrawerProps } from "@/components/organisms/app-drawer";
 import { AppFooter, AppFooterProps } from "@/components/organisms/app-footer";
+import { AppHeader, AppHeaderProps } from "@/components/organisms/app-header";
+
 import { styles } from "./styles";
 
 export type MainTemplateProps = React.PropsWithChildren<{
@@ -15,13 +17,11 @@ export const MainTemplate = ({
 	appDrawerProps,
 	appHeaderProps,
 	appFooterProps,
-}: MainTemplateProps) => {
-	return (
-		<>
-			<AppHeader {...appHeaderProps} />
-			<AppDrawer {...appDrawerProps} />
-			<main css={styles.main}>{children}</main>
-			<AppFooter {...appFooterProps} />
-		</>
-	);
-};
+}: MainTemplateProps) => (
+	<>
+		<AppHeader {...appHeaderProps} />
+		<AppDrawer {...appDrawerProps} />
+		<main css={styles.main}>{children}</main>
+		<AppFooter {...appFooterProps} />
+	</>
+);

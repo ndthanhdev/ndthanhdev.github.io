@@ -1,5 +1,6 @@
-import { AppTheme } from "@/theme";
 import { css } from "@emotion/react";
+
+import { AppTheme } from "@/theme";
 
 export const iconShieldStyles = {
 	wrapper: (theme: AppTheme) =>

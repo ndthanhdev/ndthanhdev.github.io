@@ -1,14 +1,15 @@
 import { css } from "@emotion/react";
+
 import { AppTheme } from "@/theme";
 
 export const styles = {
-	root: (theme: AppTheme) =>
+	root: () =>
 		css({
 			display: "flex",
 			flexDirection: "column",
 		}),
 
-	contentContainer: (theme: AppTheme) =>
+	contentContainer: () =>
 		css({
 			width: "100%",
 			display: "flex",
@@ -35,7 +36,7 @@ export const styles = {
 			color: theme.palette.text.secondary,
 		}),
 
-	rightWrapper: (theme: AppTheme) =>
+	rightWrapper: () =>
 		css({
 			display: "flex",
 			justifyContent: "flex-end",
