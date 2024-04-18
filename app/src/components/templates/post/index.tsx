@@ -17,6 +17,6 @@ export const PostTemplate = ({
 	<>
 		<AppHeader {...appHeaderProps} />
 		<AppDrawer {...appDrawerProps} />
-		<Container maxWidth="lg">{children}</Container>
+		<Container maxWidth="md">{children}</Container>
 	</>
 );

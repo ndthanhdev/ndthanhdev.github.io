@@ -1,0 +1,22 @@
+---
+nanoId: qs05qpu3c0p78ww123zv1
+title: How I added dagger.io
+date: 2024-04-18
+wip: true
+---
+
+I wanted to have the ability to run CI/CD pipelines on my local, and I decided to go with [Dagger.io](https://dagger.io/). It not only fed my need and also added a lot of instresting features. In this post I'll share how I added dagger.io to my personal website.
+
+## Requirements
+
+My personal website is a static site generated using [Gatsby](https://www.gatsbyjs.com/). I have some scripts that I run locally to lint, build and publish the site, they are located in `scripts` directory.
+
+I'm hosting my website on [Github Pages](https://pages.github.com/), using 3 environments: `development`, `staging` and `production`. These environments are hosted on:
+
+- `Development`: [https://dev-n8v.github.io/](https://dev-n8v.github.io/)
+- `Staging`: [https://stg-n8v.github.io/](https://stg-n8v.github.io/)
+- `Production`: [https://ndthanhdev.github.io/](https://ndthanhdev.github.io/)
+
+I want to apply "Trunk Based Development", so whenever I push a commit to `main` branch, the site should be published to `development`. Whenever a merge request is merged to `release-<version>` branch, the site should be published to `staging`. And when I create a release(a tag), the site should be published to `production`.
+
+{/* Add a pic */}
