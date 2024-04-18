@@ -1,6 +1,7 @@
 // @ts-check
 
 import eslint from "@eslint/js";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
@@ -9,6 +10,7 @@ import tseslint from "typescript-eslint";
 /* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access, @typescript-eslint/ban-ts-comment */
 export default tseslint.config(
 	eslint.configs.recommended,
+	eslintPluginPrettierRecommended,
 	...tseslint.configs.recommendedTypeChecked,
 	{
 		ignores: ["**/.cache/", "app/public/", ".yarn/"],

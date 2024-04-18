@@ -6,6 +6,4 @@ import { workDirs } from "~/utils/work-dir";
 
 cd(workDirs.path);
 
-await pipeOutput($`yarn prettier -c .`);
-
 await pipeOutput($`yarn eslint .`);
