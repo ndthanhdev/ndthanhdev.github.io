@@ -13,6 +13,9 @@ export const workDirs = {
 		public: {
 			path: path.resolve(app, "public"),
 		},
+		cache: {
+			path: path.resolve(app, ".cache"),
+		},
 	},
 	scripts: {
 		path: scripts,

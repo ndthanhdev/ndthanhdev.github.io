@@ -16,7 +16,7 @@ type ShieldsIO<T extends React.ElementType = "img"> = {
 	Comp?: React.ElementType;
 } & React.ComponentPropsWithoutRef<T>;
 
-enum ShieldsStyle {
+export enum ShieldsStyle {
 	Plastic = "plastic",
 	Flat = "flat",
 	FlatSquare = "flat-square",
@@ -24,8 +24,9 @@ enum ShieldsStyle {
 	Social = "social",
 }
 
-const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
-	const {
+export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
+	function ShieldsIO(props, ref) {
+		const {
 			logo,
 			logoColor,
 			logoWidth,
@@ -48,8 +49,9 @@ const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
 			Comp = "img",
 
 			...otherProps
-		} = props,
-		src = React.useMemo(() => {
+		} = props;
+
+		const src = React.useMemo(() => {
 			let sUrl = "https://img.shields.io/badge/";
 
 			sUrl += leftText ? `${leftText}-` : "-";
@@ -57,7 +59,7 @@ const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
 			sUrl += encodeURIComponent(rightBg);
 
 			/*
-			 * FIXME: support other extensions1
+			 * FIXME: support other extensions
 			 * sUrl += ".svg";
 			 */
 
@@ -77,9 +79,17 @@ const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>((props, ref) => {
 			url.searchParams.append("style", shieldStyle);
 
 			return url.toString();
-		}, [logo]);
+		}, [
+			logo,
+			logoColor,
+			logoWidth,
+			leftText,
+			leftBg,
+			rightText,
+			rightBg,
+			shieldStyle,
+		]);
 
-	return <Comp {...otherProps} ref={ref} src={src} />;
-});
-
-export { ShieldsIO, ShieldsStyle };
+		return <Comp {...otherProps} ref={ref} src={src} />;
+	},
+);

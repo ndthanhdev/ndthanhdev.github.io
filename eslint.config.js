@@ -1,17 +1,25 @@
 // @ts-check
 
 import eslint from "@eslint/js";
+import react from "eslint-plugin-react";
+import reactHooks from "eslint-plugin-react-hooks";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import tseslint from "typescript-eslint";
 
-/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access, @typescript-eslint/ban-ts-comment */
 export default tseslint.config(
 	eslint.configs.recommended,
 	...tseslint.configs.recommendedTypeChecked,
 	{
+		ignores: ["**/.cache/", "app/public/", ".yarn/"],
+	},
+	{
 		languageOptions: {
 			parserOptions: {
 				tsconfigRootDir: import.meta.dirname,
+				ecmaFeatures: {
+					jsx: true,
+				},
 				project: [
 					"./tsconfig.eslint.json",
 					"./scripts/tsconfig.json",
@@ -19,20 +27,29 @@ export default tseslint.config(
 				],
 			},
 		},
-		ignores: ["**/node_modules/", "**/.cache/", "**/public/"],
+		settings: {
+			react: { version: "18.2.0" },
+		},
 		plugins: {
 			"simple-import-sort": simpleImportSort,
+			react,
+			"react-hooks": reactHooks,
 		},
+		// @ts-expect-error
 		rules: {
+			...react.configs.recommended.rules,
+			...reactHooks.configs.recommended.rules,
+			"react-hooks/exhaustive-deps": "error",
 			"simple-import-sort/imports": "error",
 			"simple-import-sort/exports": "error",
 			"@typescript-eslint/no-unused-vars": [
 				"error",
 				{
-					// _ or React
-					varsIgnorePattern: "^(_|React)",
+					varsIgnorePattern: "(^_|^React$)",
 				},
 			],
+			"react/no-unknown-property": ["error", { ignore: ["css"] }],
+			"react/prop-types": "off",
 		},
 	},
 );

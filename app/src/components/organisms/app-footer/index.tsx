@@ -1,6 +1,7 @@
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { Box, Divider, Link } from "@mui/material";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 
 import { styles } from "./styles";
 
