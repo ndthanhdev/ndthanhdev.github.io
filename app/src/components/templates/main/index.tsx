@@ -1,3 +1,4 @@
+import Container from "@mui/material/Container";
 import * as React from "react";
 
 import { AppDrawer, AppDrawerProps } from "@/components/organisms/app-drawer";
@@ -21,7 +22,9 @@ export const MainTemplate = ({
 	<>
 		<AppHeader {...appHeaderProps} />
 		<AppDrawer {...appDrawerProps} />
-		<main css={styles.main}>{children}</main>
+		<Container component="main" css={styles.main}>
+			{children}
+		</Container>
 		<AppFooter {...appFooterProps} />
 	</>
 );
