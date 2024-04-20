@@ -1,17 +1,12 @@
 import * as React from "react";
 
-import { Wip } from "@/components/organisms/wip";
-import { MainTemplate } from "@/components/templates/main";
+import { ProjectFrame } from "@/components/frames/projects";
 import { useMainTemplateProps } from "@/hooks/use-main-template-props";
 
 function Projects() {
 	const mainTemplateProps = useMainTemplateProps();
 
-	return (
-		<MainTemplate {...mainTemplateProps}>
-			<Wip />
-		</MainTemplate>
-	);
+	return <ProjectFrame mainTemplateProps={mainTemplateProps} />;
 }
 
 export default Projects;
