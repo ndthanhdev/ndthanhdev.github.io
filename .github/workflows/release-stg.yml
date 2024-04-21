@@ -1,11 +1,13 @@
-name: Init
+name: Release Dev
 
 on:
-  workflow_call:
+  push:
+    branches:
+      - release-*
 
 jobs:
-  init:
-    name: Init
+  call-function:
+    name: Call function
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,3 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
+
+      - name: Call script
+        working-directory: ./scripts/pipelines
+        run: ./release.ts
+        env:
+          MODE: "stg"
+          GH_TOKEN: ${{ secrets.GH_TOKEN_STG }}
