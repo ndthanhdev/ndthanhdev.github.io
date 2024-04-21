@@ -1,0 +1,21 @@
+name: Release Dev
+
+on:
+  push:
+    branches:
+      - release-*
+
+jobs:
+  call-function:
+    name: Call function
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/init.yml
+
+      - name: Call script
+        working-directory: ./scripts/pipelines
+        run: ./release.ts
+        env:
+          MODE: "stg"
+          GH_TOKEN: ${{ secrets.GH_TOKEN_STG }}

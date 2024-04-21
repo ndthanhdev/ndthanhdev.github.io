@@ -1,17 +1,13 @@
-name: Validate PR
+name: Init
 
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_call:
 
 jobs:
-  call-function:
-    name: Call function
+  init:
+    name: Init
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup Dagger
         uses: dagger/dagger-for-github@v5
 
@@ -22,7 +18,3 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Call script
-        working-directory: ./scripts/pipelines
-        run: ./validate-pr.ts
