@@ -1,0 +1,31 @@
+name: Release Dev
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  call-function:
+    name: Call function
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Dagger
+        uses: dagger/dagger-for-github@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Call script
+        working-directory: ./scripts/pipelines
+        run: ./release.ts
+        env:
+          MODE: "dev"
+          GH_TOKEN: ${{ secrets.GH_TOKEN_DEV }}

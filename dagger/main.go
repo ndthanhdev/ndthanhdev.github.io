@@ -40,9 +40,23 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 		WithExec([]string{"yarn", "install", "--immutable"})
 }
 
+func (m *NdthanhdevGithubIo) Lint(ctx context.Context, dir *Directory) (string, error) {
+	return m.Init(ctx, dir).
+		WithWorkdir("/mnt/scripts/actions").
+		WithExec([]string{"./lint.ts"}).
+		Stdout(ctx)
+}
+
+func (m *NdthanhdevGithubIo) Test(ctx context.Context, dir *Directory) (string, error) {
+	return m.Init(ctx, dir).
+		WithWorkdir("/mnt/scripts/actions").
+		WithExec([]string{"./test.ts"}).
+		Stdout(ctx)
+}
+
 func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directory {
 	return m.Init(ctx, dir).
-		WithWorkdir("/mnt/scripts").
+		WithWorkdir("/mnt/scripts/actions").
 		WithExec([]string{"./build.ts"}).
 		Directory("/mnt/app/public")
 }
@@ -54,7 +68,7 @@ func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode s
 	return m.Init(ctx, dir).
 		WithEnvVariable("GH_TOKEN", tokenString).
 		WithEnvVariable("MODE", mode).
-		WithWorkdir("/mnt/scripts").
+		WithWorkdir("/mnt/scripts/actions").
 		WithExec([]string{"./publish.ts"}).
 		Stdout(ctx)
 }
