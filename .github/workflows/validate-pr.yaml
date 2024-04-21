@@ -1,12 +1,13 @@
-name: Deploy Dev
+name: Validate PR
 
 on:
-  push:
-    branches: ["main"]
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  deploy-dev:
-    name: Deploy Dev
+  call-function:
+    name: Call function
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,8 +24,5 @@ jobs:
         run: yarn install
 
       - name: Call script
-        working-directory: ./scripts/ci
-        run: ./release-dev.ts
-        env:
-          MODE: "dev"
-          GH_TOKEN: ${{ secrets.GH_TOKEN_DEV }}
+        working-directory: ./scripts/pipelines
+        run: ./validate-pr.ts

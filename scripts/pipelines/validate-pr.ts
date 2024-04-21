@@ -8,6 +8,5 @@ await cleanBuild();
 
 cd(workDirs.path);
 
-await $`dagger call build --dir . export --path ${workDirs.app.public.path}`;
-
-await $`dagger call publish --dir . --token env:GH_TOKEN --mode prod`;
+await $`dagger call lint --dir .`;
+await $`dagger call test --dir .`;
