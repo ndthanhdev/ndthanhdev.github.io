@@ -1,9 +1,9 @@
-name: Validate PR
+name: Release Dev
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - release-*
 
 jobs:
   call-function:
@@ -16,4 +16,7 @@ jobs:
 
       - name: Call script
         working-directory: ./scripts/pipelines
-        run: ./validate-pr.ts
+        run: ./release.ts
+        env:
+          MODE: "stg"
+          GH_TOKEN: ${{ secrets.GH_TOKEN_STG }}

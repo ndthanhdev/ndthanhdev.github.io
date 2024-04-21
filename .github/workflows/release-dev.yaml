@@ -12,16 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Dagger
-        uses: dagger/dagger-for-github@v5
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: yarn install
+      - uses: ./.github/workflows/init.yaml
 
       - name: Call script
         working-directory: ./scripts/pipelines
