@@ -1,0 +1,20 @@
+name: Init
+
+on:
+  workflow_call:
+
+jobs:
+  init:
+    name: Init
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Dagger
+        uses: dagger/dagger-for-github@v5
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
