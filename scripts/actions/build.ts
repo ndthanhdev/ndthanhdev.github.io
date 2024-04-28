@@ -12,5 +12,6 @@ cd(workDirs.app.path);
 
 $.env.GATSBY_BUILD_NUMBER = getBuildNumber();
 $.env.GATSBY_REV = await getRev();
+$.env.GATSBY_MODE = $.env.MODE;
 
 await $`yarn build`;

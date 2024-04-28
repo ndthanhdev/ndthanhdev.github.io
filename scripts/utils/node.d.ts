@@ -6,6 +6,7 @@ declare module "process" {
 				GH_TOKEN?: string;
 				GATSBY_BUILD_NUMBER?: string;
 				GATSBY_REV?: string;
+				GATSBY_MODE?: "dev" | "stg" | "prod";
 			}
 		}
 	}
