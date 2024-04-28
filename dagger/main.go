@@ -54,9 +54,10 @@ func (m *NdthanhdevGithubIo) Test(ctx context.Context, dir *Directory) (string, 
 		Stdout(ctx)
 }
 
-func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory) *Directory {
+func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory, mode string) *Directory {
 	return m.Init(ctx, dir).
 		WithWorkdir("/mnt/scripts/actions").
+		WithEnvVariable("MODE", mode).
 		WithExec([]string{"./build.ts"}).
 		Directory("/mnt/app/public")
 }

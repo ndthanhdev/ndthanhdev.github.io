@@ -29,6 +29,7 @@ export const useMainTemplateProps = (): MainTemplateProps => {
 			year,
 			buildNumber: envs.buildNumber,
 			rev: envs.rev,
+			mode: envs.mode,
 		},
 	};
 };
