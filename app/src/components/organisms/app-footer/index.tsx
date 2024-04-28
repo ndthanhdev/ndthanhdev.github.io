@@ -9,17 +9,19 @@ export type AppFooterProps = React.PropsWithChildren<{
 	year: string;
 	buildNumber: string;
 	rev: string;
+	mode: string;
 }>;
 
-export const AppFooter = ({ year, buildNumber, rev }: AppFooterProps) => (
+export const AppFooter = ({ year, buildNumber, rev, mode }: AppFooterProps) => (
 	<Box css={styles.root}>
 		<Divider />
 		<Box css={styles.contentContainer}>
 			<Box css={styles.topWrapper}>
 				<Box css={styles.leftWrapper}>
 					<Typography variant="caption">{`Copyright © ${year}`}</Typography>
-					<Typography variant="caption">{`Build: ${buildNumber}`}</Typography>
 					<Typography variant="caption">{`Rev: ${rev}`}</Typography>
+					<Typography variant="caption">{`Build: ${buildNumber}`}</Typography>
+					<Typography variant="caption">{`Mode: ${mode}`}</Typography>
 				</Box>
 				<Box css={styles.rightWrapper}>
 					<Link

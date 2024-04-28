@@ -8,6 +8,14 @@ await cleanBuild();
 
 cd(workDirs.path);
 
-await $`dagger call build --dir . export --path ${workDirs.app.public.path}`;
+await $`dagger call build \
+--dir . \
+--mode ${$.env.MODE ?? "dev"} \
+export --path ${workDirs.app.public.path} \
+`;
 
-await $`dagger call publish --dir . --token env:GH_TOKEN --mode ${$.env.MODE ?? "dev"}`;
+await $`dagger call publish \
+--dir . \
+--token env:GH_TOKEN \
+--mode ${$.env.MODE ?? "dev"} \
+`;
