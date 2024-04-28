@@ -2601,7 +2601,7 @@ type PostTemplateQueryVariables = Exact<{
 }>;
 
 
-type PostTemplateQuery = { readonly mdx: { readonly frontmatter: { readonly title: string | null } | null } | null };
+type PostTemplateQuery = { readonly mdx: { readonly frontmatter: { readonly title: string | null, readonly date: string | null } | null } | null };
 
 type SiteMetadataQueryVariables = Exact<{ [key: string]: never; }>;
 
