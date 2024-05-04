@@ -20,9 +20,9 @@ export const PostHeader = ({ title, date, ...stackProps }: PostHeaderProps) => {
 		: "";
 
 	return (
-		<Stack {...stackProps}>
+		<Stack spacing={1} {...stackProps}>
+			<Typography variant="caption">{formatterDate}</Typography>
 			<Typography variant="h2">{title}</Typography>
-			<Typography variant="subtitle1">{formatterDate}</Typography>
 		</Stack>
 	);
 };

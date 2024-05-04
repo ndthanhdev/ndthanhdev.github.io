@@ -51,7 +51,7 @@ const ul = (props: any) => (
 
 const li = (props: any) => <li {...props} css={{}} />;
 
-const a = (props: any) => <Link {...props} />;
+const a = (props: any) => <Link component="a" target="_blank" {...props} />;
 
 const defaultComponents = {
 	text,
