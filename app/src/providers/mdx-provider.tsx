@@ -1,3 +1,5 @@
+import "prismjs/themes/prism-okaidia.css";
+
 import { MDXProvider } from "@mdx-js/react";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";

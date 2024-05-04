@@ -26,7 +26,31 @@ const config: GatsbyConfig = {
 				icon: "src/shell/icon.svg",
 			},
 		},
-		"gatsby-plugin-mdx",
+		{
+			resolve: `gatsby-plugin-mdx`,
+			options: {
+				gatsbyRemarkPlugins: [
+					{
+						resolve: `gatsby-remark-prismjs`,
+						options: {
+							classPrefix: "language-",
+							aliases: {},
+							showLineNumbers: true,
+							noInlineHighlight: false,
+							prompt: {
+								user: "root",
+								host: "localhost",
+								global: false,
+							},
+						},
+					},
+					{
+						resolve: `gatsby-remark-images`,
+						options: {},
+					},
+				],
+			},
+		},
 		{
 			resolve: "gatsby-source-filesystem",
 			options: {

@@ -11,6 +11,7 @@ export const styles = {
 
 	image: (theme: AppTheme) =>
 		css({
+			maxWidth: "100%",
 			backgroundColor: theme.palette.augmentColor({
 				color: {
 					main: theme.palette.background.paper,
