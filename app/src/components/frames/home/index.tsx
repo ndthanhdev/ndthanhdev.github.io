@@ -1,16 +1,24 @@
+import Box from "@mui/material/Box";
 import * as React from "react";
 
-import { Wip } from "@/components/organisms/wip";
+import { PostItem, PostItemProps } from "@/components/organisms/post-item";
 import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
 
 export type HomeFrameProps = {
 	mainTemplateProps: MainTemplateProps;
+	posts: PostItemProps[];
 };
 
-export const HomeFrame = ({ mainTemplateProps }: HomeFrameProps) => {
+export const HomeFrame = ({ mainTemplateProps, posts }: HomeFrameProps) => {
 	return (
 		<MainTemplate {...mainTemplateProps}>
-			<Wip />
+			<Box>
+				<Box>
+					{posts.map((post) => (
+						<PostItem key={post.link} {...post} />
+					))}
+				</Box>
+			</Box>
 		</MainTemplate>
 	);
 };

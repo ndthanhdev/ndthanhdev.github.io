@@ -3,11 +3,10 @@ import * as React from "react";
 import { Merge } from "type-fest";
 
 import { MyHelmet } from "@/components/atoms/my-helmet";
+import { CVTemplate } from "@/components/templates/cv";
 import { AppMDXProvider } from "@/providers/mdx-provider";
 import { AppThemeProvider } from "@/providers/theme-provider";
 import { ThemeMode } from "@/theme";
-
-import { CVTemplate } from "../../components/templates/cv";
 
 export type MyCVTemplateProps = Merge<
 	PageProps<Queries.MyCVQueryQuery>,
