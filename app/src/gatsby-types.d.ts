@@ -1342,6 +1342,7 @@ type MdxFilterListInput = {
 type MdxFrontmatter = {
   readonly date: Maybe<Scalars['Date']>;
   readonly nanoId: Maybe<Scalars['String']>;
+  readonly thumb: Maybe<File>;
   readonly title: Maybe<Scalars['String']>;
   readonly wip: Maybe<Scalars['Boolean']>;
 };
@@ -1357,6 +1358,7 @@ type MdxFrontmatter_dateArgs = {
 type MdxFrontmatterFieldSelector = {
   readonly date: InputMaybe<FieldSelectorEnum>;
   readonly nanoId: InputMaybe<FieldSelectorEnum>;
+  readonly thumb: InputMaybe<FileFieldSelector>;
   readonly title: InputMaybe<FieldSelectorEnum>;
   readonly wip: InputMaybe<FieldSelectorEnum>;
 };
@@ -1364,6 +1366,7 @@ type MdxFrontmatterFieldSelector = {
 type MdxFrontmatterFilterInput = {
   readonly date: InputMaybe<DateQueryOperatorInput>;
   readonly nanoId: InputMaybe<StringQueryOperatorInput>;
+  readonly thumb: InputMaybe<FileFilterInput>;
   readonly title: InputMaybe<StringQueryOperatorInput>;
   readonly wip: InputMaybe<BooleanQueryOperatorInput>;
 };
@@ -1371,6 +1374,7 @@ type MdxFrontmatterFilterInput = {
 type MdxFrontmatterSortInput = {
   readonly date: InputMaybe<SortOrderEnum>;
   readonly nanoId: InputMaybe<SortOrderEnum>;
+  readonly thumb: InputMaybe<FileSortInput>;
   readonly title: InputMaybe<SortOrderEnum>;
   readonly wip: InputMaybe<SortOrderEnum>;
 };
@@ -2588,6 +2592,11 @@ type GatsbyImageSharpFluid_withWebp_noBase64Fragment = { readonly aspectRatio: n
 type GatsbyImageSharpFluid_withWebp_tracedSVGFragment = { readonly tracedSVG: string | null, readonly aspectRatio: number, readonly src: string, readonly srcSet: string, readonly srcWebp: string | null, readonly srcSetWebp: string | null, readonly sizes: string };
 
 type GatsbyImageSharpFluidLimitPresentationSizeFragment = { readonly maxHeight: number, readonly maxWidth: number };
+
+type HomeQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HomeQuery = { readonly allMdx: { readonly nodes: ReadonlyArray<{ readonly id: string, readonly excerpt: string | null, readonly frontmatter: { readonly title: string | null, readonly nanoId: string | null, readonly date: string | null, readonly thumb: { readonly publicURL: string | null } | null } | null }> } };
 
 type MyCVQueryQueryVariables = Exact<{
   id: Scalars['String'];

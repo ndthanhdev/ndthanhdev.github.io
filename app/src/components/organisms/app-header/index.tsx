@@ -40,6 +40,7 @@ export const AppHeader = ({
 							variant="h6"
 							underline="none"
 							to="/"
+							aria-label="Home"
 						>
 							ndthanhdev
 						</Link>
@@ -48,6 +49,7 @@ export const AppHeader = ({
 							variant="text"
 							size="large"
 							to="/about"
+							aria-label="About"
 						>
 							about
 						</Button>
@@ -56,6 +58,7 @@ export const AppHeader = ({
 							variant="text"
 							size="large"
 							to="/projects"
+							arial-label="Projects"
 						>
 							Projects
 						</Button>
@@ -66,6 +69,7 @@ export const AppHeader = ({
 							edge="end"
 							color="primary"
 							onClick={onToggleThemeMode}
+							area-label="Toggle theme mode"
 						>
 							{themeMode === ThemeMode.Light ? (
 								<LightModeOutlinedIcon />
@@ -73,7 +77,12 @@ export const AppHeader = ({
 								<DarkModeOutlinedIcon />
 							)}
 						</IconButton>
-						<IconButton color="primary" size="large" onClick={onOpenSettings}>
+						<IconButton
+							color="primary"
+							size="large"
+							onClick={onOpenSettings}
+							aria-label="Open settings"
+						>
 							<MenuOutlinedIcon />
 						</IconButton>
 					</Stack>
