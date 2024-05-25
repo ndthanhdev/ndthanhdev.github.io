@@ -13,7 +13,7 @@ export interface ThemeModeState {
 export const useThemeModeStore = create(
 	persist<ThemeModeState>(
 		(set) => ({
-			themeMode: ThemeMode.Dark,
+			themeMode: ThemeMode.Light,
 			setThemeMode: (mode) => {
 				set(() => ({
 					themeMode: mode,
