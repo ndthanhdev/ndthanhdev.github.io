@@ -55,9 +55,9 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 		// proto use
 		WithExec([]string{"proto use"}).
 		// moon setup
-		WithExec([]string{"moon setup"})
-	// yarn install --immutable
-	// WithExec([]string{"yarn install --immutable"})
+		WithExec([]string{"moon setup"}).
+		// yarn install --immutable
+		WithExec([]string{"yarn install --immutable"})
 }
 
 func (m *NdthanhdevGithubIo) Lint(ctx context.Context, dir *Directory) (string, error) {
