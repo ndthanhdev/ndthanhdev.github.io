@@ -33,11 +33,31 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 
 	return dag.
 		Container().
-		From("node:lts").
-		WithExec([]string{"yarn", "global", "add", "tsx"}).
+		From("node:22-bookworm").
+		WithExec([]string{"apt-get", "install", "-y", "bash", "curl", "git", "unzip", "gzip", "xz-utils"}).
+		WithEntrypoint([]string{"/bin/bash", "-l", "-c"}).
+		WithExec([]string{"ln -sf /bin/bash /bin/sh"}).
+		WithEnvVariable("SHELL", "/bin/bash").
+		WithEnvVariable("HOME", "/root").
+		WithUser("root").
+		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
+		WithExec([]string{`curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- 0.35.3 --yes`}).
+		// export PROTO_HOME="$HOME/.proto"
+		WithEnvVariable("PROTO_HOME", "$HOME/.proto", ContainerWithEnvVariableOpts{
+			Expand: true,
+		}).
+		// export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+		WithEnvVariable("PATH", "$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH", ContainerWithEnvVariableOpts{
+			Expand: true,
+		}).
 		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
-		WithExec([]string{"yarn", "install", "--immutable"})
+		// proto use
+		WithExec([]string{"proto use"}).
+		// moon setup
+		WithExec([]string{"moon setup"})
+	// yarn install --immutable
+	// WithExec([]string{"yarn install --immutable"})
 }
 
 func (m *NdthanhdevGithubIo) Lint(ctx context.Context, dir *Directory) (string, error) {
