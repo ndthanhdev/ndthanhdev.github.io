@@ -3,20 +3,21 @@ language: typescript
 platform: node
 type: tool
 
-dependsOn:
-  - dagger
-
 tasks:
   lint:
     command: "tsx ./actions/lint.ts"
   test:
+    deps:
+      - lint
     command: "tsx ./actions/test.ts"
   build:
     deps:
-      - lint
       - test
     command: "tsx ./actions/build.ts"
   publish:
-    deps:
-      - build
     command: "tsx ./actions/publish.ts"
+
+  release:
+    command: "tsx ./pipelines/release.ts"
+  validate-pr:
+    command: "tsx ./pipelines/validate-pr.ts"
