@@ -1,4 +1,9 @@
-node = "^20.0.0"
-yarn = "^1.0.0"
+dagger = "^0.11.4"
 go = "~1.21.7"
-dagger = "latest"
+moon = "^1.24.6"
+node = "^22.2.0"
+yarn = "^1.22.22"
+
+[plugins]
+dagger = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/dagger/plugin.toml"
+moon = "source:https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"

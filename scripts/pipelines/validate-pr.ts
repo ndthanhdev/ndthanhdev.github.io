@@ -8,5 +8,4 @@ await cleanBuild();
 
 cd(workDirs.path);
 
-await $`dagger call lint --dir .`;
-await $`dagger call test --dir .`;
+await $`dagger call moon-run --dir . --command "scripts:test"`;

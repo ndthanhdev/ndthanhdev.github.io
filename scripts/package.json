@@ -1,6 +1,6 @@
 {
 	"name": "scripts",
-	"packageManager": "yarn@4.1.1",
+	"packageManager": "yarn@4.2.2",
 	"type": "module",
 	"devDependencies": {
 		"@types/luxon": "^3.4.2",

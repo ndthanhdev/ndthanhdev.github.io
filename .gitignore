@@ -10,3 +10,6 @@ node_modules/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+# moon
+.moon/cache
+.moon/docker
