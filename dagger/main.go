@@ -70,14 +70,8 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 
 }
 
-func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, dir *Directory, command string) *Container {
-	return (&Con{m.
-		Init(ctx, dir)}).MoonRun(command)
-}
-
 func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory, mode string) *Directory {
 	return (&Con{m.Init(ctx, dir).
-		WithWorkdir("/mnt/scripts/actions").
 		WithEnvVariable("MODE", mode)}).
 		MoonRun("scripts:build").
 		Directory("/mnt/app/public")
@@ -88,10 +82,9 @@ func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode s
 	tokenString, _ := token.Plaintext(ctx)
 
 	return (&Con{m.
-		MoonRun(ctx, dir, "scripts:public").
+		Init(ctx, dir).
 		WithEnvVariable("GH_TOKEN", tokenString).
-		WithEnvVariable("MODE", mode).
-		WithWorkdir("/mnt/scripts/actions")}).
+		WithEnvVariable("MODE", mode)}).
 		MoonRun("scripts:publish").
 		Stdout(ctx)
 }
