@@ -70,6 +70,11 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 
 }
 
+func (m *NdthanhdevGithubIo) Test(ctx context.Context, dir *Directory) *Container {
+	return (&Con{m.Init(ctx, dir)}).
+		MoonRun("scripts:test")
+}
+
 func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory, mode string) *Directory {
 	return (&Con{m.Init(ctx, dir).
 		WithEnvVariable("MODE", mode)}).
