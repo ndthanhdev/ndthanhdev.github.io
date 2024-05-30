@@ -18,6 +18,6 @@ export --path ${workDirs.app.public.path} \
 await $`dagger call \
 --dir . \
 --mode ${$.env.MODE ?? "dev"} \
---token env:GH_TOKEN \
+--gh-token env:GH_TOKEN \
 publish \
 `;
