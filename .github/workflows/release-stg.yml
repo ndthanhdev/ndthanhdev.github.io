@@ -14,6 +14,8 @@ jobs:
 
       - name: Setup Dagger
         uses: dagger/dagger-for-github@v5
+        with:
+          verb: functions
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

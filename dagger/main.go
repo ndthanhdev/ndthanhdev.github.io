@@ -16,31 +16,36 @@ package main
 
 import (
 	"context"
-	"fmt"
 )
 
 type NdthanhdevGithubIo struct {
+	Dir     *Directory
+	Mode    string
+	GhToken *Secret
 }
 
-// Returns a container that echoes whatever string argument is provided
-func (m *NdthanhdevGithubIo) ContainerEcho(stringArg string) *Container {
-	return dag.Container().From("alpine:latest").WithExec([]string{"echo", stringArg})
+func New(
+	// +required
+	dir *Directory,
+	// +optional
+	// +default="dev"
+	mode string,
+	// +optional
+	ghToken *Secret,
+) *NdthanhdevGithubIo {
+	return &NdthanhdevGithubIo{
+		Dir:     dir,
+		Mode:    mode,
+		GhToken: ghToken,
+	}
 }
 
-type Con struct {
-	*Container
-}
-
-func (c *Con) MoonRun(command string) *Container {
-	return c.Container.WithExec([]string{fmt.Sprintf(`moon run %s`, command)})
-}
-
-func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Container {
-	source := dag.Directory().WithDirectory("/", dir, DirectoryWithDirectoryOpts{
+func (m *NdthanhdevGithubIo) init(ctx context.Context) *Con {
+	source := dag.Directory().WithDirectory("/", m.Dir, DirectoryWithDirectoryOpts{
 		Exclude: []string{"node_modules", ".cache", "moon/.cache"},
 	})
 
-	return dag.
+	con := dag.
 		Container().
 		From("node:22-bookworm").
 		WithExec([]string{"apt-get", "install", "-y", "bash", "curl", "git", "unzip", "gzip", "xz-utils"}).
@@ -50,7 +55,7 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 		WithEnvVariable("HOME", "/root").
 		WithUser("root").
 		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
-		WithExec([]string{`curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- 0.35.3 --yes`}).
+		WithExec([]string{`curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- 0.35.5 --yes`}).
 		// export PROTO_HOME="$HOME/.proto"
 		WithEnvVariable("PROTO_HOME", "$HOME/.proto", ContainerWithEnvVariableOpts{
 			Expand: true,
@@ -68,28 +73,30 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 		// yarn install --immutable
 		WithExec([]string{"yarn install --immutable"})
 
+	return (&Con{con}).SetEnvs(ctx, m)
 }
 
-func (m *NdthanhdevGithubIo) Test(ctx context.Context, dir *Directory) *Container {
-	return (&Con{m.Init(ctx, dir)}).
-		MoonRun("scripts:test")
+func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, command string) *Container {
+	return m.
+		init(ctx).
+		MoonRun(command).
+		Container
 }
 
-func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory, mode string) *Directory {
-	return (&Con{m.Init(ctx, dir).
-		WithEnvVariable("MODE", mode)}).
-		MoonRun("scripts:build").
+func (m *NdthanhdevGithubIo) Test(ctx context.Context) (string, error) {
+	return m.
+		MoonRun(ctx, "scripts:test").
+		Stdout(ctx)
+}
+
+func (m *NdthanhdevGithubIo) Build(ctx context.Context) *Directory {
+	return m.
+		MoonRun(ctx, "scripts:build").
 		Directory("/mnt/app/public")
 }
 
-func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode string, token *Secret) (string, error) {
-
-	tokenString, _ := token.Plaintext(ctx)
-
-	return (&Con{m.
-		Init(ctx, dir).
-		WithEnvVariable("GH_TOKEN", tokenString).
-		WithEnvVariable("MODE", mode)}).
-		MoonRun("scripts:publish").
+func (m *NdthanhdevGithubIo) Publish(ctx context.Context) (string, error) {
+	return m.
+		MoonRun(ctx, "scripts:publish").
 		Stdout(ctx)
 }

@@ -8,4 +8,4 @@ await cleanBuild();
 
 cd(workDirs.path);
 
-await $`dagger call test --dir .`;
+await $`dagger call --dir . test`;
