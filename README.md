@@ -6,7 +6,10 @@ Welcome to my personal website repository! This repository contains the source c
 
 ## Website URL
 
-You can visit my personal website at [ndthanhdev.github.io](https://ndthanhdev.github.io).
+Visit [https://ndthanhdev.github.i](https://ndthanhdev.github.io) to see the website live. Other environments are also available:
+
+- [Staging](https://stg-n8v.github.io/)
+- [Development](https://dev-n8v.github.io/)
 
 ## Technologies Used
 
