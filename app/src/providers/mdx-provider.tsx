@@ -23,6 +23,7 @@ const text = (props: any) => <Typography variant="body1" {...props} />;
 const strong = (props: any) => (
 	<Typography
 		variant="body1"
+		component="strong"
 		css={(theme: AppTheme) => ({
 			fontWeight: theme.typography.fontWeightBold,
 		})}
