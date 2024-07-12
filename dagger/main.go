@@ -19,67 +19,84 @@ import (
 )
 
 type NdthanhdevGithubIo struct {
+	Dir     *Directory
+	Mode    string
+	GhToken *Secret
 }
 
-// Returns a container that echoes whatever string argument is provided
-func (m *NdthanhdevGithubIo) ContainerEcho(stringArg string) *Container {
-	return dag.Container().From("alpine:latest").WithExec([]string{"echo", stringArg})
+func New(
+	// +required
+	dir *Directory,
+	// +optional
+	// +default="dev"
+	mode string,
+	// +optional
+	ghToken *Secret,
+) *NdthanhdevGithubIo {
+	return &NdthanhdevGithubIo{
+		Dir:     dir,
+		Mode:    mode,
+		GhToken: ghToken,
+	}
 }
 
-func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Container {
-	source := dag.Directory().WithDirectory("/", dir, DirectoryWithDirectoryOpts{
-		Exclude: []string{"node_modules", ".cache"},
+func (m *NdthanhdevGithubIo) init(ctx context.Context) *Con {
+	source := dag.Directory().WithDirectory("/", m.Dir, DirectoryWithDirectoryOpts{
+		Exclude: []string{"node_modules", ".cache", "moon/.cache"},
 	})
 
-	return dag.
+	con := dag.
 		Container().
-		From("node:lts").
-		WithExec([]string{"yarn", "global", "add", "tsx"}).
+		From("node:22-bookworm").
+		WithExec([]string{"apt-get", "install", "-y", "bash", "curl", "git", "unzip", "gzip", "xz-utils"}).
+		WithEntrypoint([]string{"/bin/bash", "-l", "-c"}).
+		WithExec([]string{"ln -sf /bin/bash /bin/sh"}).
+		WithEnvVariable("SHELL", "/bin/bash").
+		WithEnvVariable("HOME", "/root").
+		WithUser("root").
+		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
+		WithExec([]string{`curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- 0.35.5 --yes`}).
+		// export PROTO_HOME="$HOME/.proto"
+		WithEnvVariable("PROTO_HOME", "$HOME/.proto", ContainerWithEnvVariableOpts{
+			Expand: true,
+		}).
+		// export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
+		WithEnvVariable("PATH", "$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH", ContainerWithEnvVariableOpts{
+			Expand: true,
+		}).
 		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
-		WithExec([]string{"yarn", "install", "--immutable"})
+		// proto use
+		WithExec([]string{"proto use"}).
+		// moon setup
+		WithExec([]string{"moon setup"}).
+		// yarn install --immutable
+		WithExec([]string{"yarn install --immutable"})
+
+	return (&Con{con}).SetEnvs(ctx, m)
 }
 
-func (m *NdthanhdevGithubIo) Lint(ctx context.Context, dir *Directory) (string, error) {
-	return m.Init(ctx, dir).
-		WithWorkdir("/mnt/scripts/actions").
-		WithExec([]string{"./lint.ts"}).
+func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, command string) *Container {
+	return m.
+		init(ctx).
+		MoonRun(command).
+		Container
+}
+
+func (m *NdthanhdevGithubIo) Test(ctx context.Context) (string, error) {
+	return m.
+		MoonRun(ctx, "scripts:test").
 		Stdout(ctx)
 }
 
-func (m *NdthanhdevGithubIo) Test(ctx context.Context, dir *Directory) (string, error) {
-	return m.Init(ctx, dir).
-		WithWorkdir("/mnt/scripts/actions").
-		WithExec([]string{"./test.ts"}).
-		Stdout(ctx)
-}
-
-func (m *NdthanhdevGithubIo) Build(ctx context.Context, dir *Directory, mode string) *Directory {
-	return m.Init(ctx, dir).
-		WithWorkdir("/mnt/scripts/actions").
-		WithEnvVariable("MODE", mode).
-		WithExec([]string{"./build.ts"}).
+func (m *NdthanhdevGithubIo) Build(ctx context.Context) *Directory {
+	return m.
+		MoonRun(ctx, "scripts:build").
 		Directory("/mnt/app/public")
 }
 
-func (m *NdthanhdevGithubIo) Publish(ctx context.Context, dir *Directory, mode string, token *Secret) (string, error) {
-
-	tokenString, _ := token.Plaintext(ctx)
-
-	return m.Init(ctx, dir).
-		WithEnvVariable("GH_TOKEN", tokenString).
-		WithEnvVariable("MODE", mode).
-		WithWorkdir("/mnt/scripts/actions").
-		WithExec([]string{"./publish.ts"}).
-		Stdout(ctx)
-}
-
-// Returns lines that match a pattern in the files of the provided Directory
-func (m *NdthanhdevGithubIo) GrepDir(ctx context.Context, directoryArg *Directory, pattern string) (string, error) {
-	return dag.Container().
-		From("alpine:latest").
-		WithMountedDirectory("/mnt", directoryArg).
-		WithWorkdir("/mnt").
-		WithExec([]string{"grep", "-R", pattern, "."}).
+func (m *NdthanhdevGithubIo) Publish(ctx context.Context) (string, error) {
+	return m.
+		MoonRun(ctx, "scripts:publish").
 		Stdout(ctx)
 }
