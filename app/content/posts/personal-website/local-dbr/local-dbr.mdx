@@ -9,7 +9,11 @@ thumb: ./assets/logo.svg
 import { PostImage as Image } from "@/components/molecues/post-image";
 
 import ImgLandscape from "./assets/landscape.svg";
+import ImgNewCluster from "./assets/new-cluster.png";
 import ImgSelectProfile from "./assets/select-profile.png";
+import ImgSelectEnv from "./assets/select-env.png";
+import ImgConfigureCluster from "./assets/configure-cluster.png";
+import ImageOutput from "./assets/output.png";
 
 <Image src={ImgLandscape} />
 
@@ -24,9 +28,20 @@ Before we get started, you'll need to have the following tools:
 
 ## Step 1: Create Cluster
 
+The first step is to create a cluster in your Databricks workspace. That will be used to run your notebooks both in the workspace and locally.
+
+1. Open your Databricks Portal and navigate to the `Compute` tab.
+2. Click on `Create Compute` to create a new cluster.
+3. Select runtime version >= 15 and configuration for your cluster. You can use the default settings for now.
+4. Click on `Create Compute` and wait for the cluster to be up.
+
+After this step, you should have a new cluster running in your workspace.
+
+<Image src={ImgNewCluster} />
+
 ## Step 2: Create Databricks Local Profile
 
-The first step is to connect your Databricks workspace to your local machine and storing the connection details in a local profile. This will allow Databricks Extension for VSCode to connect to your workspace.
+In this step, we'll connect your Databricks workspace to your local machine and storing the connection details in a local profile. This will allow Databricks Extension for VSCode to connect to your workspace.
 
 1. Install Databricks CLi by running one of the following commands:
 
@@ -57,7 +72,7 @@ The first step is to connect your Databricks workspace to your local machine and
    databricks auth login --configure-cluster --host <workspace-url>
    ```
 
-   Follows the prompts to log in and configure the cluster. After this step, you should be able to see the a DEFAULT PROFILE in `~/.databrickscfg` file.
+   Follows the prompts to log in and configure the cluster. After this step, you should be able to see the a profile in `~/.databrickscfg` file.
 
 ## Step 3: Create Python Environment with Mini Conda
 
@@ -124,6 +139,8 @@ Mini Conda is a lightweight version of Anaconda that allows you to create and ma
    pip install databricks-connect
    ```
 
+After this step, you should have a new python environment with `databricks-connect` installed.
+
 ## Step 4: Run notebooks locally
 
 Now that we have our Databricks profile set up and a python environment ready, we can start working on our notebooks locally.
@@ -145,15 +162,21 @@ Now that we have our Databricks profile set up and a python environment ready, w
 
    Now you should be able to see the Databricks icon in the sidebar of your VSCode.
 
-3. Click on the Databricks icon in the sidebar and select `Configure Databricks`, then select `DEFAULT` profile we created in step 1.
+3. Click on the Databricks icon in the sidebar and select `Configure Databricks`, then select the profile we created in step 1.
 
    <Image src={ImgSelectProfile} />
 
-   After this step, Databricks extension will create a folder ... as the destination for our folder.
+   You can also enable sync, Databricks extension will push all the files in the local folder to the Databricks workspace.
 
    **PLEASE NOTE THAT THIS IS ONE-WAY SYNC, ANY CHANGES MADE IN THE DATABRICKS WORKSPACE WILL NOT BE REFLECTED IN THE LOCAL FOLDER**.
 
-4. Now you can create a new notebook for testing connection. Let's create a new notebook named `test.py` and add the following code:
+4. Also on the Databricks extension, click on `Configure cluster` and select the cluster we created in step 1. Don't forget to make sure the cluster is running.
+
+   <Image src={ImgConfigureCluster} />
+
+5. Install Jupyter extension for VSCode to run the notebook. Visit [this link](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter) and click on `Install`.
+
+6. Now you can create a new notebook for testing connection. Let's create a new notebook named `test.py` and add the following code:
 
    ```python
    # COMMAND ----------
@@ -164,7 +187,13 @@ Now that we have our Databricks profile set up and a python environment ready, w
 
    Don't forget include the `# COMMAND ----------` at the beginning of the cell and `from databricks.sdk.runtime import *` to import the necessary libraries.
 
-   Run the cell and you should see the output in the output cell.
+7. Open the command palette in VSCode by pressing `Ctrl + Shift + P` or `Cmd + Shift + P` and search for `Python: Select Interpreter`. Select the `dbr` environment we created in step 3.
+
+   <Image src={ImgSelectEnv} />
+
+8. Run the notebook by pressing `Shift + Enter` or clicking on the `Run Cell` button and you should see the output in the output panel.
+
+<Image src={ImageOutput} />
 
 ## Conclusion
 
