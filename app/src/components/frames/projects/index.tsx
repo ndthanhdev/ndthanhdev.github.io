@@ -3,9 +3,9 @@ import * as React from "react";
 import { Wip } from "@/components/organisms/wip";
 import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
 
-export type HomeFrameProps = {
+export interface HomeFrameProps {
 	mainTemplateProps: MainTemplateProps;
-};
+}
 
 export const ProjectFrame = ({ mainTemplateProps }: HomeFrameProps) => {
 	return (

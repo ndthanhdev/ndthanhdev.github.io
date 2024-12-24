@@ -3,7 +3,7 @@ import "modern-normalize/modern-normalize.css";
 import { graphql, useStaticQuery } from "gatsby";
 import * as R from "ramda";
 import React from "react";
-import { SetNonNullable } from "type-fest";
+import type { SetNonNullable } from "type-fest";
 
 import { MyHelmet } from "@/components/atoms/my-helmet";
 
@@ -21,8 +21,8 @@ export const useSiteMetadata = () => {
 
 	return R.mergeDeepRight(
 		{
-			title: "",
 			description: "",
+			title: "",
 		} satisfies SetNonNullable<typeof data>,
 		data ?? {},
 	);
@@ -38,7 +38,7 @@ export const DefaultHeaders = () => {
 				content="9OBwzAgCmUComfywGqCjEriNiYJ8qS4OYM9Fz4fan7s"
 			/>
 			<title id="title">{data.title}</title>
-			<meta name="description" content={data.description ?? undefined} />
+			<meta name="description" content={data.description} />
 		</MyHelmet>
 	);
 };

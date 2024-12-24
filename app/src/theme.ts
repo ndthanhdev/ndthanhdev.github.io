@@ -2,9 +2,10 @@ import "@emotion/react";
 
 import type { Theme as MuiTheme } from "@mui/material";
 
-export interface AppTheme extends MuiTheme {}
+export type AppTheme = MuiTheme;
 
 declare module "@emotion/react" {
+	// eslint-disable-next-line @typescript-eslint/no-empty-interface
 	export interface Theme extends AppTheme {}
 }
 

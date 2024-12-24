@@ -5,10 +5,15 @@ import { AppTheme } from "@/theme";
 export const styles = {
 	appBar: (theme: AppTheme) =>
 		css({
-			display: "flex",
-			flexDirection: "column",
 			alignItems: "center",
 			backgroundColor: theme.palette.background.paper,
+			display: "flex",
+			flexDirection: "column",
+		}),
+
+	brand: (theme: AppTheme) =>
+		css({
+			fontWeight: theme.typography.fontWeightBold,
 		}),
 
 	left: {
@@ -27,20 +32,15 @@ export const styles = {
 
 	toolbar: (theme: AppTheme) =>
 		css({
-			flex: 1,
-			width: "100%",
-			maxWidth: theme.breakpoints.values.lg,
+			alignItems: "center",
 			display: "grid",
-			gridTemplateColumns: "auto 1fr auto",
-			gridTemplateRows: "1fr",
+			flex: 1,
 			gridTemplateAreas: `\
 				"left . right"
 			`,
-			alignItems: "center",
-		}),
-
-	brand: (theme: AppTheme) =>
-		css({
-			fontWeight: theme.typography.fontWeightBold,
+			gridTemplateColumns: "auto 1fr auto",
+			gridTemplateRows: "1fr",
+			maxWidth: theme.breakpoints.values.lg,
+			width: "100%",
 		}),
 };

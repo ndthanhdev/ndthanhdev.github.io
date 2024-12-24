@@ -7,11 +7,11 @@ export interface AppDrawerState {
 }
 
 export const useAppDrawerStore = create<AppDrawerState>((set) => ({
+	closeDrawer: () => {
+		set(() => ({ open: false }));
+	},
 	open: false,
 	openDrawer: () => {
 		set(() => ({ open: true }));
-	},
-	closeDrawer: () => {
-		set(() => ({ open: false }));
 	},
 }));

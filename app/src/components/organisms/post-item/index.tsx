@@ -9,13 +9,13 @@ import * as React from "react";
 
 import { styles } from "./styles";
 
-export type PostItemProps = {
+export interface PostItemProps {
 	title?: string;
 	link: string;
 	date?: string;
 	excerpt?: string;
 	thumb?: string;
-};
+}
 
 export const PostItem = ({
 	thumb,

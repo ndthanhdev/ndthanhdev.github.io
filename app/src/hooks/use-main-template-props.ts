@@ -14,22 +14,22 @@ export const useMainTemplateProps = (): MainTemplateProps => {
 	return {
 		appDrawerProps: {
 			onClose: drawer.closeDrawer,
-			open: drawer.open,
-			themeMode: theme.themeMode,
 			onThemeModeChange: (_, mode) => {
 				theme.setThemeMode(mode);
 			},
+			open: drawer.open,
+			themeMode: theme.themeMode,
+		},
+		appFooterProps: {
+			buildNumber: envs.buildNumber,
+			mode: envs.mode,
+			rev: envs.rev,
+			year,
 		},
 		appHeaderProps: {
 			onOpenSettings: drawer.openDrawer,
-			themeMode: theme.themeMode,
 			onToggleThemeMode: theme.toggleThemeMode,
-		},
-		appFooterProps: {
-			year,
-			buildNumber: envs.buildNumber,
-			rev: envs.rev,
-			mode: envs.mode,
+			themeMode: theme.themeMode,
 		},
 	};
 };

@@ -13,12 +13,12 @@ export interface ThemeModeState {
 export const useThemeModeStore = create(
 	persist<ThemeModeState>(
 		(set) => ({
-			themeMode: ThemeMode.Light,
 			setThemeMode: (mode) => {
 				set(() => ({
 					themeMode: mode,
 				}));
 			},
+			themeMode: ThemeMode.Light,
 			toggleThemeMode: () => {
 				set((state) => ({
 					themeMode:
@@ -30,8 +30,8 @@ export const useThemeModeStore = create(
 		}),
 		{
 			name: "app-theme-mode",
-			storage: createJSONStorage(() => localForage),
 			skipHydration: true,
+			storage: createJSONStorage(() => localForage),
 		},
 	),
 );

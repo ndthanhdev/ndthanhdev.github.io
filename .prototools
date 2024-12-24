@@ -1,9 +1,11 @@
-dagger = "^0.11.5"
+dagger = "^0.15.1"
 go = "~1.21.10"
-moon = "^1.25.1"
-node = "^22.2.0"
-yarn = "^1.22.22"
+moon = "^1.30.5"
 
 [plugins]
 dagger = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/dagger/plugin.toml"
 moon = "source:https://raw.githubusercontent.com/moonrepo/moon/master/proto-plugin.toml"
+
+[settings]
+auto-install = true
+auto-clean = true

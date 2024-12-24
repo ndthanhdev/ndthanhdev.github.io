@@ -3,42 +3,42 @@ import { css } from "@emotion/react";
 import { AppTheme } from "@/theme";
 
 export const styles = {
-	root: () =>
-		css({
-			display: "flex",
-			flexDirection: "column",
-		}),
-
 	contentContainer: () =>
 		css({
-			width: "100%",
 			display: "flex",
 			justifyContent: "center",
-		}),
-
-	topWrapper: (theme: AppTheme) =>
-		css({
-			display: "flex",
-			justifyContent: "space-between",
-			alignItems: "flex-start",
-			paddingInline: theme.spacing(4),
-			paddingBlockStart: theme.spacing(2),
-			paddingBlockEnd: theme.spacing(8),
-			maxWidth: theme.breakpoints.values.lg,
 			width: "100%",
 		}),
 
 	leftWrapper: (theme: AppTheme) =>
 		css({
-			display: "flex",
-			flexDirection: "column",
 			alignItems: "flex-start",
 			color: theme.palette.text.secondary,
+			display: "flex",
+			flexDirection: "column",
 		}),
 
 	rightWrapper: () =>
 		css({
 			display: "flex",
 			justifyContent: "flex-end",
+		}),
+
+	root: () =>
+		css({
+			display: "flex",
+			flexDirection: "column",
+		}),
+
+	topWrapper: (theme: AppTheme) =>
+		css({
+			alignItems: "flex-start",
+			display: "flex",
+			justifyContent: "space-between",
+			maxWidth: theme.breakpoints.values.lg,
+			paddingBlockEnd: theme.spacing(8),
+			paddingBlockStart: theme.spacing(2),
+			paddingInline: theme.spacing(4),
+			width: "100%",
 		}),
 };

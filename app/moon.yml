@@ -2,6 +2,9 @@
 language: typescript
 platform: node
 type: application
+project:
+  name: "@n8v/app"
+  description: "app"
 tasks:
   dev:
     command: "gatsby develop"

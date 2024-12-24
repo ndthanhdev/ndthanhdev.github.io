@@ -14,8 +14,8 @@ $schema: "https://moonrepo.dev/schemas/workspace.json"
 projects:
   - "apps/*"
   - "packages/*"
+  - "etc/*"
   - app
-  - scripts
   - dagger
 
 # Configures the version control system to utilize within the workspace. A VCS

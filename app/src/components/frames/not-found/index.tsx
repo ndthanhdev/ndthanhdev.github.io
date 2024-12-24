@@ -4,9 +4,9 @@ import * as React from "react";
 
 import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
 
-export type NotFoundFrameProps = {
+export interface NotFoundFrameProps {
 	mainTemplateProps: MainTemplateProps;
-};
+}
 
 export const NotFoundFrame = ({ mainTemplateProps }: NotFoundFrameProps) => {
 	return (

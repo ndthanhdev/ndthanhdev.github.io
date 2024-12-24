@@ -1,3 +1,4 @@
+import { css } from "@emotion/react";
 import CloseIcon from "@mui/icons-material/Close";
 import DarkModeIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeIcon from "@mui/icons-material/LightModeOutlined";
@@ -30,7 +31,7 @@ export const AppDrawer = ({
 }: AppDrawerProps) => (
 	<Drawer css={styles.root} anchor="right" open={open} onClose={onClose}>
 		<Box css={styles.header}>
-			<Typography variant="body1" fontWeight="500">
+			<Typography css={css({})} variant="body1" fontWeight="500">
 				Settings
 			</Typography>
 			<IconButton color="inherit" onClick={onClose} edge="end">
@@ -44,9 +45,9 @@ export const AppDrawer = ({
 				css={styles.toggleGroup}
 				value={themeMode}
 				exclusive
-				onChange={(e, mode: unknown) =>
-					mode && onThemeModeChange(e, mode as ThemeMode)
-				}
+				onChange={(e, mode: unknown) => {
+					mode && onThemeModeChange(e, mode as ThemeMode);
+				}}
 			>
 				<ToggleButton value={ThemeMode.Light}>
 					<LightModeIcon />

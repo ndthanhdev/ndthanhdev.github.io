@@ -1,0 +1,10 @@
+{
+	"extends": "tsconfig-moon/tsconfig.json",
+	"compilerOptions": {
+		"target": "esnext",
+		"lib": ["dom", "esnext"],
+		"paths": {
+			"@n8v/scripts/*": ["tools/scripts/*"]
+		}
+	}
+}

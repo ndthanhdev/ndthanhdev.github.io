@@ -5,7 +5,9 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
-import { AppTheme } from "@/theme";
+import type { AppTheme } from "@/theme";
+
+const a = "";
 
 export type AppMDXProviderProps = React.PropsWithChildren<object>;
 
@@ -46,8 +48,8 @@ const ul = (props: any) => (
 	<ul
 		{...props}
 		css={(theme: AppTheme) => ({
-			marginBlockStart: theme.spacing(0),
 			marginBlockEnd: theme.spacing(2),
+			marginBlockStart: theme.spacing(0),
 		})}
 	/>
 );
@@ -57,18 +59,18 @@ const li = (props: any) => <li {...props} css={{}} />;
 const a = (props: any) => <Link component="a" target="_blank" {...props} />;
 
 const defaultComponents = {
-	text,
-	p,
+	a,
 	h1,
 	h2,
 	h3,
 	h4,
 	h5,
 	h6,
-	strong,
-	ul,
 	li,
-	a,
+	p,
+	strong,
+	text,
+	ul,
 } satisfies React.ComponentProps<typeof MDXProvider>["components"];
 /* eslint-enable @typescript-eslint/no-explicit-any */
 

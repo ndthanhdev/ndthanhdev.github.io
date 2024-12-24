@@ -1,5 +1,3 @@
-import * as React from "react";
-
 export interface OGProps {
 	title: string;
 	description: string;
@@ -7,4 +5,4 @@ export interface OGProps {
 	url: string;
 }
 
-export const OG = () => {};
+export const OG = () => undefined;

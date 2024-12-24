@@ -7,7 +7,9 @@ import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
 
 import { styles } from "./styles";
 
-export type AboutFrameProps = { mainTemplateProps: MainTemplateProps };
+export interface AboutFrameProps {
+	mainTemplateProps: MainTemplateProps;
+}
 
 export const AboutFrame = ({ mainTemplateProps }: AboutFrameProps) => {
 	return (

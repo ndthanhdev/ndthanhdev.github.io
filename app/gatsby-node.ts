@@ -24,12 +24,16 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 			reporter.panicOnBuild("Error loading MDX result", result.errors);
 		}
 
-		const data = result.data!;
+		if (!result.data || !result.data.mdx) {
+			throw new Error(`No MDX data found`, {
+				cause: result,
+			});
+		}
 
 		createPage({
-			path: `/cv`,
 			component: `${myCVTemplate}?__contentFilePath=${cvFile}`,
-			context: { id: data.mdx!.id },
+			context: { id: result.data.mdx.id },
+			path: `/cv`,
 		});
 	}
 
@@ -42,34 +46,48 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 			reporter.panicOnBuild("Error loading MDX result", result.errors);
 		}
 
-		const data = result.data!,
+		if (!result.data) {
+			throw new Error(`No MDX data found`, {
+				cause: result,
+			});
+		}
+
+		const data = result.data,
 			// Create blog post pages.
 			posts = data.allMdx.nodes;
 
 		// You'll call `createPage` for each result
 		posts.forEach((node) => {
-			const { nanoId } = node.frontmatter!;
+			if (!node.frontmatter) {
+				throw new Error(`No frontmatter found`, {
+					cause: node,
+				});
+			}
+
+			const { nanoId } = node.frontmatter;
 			if (!isValidNanoId(nanoId)) {
 				throw new Error(`Invalid nanoId`, {
 					cause: node,
 				});
 			}
 
-			const postPath = `/posts/${nanoId}`;
+			const postPath = `/posts/${String(nanoId)}`;
 
 			createPage({
-				/*
-				 * As mentioned above you could also query something else like frontmatter.title above and use a helper function
-				 * like slugify to create a slug
-				 */
-				path: postPath,
 				// Provide the path to the MDX content file so webpack can pick it up and transform it into JSX
-				component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
+				component: `${postTemplate}?__contentFilePath=${String(node.internal.contentFilePath)}`,
+
 				/*
 				 * You can use the values in this context in
 				 * our page layout component
 				 */
 				context: { id: node.id },
+
+				/*
+				 * As mentioned above you could also query something else like frontmatter.title above and use a helper function
+				 * like slugify to create a slug
+				 */
+				path: postPath,
 			});
 		});
 	}

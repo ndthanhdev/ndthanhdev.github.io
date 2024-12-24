@@ -2,9 +2,17 @@ import { css } from "@emotion/react";
 import { drawerClasses } from "@mui/material/Drawer";
 import { toggleButtonClasses } from "@mui/material/ToggleButton";
 
-import { AppTheme } from "@/theme";
+import { type AppTheme } from "@/theme";
 
 export const styles = {
+	header: (theme: AppTheme) =>
+		css({
+			alignItems: "center",
+			display: "flex",
+			justifyContent: "space-between",
+			padding: theme.spacing(2),
+		}),
+
 	root: (theme: AppTheme) =>
 		css({
 			[`& .${drawerClasses.paper}`]: {
@@ -17,21 +25,13 @@ export const styles = {
 			},
 		}),
 
-	header: (theme: AppTheme) =>
-		css({
-			display: "flex",
-			alignItems: "center",
-			justifyContent: "space-between",
-			padding: theme.spacing(2),
-		}),
-
 	section: {
-		root: (theme: AppTheme) => css({ padding: theme.spacing(2) }),
 		heading: (theme: AppTheme) =>
 			css({
 				color: theme.palette.text.secondary,
 				marginBlockEnd: theme.spacing(1),
 			}),
+		root: (theme: AppTheme) => css({ padding: theme.spacing(2) }),
 	},
 
 	toggleGroup: () =>

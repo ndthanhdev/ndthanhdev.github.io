@@ -26,7 +26,7 @@ jobs:
         run: yarn install
 
       - name: Call script
-        working-directory: ./scripts/pipelines
+        working-directory: ./tools/scripts/pipelines
         run: ./release.ts
         env:
           MODE: "prod"

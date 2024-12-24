@@ -8,13 +8,13 @@ import { AppTheme } from "@/theme";
 export type WipProps = React.PropsWithChildren<object>;
 
 const styles = {
-	root: () =>
-		css({
-			minHeight: "90vh",
-		}),
 	description: (theme: AppTheme) =>
 		css({
 			fontWeight: theme.typography.fontWeightMedium,
+		}),
+	root: () =>
+		css({
+			minHeight: "90vh",
 		}),
 };
 

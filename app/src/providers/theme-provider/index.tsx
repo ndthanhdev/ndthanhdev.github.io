@@ -1,7 +1,7 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import {
 	createTheme,
-	ThemeOptions,
+	type ThemeOptions,
 	ThemeProvider as MuiThemeProvider,
 } from "@mui/material";
 import * as React from "react";
@@ -50,6 +50,7 @@ export const AppThemeProvider = ({
 	}
 
 	React.useEffect(() => {
+		// eslint-disable-next-line @typescript-eslint/use-unknown-in-catch-callback-variable
 		Promise.resolve(useThemeModeStore.persist.rehydrate()).catch(console.error);
 	}, []);
 

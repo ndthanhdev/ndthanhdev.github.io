@@ -24,8 +24,8 @@ const PostLayout = ({ children, data }: PostLayoutProps) => {
 			<PostTemplate
 				{...mainTemplateProps}
 				postHeaderProps={{
-					title: data.mdx?.frontmatter?.title,
 					date: data.mdx?.frontmatter?.date,
+					title: data.mdx?.frontmatter?.title,
 				}}
 			>
 				{children}
