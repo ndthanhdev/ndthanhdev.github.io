@@ -26,7 +26,7 @@ jobs:
         run: yarn install
 
       - name: Call script
-        working-directory: ./tools/scripts/pipelines
+        working-directory: ./etc/scripts/pipelines
         run: ./release.ts
         env:
           MODE: "stg"
