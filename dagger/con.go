@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+	"dagger/ndthanhdev-github-io/internal/dagger"
 	"fmt"
 )
 
 type Con struct {
-	*Container
+	*dagger.Container
 }
 
 func (c *Con) SetEnvs(ctx context.Context, m *NdthanhdevGithubIo) *Con {

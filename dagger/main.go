@@ -16,22 +16,23 @@ package main
 
 import (
 	"context"
+	"dagger/ndthanhdev-github-io/internal/dagger"
 )
 
 type NdthanhdevGithubIo struct {
-	Dir     *Directory
+	Dir     *dagger.Directory
 	Mode    string
-	GhToken *Secret
+	GhToken *dagger.Secret
 }
 
 func New(
 	// +required
-	dir *Directory,
+	dir *dagger.Directory,
 	// +optional
 	// +default="dev"
 	mode string,
 	// +optional
-	ghToken *Secret,
+	ghToken *dagger.Secret,
 ) *NdthanhdevGithubIo {
 	return &NdthanhdevGithubIo{
 		Dir:     dir,
@@ -41,7 +42,7 @@ func New(
 }
 
 func (m *NdthanhdevGithubIo) init(ctx context.Context) *Con {
-	source := dag.Directory().WithDirectory("/", m.Dir, DirectoryWithDirectoryOpts{
+	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
 		Exclude: []string{"node_modules", ".cache", "moon/.cache"},
 	})
 
@@ -57,11 +58,11 @@ func (m *NdthanhdevGithubIo) init(ctx context.Context) *Con {
 		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
 		WithExec([]string{`curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- 0.35.5 --yes`}).
 		// export PROTO_HOME="$HOME/.proto"
-		WithEnvVariable("PROTO_HOME", "$HOME/.proto", ContainerWithEnvVariableOpts{
+		WithEnvVariable("PROTO_HOME", "$HOME/.proto", dagger.ContainerWithEnvVariableOpts{
 			Expand: true,
 		}).
 		// export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
-		WithEnvVariable("PATH", "$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH", ContainerWithEnvVariableOpts{
+		WithEnvVariable("PATH", "$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH", dagger.ContainerWithEnvVariableOpts{
 			Expand: true,
 		}).
 		WithMountedDirectory("/mnt", source).
@@ -76,7 +77,7 @@ func (m *NdthanhdevGithubIo) init(ctx context.Context) *Con {
 	return (&Con{con}).SetEnvs(ctx, m)
 }
 
-func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, command string) *Container {
+func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, command string) *dagger.Container {
 	return m.
 		init(ctx).
 		MoonRun(command).
@@ -89,7 +90,7 @@ func (m *NdthanhdevGithubIo) Test(ctx context.Context) (string, error) {
 		Stdout(ctx)
 }
 
-func (m *NdthanhdevGithubIo) Build(ctx context.Context) *Directory {
+func (m *NdthanhdevGithubIo) Build(ctx context.Context) *dagger.Directory {
 	return m.
 		MoonRun(ctx, "scripts:build").
 		Directory("/mnt/app/public")
