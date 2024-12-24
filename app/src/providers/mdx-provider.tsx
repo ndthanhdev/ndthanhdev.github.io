@@ -7,8 +7,6 @@ import * as React from "react";
 
 import type { AppTheme } from "@/theme";
 
-const a = "";
-
 export type AppMDXProviderProps = React.PropsWithChildren<object>;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
