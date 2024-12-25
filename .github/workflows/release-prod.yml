@@ -16,6 +16,7 @@ jobs:
         uses: dagger/dagger-for-github@v6
         with:
           verb: functions
+          workdir: ./etc/runner
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
