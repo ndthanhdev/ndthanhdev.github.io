@@ -7,41 +7,41 @@ import { ShieldsIO, ShieldsStyle } from "../shields-io";
 
 export type ConnectProps = {
 	connect: string;
-	connectLogo?: string;
 	connectColor?: string;
+	connectLogo?: string;
 	url?: string;
 } & React.ComponentPropsWithoutRef<"img">;
 
 export const Connect = React.forwardRef<HTMLAnchorElement, ConnectProps>(
-	function Connect(props, ref) {
+	function Connect(props, reference) {
 		const {
+			className: classNameProperty,
 			connect,
-			connectLogo: connectLogoProp,
 			connectColor,
-			className: classNameProp,
+			connectLogo: connectLogoProperty,
 			url,
 			...otherProps
 		} = props;
 
-		const connectLogo = connectLogoProp ?? connect;
+		const connectLogo = connectLogoProperty ?? connect;
 
 		return (
 			<Link
 				css={iconShieldStyles.wrapper}
-				ref={ref}
 				href={url ?? "#"}
+				ref={reference}
 				target={url ? "_blank" : "_self"}
 				underline="none"
 			>
 				<ShieldsIO
 					{...otherProps}
-					className={cx("ndt-skill-badge", classNameProp)}
+					alt={connect}
+					className={cx("ndt-skill-badge", classNameProperty)}
+					leftBg="white"
 					logo={connectLogo}
 					logoColor={connectColor}
-					leftBg="white"
 					rightText={connect}
 					shieldStyle={ShieldsStyle.ForTheBadge}
-					alt={connect}
 				/>
 			</Link>
 		);

@@ -1,5 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
-import Path from "path";
+
+import Path from "node:path";
 
 const config: GatsbyConfig = {
 	graphqlTypegen: true,
@@ -57,6 +58,7 @@ const config: GatsbyConfig = {
 		{
 			options: {
 				name: `content`,
+				// eslint-disable-next-line unicorn/prefer-module
 				path: `${__dirname}/content`,
 			},
 			resolve: `gatsby-source-filesystem`,

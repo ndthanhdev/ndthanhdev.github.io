@@ -6,13 +6,13 @@ import * as React from "react";
 import { styles } from "./styles";
 
 export type AppFooterProps = React.PropsWithChildren<{
-	year: string;
 	buildNumber: string;
-	rev: string;
 	mode: string;
+	rev: string;
+	year: string;
 }>;
 
-export const AppFooter = ({ year, buildNumber, rev, mode }: AppFooterProps) => (
+export const AppFooter = ({ buildNumber, mode, rev, year }: AppFooterProps) => (
 	<Box css={styles.root}>
 		<Divider />
 		<Box css={styles.contentContainer}>
@@ -25,10 +25,10 @@ export const AppFooter = ({ year, buildNumber, rev, mode }: AppFooterProps) => (
 				</Box>
 				<Box css={styles.rightWrapper}>
 					<Link
-						target="_blank"
-						href="https://github.com/ndthanhdev/ndthanhdev.github.io"
-						underline="none"
 						color="inherit"
+						href="https://github.com/ndthanhdev/ndthanhdev.github.io"
+						target="_blank"
+						underline="none"
 						variant="h5"
 					>
 						<GitHubIcon />

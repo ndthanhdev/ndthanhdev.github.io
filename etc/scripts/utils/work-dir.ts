@@ -1,11 +1,12 @@
 import "zx/globals";
-
-import * as path from "path";
+// eslint-disable-next-line unicorn/import-style
+import * as path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "../../../"),
 	app = path.resolve(root, "app"),
 	scripts = path.resolve(root, "etc/scripts");
 
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export const workDirs = {
 	app: {
 		cache: {

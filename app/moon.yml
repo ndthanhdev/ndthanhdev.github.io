@@ -4,10 +4,10 @@ platform: node
 type: application
 project:
   name: "@n8v/app"
-  description: "app"
+  description: app
 tasks:
   dev:
-    command: "gatsby develop"
+    command: gatsby develop
     inputs:
       - src/**/*
       - content/**/*
@@ -16,19 +16,19 @@ tasks:
     outputs:
       - public
   typecheck:
-    command: "tsc --noEmit"
+    command: tsc --noEmit
     inputs:
       - src/**/*
       - content/**/*
       - gatsby-config.js
       - gatsby-node.js
   clean:
-    command: "gatsby clean"
+    command: gatsby clean
   build:
     deps:
       - clean
       - typecheck
-    command: "gatsby build"
+    command: gatsby build
     inputs:
       - src/**/*
       - content/**/*

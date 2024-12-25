@@ -4,7 +4,8 @@
 		"target": "esnext",
 		"lib": ["dom", "esnext"],
 		"paths": {
-			"@n8v/scripts/*": ["etc/scripts/*"]
+			"@n8v/scripts/*": ["etc/scripts/*"],
+			"@n8v/app/*": ["app/src/*"]
 		}
 	}
 }

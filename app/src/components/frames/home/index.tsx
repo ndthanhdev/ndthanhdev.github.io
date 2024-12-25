@@ -1,8 +1,12 @@
 import Box from "@mui/material/Box";
-import * as React from "react";
-
-import { PostItem, PostItemProps } from "@/components/organisms/post-item";
-import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
+import {
+	PostItem,
+	type PostItemProps,
+} from "@n8v/app/components/organisms/post-item";
+import {
+	MainTemplate,
+	type MainTemplateProps,
+} from "@n8v/app/components/templates/main";
 
 export interface HomeFrameProps {
 	mainTemplateProps: MainTemplateProps;

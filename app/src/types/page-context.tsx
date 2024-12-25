@@ -1,7 +1,7 @@
 export enum PageLayoutEnum {
+	CV = "cv",
 	None = "none",
 	Post = "post",
-	CV = "cv",
 }
 
 export interface PageContext {

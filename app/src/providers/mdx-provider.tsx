@@ -1,11 +1,11 @@
 import "prismjs/themes/prism-okaidia.css";
 
+import type { AppTheme } from "@n8v/app/theme";
+
 import { MDXProvider } from "@mdx-js/react";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-
-import type { AppTheme } from "@/theme";
 
 export type AppMDXProviderProps = React.PropsWithChildren<object>;
 
@@ -22,11 +22,11 @@ const text = (props: any) => <Typography variant="body1" {...props} />;
 
 const strong = (props: any) => (
 	<Typography
-		variant="body1"
 		component="strong"
 		css={(theme: AppTheme) => ({
 			fontWeight: theme.typography.fontWeightBold,
 		})}
+		variant="body1"
 		{...props}
 	/>
 );
@@ -34,11 +34,11 @@ const strong = (props: any) => (
 const p = (props: any) => (
 	<Typography
 		{...props}
-		variant="body1"
-		paragraph
 		css={(theme: AppTheme) => ({
 			marginBlockEnd: theme.spacing(1),
 		})}
+		paragraph
+		variant="body1"
 	/>
 );
 

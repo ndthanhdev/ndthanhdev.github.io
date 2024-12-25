@@ -1,12 +1,11 @@
 import { ThemeProvider as EmotionThemeProvider } from "@emotion/react";
 import {
 	createTheme,
-	type ThemeOptions,
 	ThemeProvider as MuiThemeProvider,
+	type ThemeOptions,
 } from "@mui/material";
+import { ThemeMode } from "@n8v/app/theme";
 import * as React from "react";
-
-import { ThemeMode } from "@/theme";
 
 import { useThemeModeStore } from "../../stores/use-theme-mode-store";
 import { GlobalStyles } from "./global-styles";
@@ -33,6 +32,7 @@ export const darkTheme = createTheme({
 	},
 });
 
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export type AppThemeProps = React.PropsWithChildren<{
 	overrideThemeMode?: ThemeMode;
 }>;

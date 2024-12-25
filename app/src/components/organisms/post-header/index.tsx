@@ -1,20 +1,19 @@
-import Stack, { StackProps } from "@mui/material/Stack";
+import Stack, { type StackProps } from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import { DateTime } from "luxon";
-import * as React from "react";
 
 export type PostHeaderProps = Omit<
 	StackProps<
 		"div",
 		{
-			title?: string | null;
-			date?: string | null;
+			date?: null | string;
+			title?: null | string;
 		}
 	>,
 	"sx"
 >;
 
-export const PostHeader = ({ title, date, ...stackProps }: PostHeaderProps) => {
+export const PostHeader = ({ date, title, ...stackProps }: PostHeaderProps) => {
 	const formatterDate = date
 		? DateTime.fromISO(date).toLocaleString(DateTime.DATE_FULL)
 		: "";

@@ -27,7 +27,6 @@ func (c *Con) SetEnvs(ctx context.Context, m *NdthanhdevGithubIo) *Con {
 func (c *Con) MoonRun(command string) *Con {
 	c.Container = c.
 		Container.
-		WithExec([]string{fmt.Sprintf(`moon run %s`, command)})
-
+		WithExec([]string{"/bin/bash", "-l", "-c", fmt.Sprintf("moon run %s", command)})
 	return c
 }

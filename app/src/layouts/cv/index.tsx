@@ -1,13 +1,13 @@
-import { graphql, PageProps } from "gatsby";
+import { MyHelmet } from "@n8v/app/components/atoms/my-helmet";
+import { CVTemplate } from "@n8v/app/components/templates/cv";
+import { AppMDXProvider } from "@n8v/app/providers/mdx-provider";
+import { AppThemeProvider } from "@n8v/app/providers/theme-provider";
+import { ThemeMode } from "@n8v/app/theme";
+import { graphql, type PageProps } from "gatsby";
 import * as React from "react";
-import { Merge } from "type-fest";
+import { type Merge } from "type-fest";
 
-import { MyHelmet } from "@/components/atoms/my-helmet";
-import { CVTemplate } from "@/components/templates/cv";
-import { AppMDXProvider } from "@/providers/mdx-provider";
-import { AppThemeProvider } from "@/providers/theme-provider";
-import { ThemeMode } from "@/theme";
-
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export type MyCVTemplateProps = Merge<
 	PageProps<Queries.MyCVQueryQuery>,
 	React.PropsWithChildren<object>

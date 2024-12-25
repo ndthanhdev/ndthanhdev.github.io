@@ -2,18 +2,37 @@
 
 import eslint from "@eslint/js";
 import eslintJsonc from "eslint-plugin-jsonc";
+import eslintPerfectionist from "eslint-plugin-perfectionist";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
-import sortKeysFix from "eslint-plugin-sort-keys-fix";
+import eslintPluginUnicorn from "eslint-plugin-unicorn";
+import eslintPluginYml from "eslint-plugin-yml";
 import tsEslint from "typescript-eslint";
 
 const Constants = {
-	ignoreFiles: ["**/?(.)cache/", "**/public/", ".yarn/"],
+	abbreviations: {
+		dev: false,
+		dir: false,
+		dirs: false,
+		env: false,
+		envs: false,
+		prod: false,
+		prop: false,
+		props: false,
+		stg: false,
+	},
+	ignoreFiles: [
+		"**/?(.)cache/",
+		"**/public/",
+		".yarn/",
+		"node_modules/",
+		"app/src/gatsby-types.d.ts",
+	],
 	jsConfigFiles: ["eslint.config.js"],
 	jsoncFiles: ["**/*.json?(c)"],
 	tsEslintFiles: ["**/*.?(c|m)@(j|t)s?(x)"],
+	ymlFiles: ["**/*.y?(a)ml"],
 };
 
 /**
@@ -21,7 +40,7 @@ const Constants = {
  * @param {string[]} [ignores]
  * @returns {import("@typescript-eslint/utils").TSESLint.FlatConfig.ConfigArray}
  */
-const withFiles = (configs, files = undefined, ignores = []) => {
+const withFiles = (configs, files, ignores = []) => {
 	return configs.map((config) => ({
 		...config,
 		files,
@@ -35,15 +54,15 @@ export default tsEslint.config(
 		ignores: Constants.ignoreFiles,
 	},
 	eslint.configs.recommended,
-	...withFiles(eslintJsonc.configs["flat/recommended-with-jsonc"], [
-		...Constants.jsoncFiles,
-	]),
+	...withFiles(tsEslint.configs.stylistic, Constants.tsEslintFiles),
 	...withFiles(
 		tsEslint.configs.strictTypeChecked,
 		Constants.tsEslintFiles,
 		Constants.jsConfigFiles,
 	),
-	...withFiles(tsEslint.configs.stylisticTypeChecked, Constants.tsEslintFiles),
+	eslintPluginUnicorn.configs["flat/recommended"],
+	// @ts-ignore
+	eslintPerfectionist.configs["recommended-alphabetical"],
 	{
 		files: Constants.tsEslintFiles,
 		ignores: Constants.ignoreFiles,
@@ -65,10 +84,7 @@ export default tsEslint.config(
 		plugins: {
 			react,
 			"react-hooks": reactHooks,
-			"simple-import-sort": simpleImportSort,
-			"sort-keys-fix": sortKeysFix,
 		},
-		// @ts-expect-error
 		rules: {
 			...react.configs.recommended.rules,
 			...reactHooks.configs.recommended.rules,
@@ -76,7 +92,6 @@ export default tsEslint.config(
 				"error",
 				{
 					argsIgnorePattern: "^_",
-					varsIgnorePattern: "^React$",
 				},
 			],
 			"@typescript-eslint/restrict-template-expressions": [
@@ -91,15 +106,33 @@ export default tsEslint.config(
 			"react/no-unknown-property": ["error", { ignore: ["css"] }],
 			"react/prop-types": "off",
 			"react/react-in-jsx-scope": "off",
-			"simple-import-sort/exports": "error",
-			"simple-import-sort/imports": "error",
-			"sort-keys-fix/sort-keys-fix": "error",
+			"unicorn/prevent-abbreviations": [
+				"error",
+				{
+					replacements: Constants.abbreviations,
+				},
+			],
 		},
 
 		settings: {
 			react: {
 				version: "detect",
 			},
+		},
+	},
+	...withFiles(eslintJsonc.configs["flat/recommended-with-jsonc"], [
+		...Constants.jsoncFiles,
+	]),
+	...withFiles(eslintPluginYml.configs["flat/standard"], Constants.ymlFiles),
+	{
+		files: Constants.ymlFiles,
+		rules: {
+			"unicorn/prevent-abbreviations": [
+				"error",
+				{
+					replacements: Constants.abbreviations,
+				},
+			],
 		},
 	},
 	eslintPluginPrettierRecommended,

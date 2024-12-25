@@ -1,23 +1,31 @@
 import Container from "@mui/material/Container";
+import {
+	AppDrawer,
+	type AppDrawerProps,
+} from "@n8v/app/components/organisms/app-drawer";
+import {
+	AppFooter,
+	type AppFooterProps,
+} from "@n8v/app/components/organisms/app-footer";
+import {
+	AppHeader,
+	type AppHeaderProps,
+} from "@n8v/app/components/organisms/app-header";
 import * as React from "react";
-
-import { AppDrawer, AppDrawerProps } from "@/components/organisms/app-drawer";
-import { AppFooter, AppFooterProps } from "@/components/organisms/app-footer";
-import { AppHeader, AppHeaderProps } from "@/components/organisms/app-header";
 
 import { styles } from "./styles";
 
 export type MainTemplateProps = React.PropsWithChildren<{
 	appDrawerProps: AppDrawerProps;
-	appHeaderProps: AppHeaderProps;
 	appFooterProps: AppFooterProps;
+	appHeaderProps: AppHeaderProps;
 }>;
 
 export const MainTemplate = ({
-	children,
 	appDrawerProps,
-	appHeaderProps,
 	appFooterProps,
+	appHeaderProps,
+	children,
 }: MainTemplateProps) => (
 	<>
 		<AppHeader {...appHeaderProps} />

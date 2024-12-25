@@ -9,47 +9,46 @@ import Slide from "@mui/material/Slide";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
+import { ThemeMode } from "@n8v/app/theme";
 import { Link as GatsbyLink } from "gatsby";
 import * as React from "react";
-
-import { ThemeMode } from "@/theme";
 
 import { styles } from "./styles";
 
 export type AppHeaderProps = React.PropsWithChildren<{
-	onOpenSettings: (e: unknown) => void;
+	onOpenSettings: (element: unknown) => void;
 
+	onToggleThemeMode: (element: unknown) => void;
 	themeMode: ThemeMode;
-	onToggleThemeMode: (e: unknown) => void;
 }>;
 
 export const AppHeader = ({
 	children,
 	onOpenSettings,
-	themeMode,
 	onToggleThemeMode,
+	themeMode,
 }: AppHeaderProps) => (
 	<>
 		<HideOnScroll>
 			<AppBar css={styles.appBar}>
 				<Toolbar css={styles.toolbar}>
-					<Stack css={styles.left.root} direction="row" alignItems="center">
+					<Stack alignItems="center" css={styles.left.root} direction="row">
 						<Link
+							aria-label="Home"
 							component={GatsbyLink}
 							css={styles.brand}
-							variant="h6"
-							underline="none"
 							to="/"
-							aria-label="Home"
+							underline="none"
+							variant="h6"
 						>
 							ndthanhdev
 						</Link>
 						<Button
+							aria-label="About"
 							component={GatsbyLink}
-							variant="text"
 							size="large"
 							to="/about"
-							aria-label="About"
+							variant="text"
 						>
 							about
 						</Button>
@@ -63,13 +62,13 @@ export const AppHeader = ({
 							Projects
 						</Button> */}
 					</Stack>
-					<Stack css={styles.right.root} direction="row" alignItems="center">
+					<Stack alignItems="center" css={styles.right.root} direction="row">
 						<IconButton
-							size="large"
-							edge="end"
-							color="primary"
-							onClick={onToggleThemeMode}
 							area-label="Toggle theme mode"
+							color="primary"
+							edge="end"
+							onClick={onToggleThemeMode}
+							size="large"
 						>
 							{themeMode === ThemeMode.Light ? (
 								<LightModeOutlinedIcon />
@@ -78,10 +77,10 @@ export const AppHeader = ({
 							)}
 						</IconButton>
 						<IconButton
-							color="primary"
-							size="large"
-							onClick={onOpenSettings}
 							aria-label="Open settings"
+							color="primary"
+							onClick={onOpenSettings}
+							size="large"
 						>
 							<MenuOutlinedIcon />
 						</IconButton>
@@ -95,12 +94,12 @@ export const AppHeader = ({
 );
 
 interface Props {
+	children: React.ReactElement;
 	/**
 	 * Injected by the documentation to work in an iframe.
 	 * You won't need it on your project.
 	 */
 	window?: () => Window;
-	children: React.ReactElement;
 }
 
 function HideOnScroll(props: Props) {

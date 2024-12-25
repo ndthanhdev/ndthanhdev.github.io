@@ -11,10 +11,10 @@ typescript:
 
 # Configures Node.js within the toolchain.
 node:
-  version: "22.12.0"
-  packageManager: "yarn"
+  version: 22.12.0
+  packageManager: yarn
   yarn:
-    version: "4.5.3"
+    version: 4.5.3
   addEnginesConstraint: true
   dedupeOnLockfileChange: true
   inferTasksFromScripts: false

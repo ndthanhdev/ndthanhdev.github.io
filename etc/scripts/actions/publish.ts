@@ -1,6 +1,5 @@
 #!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
-
 import { getPublishRemote } from "@n8v/scripts/utils/get-publish-remote";
 import { workDirs } from "@n8v/scripts/utils/work-dir";
 
@@ -15,7 +14,7 @@ cd(workDirs.app.path);
 
 try {
 	await $`git config --get user.name`;
-} catch (error) {
+} catch {
 	// Git config --global user.email "dagger-bot@users.noreply.github.com"
 	await $`git config --global user.email ${Constants.user.email}`;
 	// Git config --global user.name "Dagger Bot"

@@ -9,32 +9,31 @@ import IconButton from "@mui/material/IconButton";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Typography from "@mui/material/Typography";
+import { ThemeMode } from "@n8v/app/theme";
 import * as React from "react";
-
-import { ThemeMode } from "@/theme";
 
 import { styles } from "./styles";
 
 export type AppDrawerProps = React.PropsWithChildren<{
-	open: boolean;
 	onClose: () => void;
+	onThemeModeChange: (element: unknown, mode: ThemeMode) => void;
+	open: boolean;
 	themeMode: ThemeMode;
-	onThemeModeChange: (e: unknown, mode: ThemeMode) => void;
 }>;
 
 export const AppDrawer = ({
 	children,
-	open,
 	onClose,
-	themeMode,
 	onThemeModeChange,
+	open,
+	themeMode,
 }: AppDrawerProps) => (
-	<Drawer css={styles.root} anchor="right" open={open} onClose={onClose}>
+	<Drawer anchor="right" css={styles.root} onClose={onClose} open={open}>
 		<Box css={styles.header}>
-			<Typography css={css({})} variant="body1" fontWeight="500">
+			<Typography css={css({})} fontWeight="500" variant="body1">
 				Settings
 			</Typography>
-			<IconButton color="inherit" onClick={onClose} edge="end">
+			<IconButton color="inherit" edge="end" onClick={onClose}>
 				<CloseIcon color="primary" fontSize="small" />
 			</IconButton>
 		</Box>
@@ -43,16 +42,16 @@ export const AppDrawer = ({
 			<Typography css={styles.section.heading}>Theme Mode</Typography>
 			<ToggleButtonGroup
 				css={styles.toggleGroup}
-				value={themeMode}
 				exclusive
-				onChange={(e, mode: unknown) => {
-					mode && onThemeModeChange(e, mode as ThemeMode);
+				onChange={(element, mode: unknown) => {
+					mode && onThemeModeChange(element, mode as ThemeMode);
 				}}
+				value={themeMode}
 			>
 				<ToggleButton value={ThemeMode.Light}>
 					<LightModeIcon />
 				</ToggleButton>
-				<ToggleButton value={ThemeMode.Dark} aria-label="centered">
+				<ToggleButton aria-label="centered" value={ThemeMode.Dark}>
 					<DarkModeIcon />
 				</ToggleButton>
 			</ToggleButtonGroup>

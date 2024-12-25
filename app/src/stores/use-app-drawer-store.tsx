@@ -1,9 +1,9 @@
 import { create } from "zustand";
 
 export interface AppDrawerState {
+	closeDrawer: () => void;
 	open: boolean;
 	openDrawer: () => void;
-	closeDrawer: () => void;
 }
 
 export const useAppDrawerStore = create<AppDrawerState>((set) => ({

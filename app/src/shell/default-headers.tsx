@@ -1,11 +1,10 @@
 import "modern-normalize/modern-normalize.css";
 
-import { graphql, useStaticQuery } from "gatsby";
-import * as R from "ramda";
-import React from "react";
 import type { SetNonNullable } from "type-fest";
 
-import { MyHelmet } from "@/components/atoms/my-helmet";
+import { MyHelmet } from "@n8v/app/components/atoms/my-helmet";
+import { graphql, useStaticQuery } from "gatsby";
+import * as R from "ramda";
 
 export const useSiteMetadata = () => {
 	const data = useStaticQuery<Queries.SiteMetadataQuery>(graphql`
@@ -34,11 +33,11 @@ export const DefaultHeaders = () => {
 	return (
 		<MyHelmet>
 			<meta
-				name="google-site-verification"
 				content="9OBwzAgCmUComfywGqCjEriNiYJ8qS4OYM9Fz4fan7s"
+				name="google-site-verification"
 			/>
 			<title id="title">{data.title}</title>
-			<meta name="description" content={data.description} />
+			<meta content={data.description} name="description" />
 		</MyHelmet>
 	);
 };

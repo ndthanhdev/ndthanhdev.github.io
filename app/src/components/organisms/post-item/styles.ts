@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
-
-import { type AppTheme } from "@/theme";
-import { lineClamp } from "@/utils/styles/line-clamp";
+import { type AppTheme } from "@n8v/app/theme";
+import { lineClamp } from "@n8v/app/utils/styles/line-clamp";
 
 const Constants = {
 	descLineCount: 2,
@@ -46,10 +45,10 @@ export const styles = {
 			height: theme.spacing(20),
 			marginBlockEnd: theme.spacing(2),
 			marginBlockStart: theme.spacing(4),
+			overflow: "hidden",
 			[theme.breakpoints.down("md")]: {
 				height: theme.spacing(22),
 			},
-			overflow: "hidden",
 		}),
 
 	thumb: (theme: AppTheme) =>

@@ -1,9 +1,9 @@
+import { HomeFrame } from "@n8v/app/components/frames/home";
+import { type PostItemProps } from "@n8v/app/components/organisms/post-item";
+import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 import { graphql, type PageProps } from "gatsby";
 
-import { HomeFrame } from "@/components/frames/home";
-import { type PostItemProps } from "@/components/organisms/post-item";
-import { useMainTemplateProps } from "@/hooks/use-main-template-props";
-
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export type HomePageProps = PageProps<Queries.HomeQuery>;
 
 function HomePage({ data }: HomePageProps) {

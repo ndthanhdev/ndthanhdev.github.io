@@ -1,4 +1,4 @@
-export const isValidNanoId = (id?: string | null): boolean => {
+export const isValidNanoId = (id?: null | string): boolean => {
 	if (!id) {
 		return false;
 	}

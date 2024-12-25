@@ -1,12 +1,13 @@
 declare module "process" {
 	global {
 		namespace NodeJS {
+			// eslint-disable-next-line unicorn/prevent-abbreviations
 			interface ProcessEnv {
-				MODE?: "dev" | "stg" | "prod";
-				GH_TOKEN?: string;
 				GATSBY_BUILD_NUMBER?: string;
+				GATSBY_MODE?: "dev" | "prod" | "stg";
 				GATSBY_REV?: string;
-				GATSBY_MODE?: "dev" | "stg" | "prod";
+				GH_TOKEN?: string;
+				MODE?: "dev" | "prod" | "stg";
 			}
 		}
 	}

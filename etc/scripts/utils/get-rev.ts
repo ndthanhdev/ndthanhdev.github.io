@@ -1,5 +1,6 @@
 import "zx/globals";
 
 export async function getRev(): Promise<string> {
-	return (await $`git rev-parse HEAD`).toString().trim();
+	const result = await $`git rev-parse HEAD`;
+	return result.toString().trim();
 }

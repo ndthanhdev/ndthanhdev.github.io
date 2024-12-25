@@ -1,8 +1,7 @@
 import { css } from "@emotion/react";
 import { drawerClasses } from "@mui/material/Drawer";
 import { toggleButtonClasses } from "@mui/material/ToggleButton";
-
-import { type AppTheme } from "@/theme";
+import { type AppTheme } from "@n8v/app/theme";
 
 export const styles = {
 	header: (theme: AppTheme) =>
@@ -16,11 +15,11 @@ export const styles = {
 	root: (theme: AppTheme) =>
 		css({
 			[`& .${drawerClasses.paper}`]: {
-				[theme.breakpoints.up("sm")]: {
-					width: 310,
-				},
 				[theme.breakpoints.up("lg")]: {
 					width: 360,
+				},
+				[theme.breakpoints.up("sm")]: {
+					width: 310,
 				},
 			},
 		}),
@@ -36,9 +35,9 @@ export const styles = {
 
 	toggleGroup: () =>
 		css({
-			width: "100%",
 			[`& .${toggleButtonClasses.root}`]: {
 				width: "100%",
 			},
+			width: "100%",
 		}),
 };

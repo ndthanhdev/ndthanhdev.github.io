@@ -1,8 +1,9 @@
 import { Link } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
-
-import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
+import {
+	MainTemplate,
+	type MainTemplateProps,
+} from "@n8v/app/components/templates/main";
 
 export interface NotFoundFrameProps {
 	mainTemplateProps: MainTemplateProps;

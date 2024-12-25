@@ -1,7 +1,5 @@
-import * as React from "react";
-
-import { AboutFrame } from "@/components/frames/about";
-import { useMainTemplateProps } from "@/hooks/use-main-template-props";
+import { AboutFrame } from "@n8v/app/components/frames/about";
+import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 
 function AboutPage() {
 	const mainTemplateProps = useMainTemplateProps();

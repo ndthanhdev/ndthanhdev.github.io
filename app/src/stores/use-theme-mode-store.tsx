@@ -1,12 +1,11 @@
+import { ThemeMode } from "@n8v/app/theme";
 import localForage from "localforage";
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 
-import { ThemeMode } from "@/theme";
-
 export interface ThemeModeState {
-	themeMode: ThemeMode;
 	setThemeMode: (mode: ThemeMode) => void;
+	themeMode: ThemeMode;
 	toggleThemeMode: () => void;
 }
 

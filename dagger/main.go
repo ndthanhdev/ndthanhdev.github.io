@@ -27,6 +27,7 @@ type NdthanhdevGithubIo struct {
 
 func New(
 	// +required
+	// +ignore=["node_modules/", ".moon/cache/", "app/public/", "dagger/"]
 	dir *dagger.Directory,
 	// +optional
 	// +default="dev"
@@ -41,45 +42,37 @@ func New(
 	}
 }
 
-func (m *NdthanhdevGithubIo) init(ctx context.Context) *Con {
+func (m *NdthanhdevGithubIo) BuildEnv(ctx context.Context) *Con {
 	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
-		Exclude: []string{"node_modules", ".cache", "moon/.cache"},
+		Exclude: []string{"node_modules", ".cache", ".moon/cache"},
 	})
 
 	con := dag.
 		Container().
-		From("node:22-bookworm").
-		WithExec([]string{"apt-get", "install", "-y", "bash", "curl", "git", "unzip", "gzip", "xz-utils"}).
-		WithEntrypoint([]string{"/bin/bash", "-l", "-c"}).
-		WithExec([]string{"ln -sf /bin/bash /bin/sh"}).
-		WithEnvVariable("SHELL", "/bin/bash").
-		WithEnvVariable("HOME", "/root").
-		WithUser("root").
+		// From("alpine:3.14").
+		// // apk add --no-cache curl git unzip gzip xz
+		// WithExec([]string{"apk", "add", "--no-cache", "curl", "git", "unzip", "bash", "gzip", "xz"}).
+		From("debian:bookworm").
+		// apt-get update && apt-get install -y curl git unzip gzip xz-utils
+		WithExec([]string{"apt-get", "update"}).
+		WithExec([]string{"apt-get", "install", "-y", "curl", "git", "unzip", "bash", "gzip", "xz-utils"}).
 		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
-		WithExec([]string{`curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- 0.35.5 --yes`}).
-		// export PROTO_HOME="$HOME/.proto"
-		WithEnvVariable("PROTO_HOME", "$HOME/.proto", dagger.ContainerWithEnvVariableOpts{
-			Expand: true,
-		}).
-		// export PATH="$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH"
-		WithEnvVariable("PATH", "$PROTO_HOME/shims:$PROTO_HOME/bin:$PATH", dagger.ContainerWithEnvVariableOpts{
-			Expand: true,
-		}).
+		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.43.3 --yes"}).
 		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
 		// proto use
-		WithExec([]string{"proto use"}).
-		// moon setup
-		WithExec([]string{"moon setup"}).
+		WithExec([]string{"bash", "-l", "-c", "proto use"}).
+		// // moon setup
+		WithExec([]string{"bash", "-l", "-c", "moon setup"}).
 		// yarn install --immutable
-		WithExec([]string{"yarn install --immutable"})
+		WithExec([]string{"bash", "-l", "-c", "yarn install --immutable"})
 
 	return (&Con{con}).SetEnvs(ctx, m)
 }
 
 func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, command string) *dagger.Container {
 	return m.
-		init(ctx).
+		BuildEnv(ctx).
 		MoonRun(command).
 		Container
 }

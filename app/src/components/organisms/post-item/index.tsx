@@ -5,36 +5,35 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { Link as GatsbyLink } from "gatsby";
 import { DateTime } from "luxon";
-import * as React from "react";
 
 import { styles } from "./styles";
 
 export interface PostItemProps {
-	title?: string;
-	link: string;
 	date?: string;
 	excerpt?: string;
+	link: string;
 	thumb?: string;
+	title?: string;
 }
 
 export const PostItem = ({
+	date: dateProperty,
+	excerpt,
+	link,
 	thumb,
 	title,
-	date: dateProp,
-	link,
-	excerpt,
 }: PostItemProps) => {
-	const date = dateProp
-		? DateTime.fromISO(dateProp).toLocaleString(DateTime.DATE_FULL)
+	const date = dateProperty
+		? DateTime.fromISO(dateProperty).toLocaleString(DateTime.DATE_FULL)
 		: "";
 
 	return (
 		<Box css={styles.root}>
 			<Link
 				component={GatsbyLink}
+				css={styles.title}
 				to={link}
 				underline="none"
-				css={styles.title}
 				variant="h6"
 			>
 				{title}
@@ -44,15 +43,15 @@ export const PostItem = ({
 			</Typography>
 			<Link
 				component={GatsbyLink}
+				css={styles.description}
 				to="/posts/qs05qpu3c0p78ww123zv1/"
 				underline="none"
-				css={styles.description}
 				variant="body1"
 			>
 				{excerpt}
 			</Link>
 			{thumb ? (
-				<img css={styles.thumb} alt="post thumbnail" src={thumb} />
+				<img alt="post thumbnail" css={styles.thumb} src={thumb} />
 			) : (
 				<ArticleOutlinedIcon css={styles.thumb} />
 			)}

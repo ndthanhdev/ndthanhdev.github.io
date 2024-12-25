@@ -1,7 +1,8 @@
-import * as React from "react";
-
-import { Wip } from "@/components/organisms/wip";
-import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
+import { Wip } from "@n8v/app/components/organisms/wip";
+import {
+	MainTemplate,
+	type MainTemplateProps,
+} from "@n8v/app/components/templates/main";
 
 export interface HomeFrameProps {
 	mainTemplateProps: MainTemplateProps;

@@ -1,6 +1,5 @@
 {
 	"name": "app",
-	"packageManager": "yarn@4.2.2",
 	"scripts": {
 		"develop": "gatsby develop",
 		"start": "gatsby develop",

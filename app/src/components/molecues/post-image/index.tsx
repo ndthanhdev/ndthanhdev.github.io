@@ -1,4 +1,4 @@
-import Stack, { StackProps } from "@mui/material/Stack";
+import Stack, { type StackProps } from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
@@ -8,26 +8,26 @@ export type PostImageProps = Omit<
 	StackProps<
 		"div",
 		{
+			caption?: React.ReactNode | string;
 			src: string;
-			caption?: string | React.ReactNode;
 		}
 	>,
 	"sx"
 >;
 
-export const PostImage = ({ src, caption, ...cardProps }: PostImageProps) => {
+export const PostImage = ({ caption, src, ...cardProps }: PostImageProps) => {
 	return (
 		<Stack
-			direction="column"
-			css={styles.root}
 			alignItems="center"
+			css={styles.root}
+			direction="column"
 			spacing={1}
 			{...cardProps}
 		>
 			<img
+				alt={typeof caption === "string" ? caption : undefined}
 				css={styles.image}
 				src={src}
-				alt={typeof caption === "string" ? caption : undefined}
 			/>
 			{typeof caption === "string" ? (
 				<Typography variant="caption">{caption}</Typography>

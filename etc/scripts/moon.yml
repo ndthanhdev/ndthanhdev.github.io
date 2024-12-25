@@ -5,22 +5,22 @@ type: tool
 
 project:
   name: "@n8v/scripts"
-  description: "scripts"
+  description: scripts
 tasks:
   lint:
-    command: "tsx ./actions/lint.ts"
+    command: tsx ./actions/lint.ts
   test:
     deps:
       - lint
-    command: "tsx ./actions/test.ts"
+    command: tsx ./actions/test.ts
   build:
     deps:
       - test
-    command: "tsx ./actions/build.ts"
+    command: tsx ./actions/build.ts
   publish:
-    command: "tsx ./actions/publish.ts"
+    command: tsx ./actions/publish.ts
 
   release:
-    command: "tsx ./pipelines/release.ts"
+    command: tsx ./pipelines/release.ts
   validate-pr:
-    command: "tsx ./pipelines/validate-pr.ts"
+    command: tsx ./pipelines/validate-pr.ts

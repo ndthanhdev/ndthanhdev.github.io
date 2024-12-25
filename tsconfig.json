@@ -1,5 +1,8 @@
 {
 	"extends": "./tsconfig.options.json",
+	"compilerOptions": {
+		"baseUrl": "."
+	},
 	"include": ["apps/**/*", "packages/**/*", "etc/**/*", "app/**/*"],
 	"references": [
 		{

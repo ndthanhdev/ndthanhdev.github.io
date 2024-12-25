@@ -1,40 +1,40 @@
 import React from "react";
 
-type ShieldsIO<T extends React.ElementType = "img"> = {
-	logo?: string;
-	logoColor?: string;
-	logoWidth?: number;
-
-	leftText?: string;
-	leftBg?: string;
-
-	rightText?: string;
-	rightBg?: string;
-
-	shieldStyle?: ShieldsStyle;
-
-	Comp?: React.ElementType;
-} & React.ComponentPropsWithoutRef<T>;
-
 export enum ShieldsStyle {
-	Plastic = "plastic",
 	Flat = "flat",
 	FlatSquare = "flat-square",
 	ForTheBadge = "for-the-badge",
+	Plastic = "plastic",
 	Social = "social",
 }
 
+type ShieldsIO<T extends React.ElementType = "img"> = {
+	Comp?: React.ElementType;
+	leftBg?: string;
+	leftText?: string;
+
+	logo?: string;
+	logoColor?: string;
+
+	logoWidth?: number;
+	rightBg?: string;
+
+	rightText?: string;
+
+	shieldStyle?: ShieldsStyle;
+} & React.ComponentPropsWithoutRef<T>;
+
 export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
-	function ShieldsIO(props, ref) {
+	function ShieldsIO(props, reference) {
 		const {
+			Comp = "img",
+			leftBg,
+			leftText = "",
+
 			logo,
 			logoColor,
+
 			logoWidth,
-
-			leftText = "",
-			leftBg,
-
-			rightText,
 
 			/*
 			 * This is for by pass the case that leftText and rightText are both undefined
@@ -44,14 +44,14 @@ export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
 			 */
 			rightBg = "#f0f0f0",
 
-			shieldStyle = ShieldsStyle.Flat,
+			rightText,
 
-			Comp = "img",
+			shieldStyle = ShieldsStyle.Flat,
 
 			...otherProps
 		} = props;
 
-		const src = React.useMemo(() => {
+		const source = React.useMemo(() => {
 			let sUrl = "https://img.shields.io/badge/";
 
 			sUrl += leftText ? `${leftText}-` : "-";
@@ -90,6 +90,6 @@ export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
 			shieldStyle,
 		]);
 
-		return <Comp {...otherProps} ref={ref} src={src} />;
+		return <Comp {...otherProps} ref={reference} src={source} />;
 	},
 );

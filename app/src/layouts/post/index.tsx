@@ -1,14 +1,11 @@
-import { graphql, PageProps } from "gatsby";
-import * as React from "react";
-
-import { MyHelmet } from "@/components/atoms/my-helmet";
-import { PostTemplate } from "@/components/templates/post";
-import { useMainTemplateProps } from "@/hooks/use-main-template-props";
-import { AppMDXProvider } from "@/providers/mdx-provider";
-import { useSiteMetadata } from "@/shell/default-headers";
+import { MyHelmet } from "@n8v/app/components/atoms/my-helmet";
+import { PostTemplate } from "@n8v/app/components/templates/post";
+import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
+import { AppMDXProvider } from "@n8v/app/providers/mdx-provider";
+import { useSiteMetadata } from "@n8v/app/shell/default-headers";
+import { graphql, type PageProps } from "gatsby";
 
 export type PostLayoutProps = PageProps<Queries.PostTemplateQuery>;
-
 const PostLayout = ({ children, data }: PostLayoutProps) => {
 	const siteMetadata = useSiteMetadata();
 

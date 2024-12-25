@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/unbound-method, @typescript-eslint/no-unsafe-argument */
 import type { GatsbyNode } from "gatsby";
-import path from "path";
+
+import path from "node:path";
 
 import { isValidNanoId } from "./src/utils/is-valid-nano-id";
 import { cvPage, postPages } from "./src/utils/queries";
 
-const postTemplate = path.resolve(`./src/layouts/post/index.tsx`),
+const cvFile = path.resolve(`./content/cv/cv.mdx`),
 	myCVTemplate = path.resolve(`./src/layouts/cv/index.tsx`),
-	cvFile = path.resolve(`./content/cv/cv.mdx`);
+	postTemplate = path.resolve(`./src/layouts/post/index.tsx`);
 
-export const createPages: GatsbyNode["createPages"] = async (args) => {
+export const createPages: GatsbyNode["createPages"] = async (arguments_) => {
 	await createPosts();
 	await createCV();
 
 	async function createCV() {
-		const { graphql, actions, reporter } = args,
+		const { actions, graphql, reporter } = arguments_,
 			{ createPage } = actions,
 			result = await graphql<Queries.Query>(cvPage, {
 				cvFile,
@@ -38,7 +39,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 	}
 
 	async function createPosts() {
-		const { graphql, actions, reporter } = args,
+		const { actions, graphql, reporter } = arguments_,
 			{ createPage } = actions,
 			result = await graphql<Queries.Query>(postPages);
 
@@ -57,7 +58,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 			posts = data.allMdx.nodes;
 
 		// You'll call `createPage` for each result
-		posts.forEach((node) => {
+		for (const node of posts) {
 			if (!node.frontmatter) {
 				throw new Error(`No frontmatter found`, {
 					cause: node,
@@ -89,7 +90,7 @@ export const createPages: GatsbyNode["createPages"] = async (args) => {
 				 */
 				path: postPath,
 			});
-		});
+		}
 	}
 };
 
@@ -99,7 +100,8 @@ export const onCreateWebpackConfig: GatsbyNode["onCreateWebpackConfig"] = ({
 	actions.setWebpackConfig({
 		resolve: {
 			alias: {
-				"@": path.resolve(__dirname, "src/"),
+				// eslint-disable-next-line unicorn/prefer-module
+				"@n8v/app": path.resolve(__dirname, "src/"),
 			},
 		},
 	});

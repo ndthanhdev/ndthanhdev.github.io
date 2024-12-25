@@ -29,5 +29,5 @@ jobs:
         working-directory: ./etc/scripts/pipelines
         run: ./release.ts
         env:
-          MODE: "dev"
+          MODE: dev
           GH_TOKEN: ${{ secrets.GH_TOKEN_DEV }}

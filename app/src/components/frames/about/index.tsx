@@ -1,9 +1,10 @@
 import Container from "@mui/material/Container";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
-
-import { MainTemplate, MainTemplateProps } from "@/components/templates/main";
+import {
+	MainTemplate,
+	type MainTemplateProps,
+} from "@n8v/app/components/templates/main";
 
 import { styles } from "./styles";
 
@@ -16,9 +17,9 @@ export const AboutFrame = ({ mainTemplateProps }: AboutFrameProps) => {
 		<MainTemplate {...mainTemplateProps}>
 			<Container maxWidth="lg">
 				<Stack
+					alignItems="center"
 					css={styles.mainWrapper}
 					justifyContent="center"
-					alignItems="center"
 				>
 					<Typography css={styles.brief} variant="h1">
 						{"A developer, an open source lover and a gamer"}

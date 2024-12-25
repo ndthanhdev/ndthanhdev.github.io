@@ -5,13 +5,12 @@
 		"jsxImportSource": "@emotion/react",
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["src/*"]
+			"@n8v/app/*": ["src/*"]
 		},
 		"outDir": "../.moon/cache/types/app"
 	},
 	"include": [
-		"./src/**/*.ts",
-		"./src/**/*.tsx",
+		"./src/**/*",
 		"./content/**/*",
 		"gatsby-node.ts",
 		"gatsby-config.ts"

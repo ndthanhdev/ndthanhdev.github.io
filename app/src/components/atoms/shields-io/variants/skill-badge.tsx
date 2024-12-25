@@ -5,33 +5,33 @@ import { iconShieldStyles } from "../shared-styles";
 import { ShieldsIO, ShieldsStyle } from "../shields-io";
 
 export type SkillBadgeProps = {
-	skillLogo?: string;
 	skill: string;
+	skillLogo?: string;
 } & React.ComponentPropsWithoutRef<"img">;
 
 export const SkillBadge = React.forwardRef<HTMLElement, SkillBadgeProps>(
-	function SkillBadge(props, ref) {
+	function SkillBadge(props, reference) {
 		const {
-			skillLogo: skillLogoProp,
+			className: classNameProperty,
 			skill,
-			className: classNameProp,
+			skillLogo: skillLogoProperty,
 			...otherProps
 		} = props;
 
-		const skillLogo = skillLogoProp ?? skill;
+		const skillLogo = skillLogoProperty ?? skill;
 
 		return (
 			<ShieldsIO
 				{...otherProps}
+				alt={skill}
+				className={cx("ndt-skill-badge", classNameProperty)}
 				css={iconShieldStyles.wrapper}
-				ref={ref}
-				className={cx("ndt-skill-badge", classNameProp)}
-				logo={skillLogo}
-				leftText=""
 				leftBg="white"
+				leftText=""
+				logo={skillLogo}
+				ref={reference}
 				rightText={skill}
 				shieldStyle={ShieldsStyle.ForTheBadge}
-				alt={skill}
 			/>
 		);
 	},

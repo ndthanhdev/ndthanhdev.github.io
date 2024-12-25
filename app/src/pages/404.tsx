@@ -1,7 +1,5 @@
-import * as React from "react";
-
-import { NotFoundFrame } from "@/components/frames/not-found";
-import { useMainTemplateProps } from "@/hooks/use-main-template-props";
+import { NotFoundFrame } from "@n8v/app/components/frames/not-found";
+import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 
 const NotFoundPage = () => {
 	const mainTemplateProps = useMainTemplateProps();

@@ -1,9 +1,8 @@
 import { css } from "@emotion/react";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
+import { type AppTheme } from "@n8v/app/theme";
 import * as React from "react";
-
-import { AppTheme } from "@/theme";
 
 export type WipProps = React.PropsWithChildren<object>;
 
@@ -19,7 +18,7 @@ const styles = {
 };
 
 export const Wip = () => (
-	<Stack css={styles.root} justifyContent="center" alignItems="center">
+	<Stack alignItems="center" css={styles.root} justifyContent="center">
 		<Typography css={styles.description} variant="h1">
 			{"Wip ;)"}
 		</Typography>
