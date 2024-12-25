@@ -11,8 +11,7 @@
 	"workspaces": [
 		"etc/*",
 		"packages/*",
-		"apps/*",
-		"app"
+		"apps/*"
 	],
 	"scripts": {
 		"postinstall": "husky",
