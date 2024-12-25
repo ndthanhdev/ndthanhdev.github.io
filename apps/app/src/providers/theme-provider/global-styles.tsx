@@ -5,8 +5,8 @@ import React from "react";
 const styles = {};
 
 export const GlobalStyles = () => (
-	<>
+	<React.Fragment>
 		<CssBaseline />
 		<Global styles={styles} />
-	</>
+	</React.Fragment>
 );
