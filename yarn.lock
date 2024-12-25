@@ -5436,9 +5436,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"app@workspace:app":
+"app@workspace:apps/app":
   version: 0.0.0-use.local
-  resolution: "app@workspace:app"
+  resolution: "app@workspace:apps/app"
   dependencies:
     "@emotion/css": "npm:^11.13.5"
     "@emotion/react": "npm:^11.14.0"
