@@ -7,7 +7,7 @@ import { workDirs } from "@n8v/scripts/utils/work-dir";
 
 await cleanBuild();
 
-cd(workDirs.app.path);
+cd(workDirs.apps.app.path);
 
 $.env.GATSBY_BUILD_NUMBER = getBuildNumber();
 $.env.GATSBY_REV = await getRev();

@@ -11,7 +11,7 @@ await $`dagger call \
 --dir ${workDirs.path} \
 --mode ${$.env.MODE ?? "dev"} \
 build \
-export --path ${workDirs.app.public.path} \
+export --path ${workDirs.apps.app.public.path} \
 `;
 
 await $`dagger call \

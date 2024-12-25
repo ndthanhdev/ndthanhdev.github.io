@@ -27,7 +27,7 @@ const Constants = {
 		"**/public/",
 		".yarn/",
 		"node_modules/",
-		"app/src/gatsby-types.d.ts",
+		"apps/app/src/gatsby-types.d.ts",
 	],
 	jsConfigFiles: ["eslint.config.js"],
 	jsoncFiles: ["**/*.json?(c)"],

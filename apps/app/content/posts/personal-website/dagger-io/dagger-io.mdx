@@ -97,7 +97,7 @@ Getting the website live involved building everything and then publishing it. To
 await $`dagger call build \
 --dir . \
 --mode ${$.env.MODE ?? "dev"} \
-export --path ${workDirs.app.public.path} \
+export --path ${workDirs.apps.app.public.path} \
 `;
 
 await $`dagger call publish \

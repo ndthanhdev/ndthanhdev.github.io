@@ -3,6 +3,6 @@ import "zx/globals";
 import { pipeOutput } from "@n8v/scripts/utils/pipe-output";
 import { workDirs } from "@n8v/scripts/utils/work-dir";
 
-cd(workDirs.app.path);
+cd(workDirs.apps.app.path);
 
 await pipeOutput($`yarn typecheck`);

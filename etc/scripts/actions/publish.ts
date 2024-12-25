@@ -10,7 +10,7 @@ const Constants = {
 	},
 };
 
-cd(workDirs.app.path);
+cd(workDirs.apps.app.path);
 
 try {
 	await $`git config --get user.name`;
@@ -25,4 +25,4 @@ const remote = getPublishRemote();
 
 $.env.GH_REMOTE = remote;
 
-await $`yarn dlx gh-pages --dist ${workDirs.app.public.path} --repo $GH_REMOTE --dotfiles --message "chore: publish"`;
+await $`yarn dlx gh-pages --dist ${workDirs.apps.app.public.path} --repo $GH_REMOTE --dotfiles --message "chore: publish"`;
