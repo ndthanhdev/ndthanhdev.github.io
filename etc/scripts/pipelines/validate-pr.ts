@@ -5,6 +5,6 @@ import { workDirs } from "@n8v/scripts/utils/work-dir";
 
 await cleanBuild();
 
-cd(workDirs.path);
+cd(workDirs.etc.runner.path);
 
-await $`dagger call --dir . test`;
+await $`dagger call --dir ${workDirs.path} test`;
