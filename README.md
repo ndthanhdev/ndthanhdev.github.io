@@ -23,3 +23,4 @@ Visit [https://ndthanhdev.github.io](https://ndthanhdev.github.io) to see the we
 2. Clone this repository
 3. Inside the repo, run `proto use` to lift up the development environment
 4. Run `moon app:dev` to start the development server
+5. Visit [docs](./docs) for more information

@@ -1,0 +1,38 @@
+# yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
+language: typescript
+platform: node
+type: application
+project:
+  name: "@n8v/app"
+  description: app
+tasks:
+  dev:
+    command: gatsby develop
+    inputs:
+      - src/**/*
+      - content/**/*
+      - gatsby-config.js
+      - gatsby-node.js
+    outputs:
+      - public
+  typecheck:
+    command: tsc --noEmit
+    inputs:
+      - src/**/*
+      - content/**/*
+      - gatsby-config.js
+      - gatsby-node.js
+  clean:
+    command: gatsby clean
+  build:
+    deps:
+      - clean
+      - typecheck
+    command: gatsby build
+    inputs:
+      - src/**/*
+      - content/**/*
+      - gatsby-config.js
+      - gatsby-node.js
+    outputs:
+      - public

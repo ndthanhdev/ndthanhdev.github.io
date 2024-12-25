@@ -1,0 +1,14 @@
+{
+	"name": "@n8v/scripts",
+	"packageManager": "yarn@4.2.2",
+	"type": "module",
+	"devDependencies": {
+		"@types/luxon": "^3.4.2",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.2",
+		"zx": "^8.3.0"
+	},
+	"dependencies": {
+		"luxon": "^3.5.0"
+	}
+}

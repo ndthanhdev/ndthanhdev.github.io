@@ -1,58 +1,139 @@
 // @ts-check
 
 import eslint from "@eslint/js";
+import eslintJsonc from "eslint-plugin-jsonc";
+import eslintPerfectionist from "eslint-plugin-perfectionist";
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
-import tseslint from "typescript-eslint";
+import eslintPluginUnicorn from "eslint-plugin-unicorn";
+import eslintPluginYml from "eslint-plugin-yml";
+import tsEslint from "typescript-eslint";
+
+const Constants = {
+	abbreviations: {
+		dev: false,
+		dir: false,
+		dirs: false,
+		env: false,
+		envs: false,
+		prod: false,
+		prop: false,
+		props: false,
+		stg: false,
+	},
+	ignoreFiles: [
+		"**/?(.)cache/",
+		"**/public/",
+		".yarn/",
+		"node_modules/",
+		"apps/app/src/gatsby-types.d.ts",
+	],
+	jsConfigFiles: ["eslint.config.js"],
+	jsoncFiles: ["**/*.json?(c)"],
+	tsEslintFiles: ["**/*.?(c|m)@(j|t)s?(x)"],
+	ymlFiles: ["**/*.y?(a)ml"],
+};
+
+/**
+ * @param {(string[] | undefined)} files
+ * @param {string[]} [ignores]
+ * @returns {import("@typescript-eslint/utils").TSESLint.FlatConfig.ConfigArray}
+ */
+const withFiles = (configs, files, ignores = []) => {
+	return configs.map((config) => ({
+		...config,
+		files,
+		ignores,
+	}));
+};
 
 /* eslint-disable @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-unsafe-member-access, @typescript-eslint/ban-ts-comment */
-export default tseslint.config(
-	eslint.configs.recommended,
-	eslintPluginPrettierRecommended,
-	...tseslint.configs.recommendedTypeChecked,
+export default tsEslint.config(
 	{
-		ignores: ["**/.cache/", "app/public/", ".yarn/"],
+		ignores: Constants.ignoreFiles,
 	},
+	eslint.configs.recommended,
+	...withFiles(tsEslint.configs.stylistic, Constants.tsEslintFiles),
+	...withFiles(
+		tsEslint.configs.strictTypeChecked,
+		Constants.tsEslintFiles,
+		Constants.jsConfigFiles,
+	),
+	eslintPluginUnicorn.configs["flat/recommended"],
+	// @ts-ignore
+	eslintPerfectionist.configs["recommended-alphabetical"],
 	{
+		files: Constants.tsEslintFiles,
+		ignores: Constants.ignoreFiles,
 		languageOptions: {
 			parserOptions: {
-				tsconfigRootDir: import.meta.dirname,
 				ecmaFeatures: {
 					jsx: true,
 				},
 				project: [
 					"./tsconfig.eslint.json",
-					"./scripts/tsconfig.json",
+					"./apps/*/tsconfig.json",
+					"./etc/*/tsconfig.json",
+					"./packages/*/tsconfig.json",
 					"./app/tsconfig.json",
 				],
+				tsconfigRootDir: import.meta.dirname,
 			},
 		},
-		settings: {
-			react: { version: "18.2.0" },
-		},
 		plugins: {
-			"simple-import-sort": simpleImportSort,
 			react,
 			"react-hooks": reactHooks,
 		},
-		// @ts-expect-error
 		rules: {
 			...react.configs.recommended.rules,
 			...reactHooks.configs.recommended.rules,
-			"react-hooks/exhaustive-deps": "error",
-			"simple-import-sort/imports": "error",
-			"simple-import-sort/exports": "error",
 			"@typescript-eslint/no-unused-vars": [
 				"error",
 				{
 					argsIgnorePattern: "^_",
-					varsIgnorePattern: "^React$",
 				},
 			],
+			"@typescript-eslint/restrict-template-expressions": [
+				"error",
+				{
+					allowNullish: true,
+					allowNumber: true,
+				},
+			],
+			"array-element-newline": ["error", "always"],
+			"react-hooks/exhaustive-deps": "error",
 			"react/no-unknown-property": ["error", { ignore: ["css"] }],
 			"react/prop-types": "off",
+			"react/react-in-jsx-scope": "off",
+			"unicorn/prevent-abbreviations": [
+				"error",
+				{
+					replacements: Constants.abbreviations,
+				},
+			],
+		},
+
+		settings: {
+			react: {
+				version: "detect",
+			},
 		},
 	},
+	...withFiles(eslintJsonc.configs["flat/recommended-with-jsonc"], [
+		...Constants.jsoncFiles,
+	]),
+	...withFiles(eslintPluginYml.configs["flat/standard"], Constants.ymlFiles),
+	{
+		files: Constants.ymlFiles,
+		rules: {
+			"unicorn/prevent-abbreviations": [
+				"error",
+				{
+					replacements: Constants.abbreviations,
+				},
+			],
+		},
+	},
+	eslintPluginPrettierRecommended,
 );
