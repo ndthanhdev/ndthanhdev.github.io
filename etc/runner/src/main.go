@@ -86,7 +86,7 @@ func (m *Runner) Test(ctx context.Context) (string, error) {
 func (m *Runner) Build(ctx context.Context) *dagger.Directory {
 	return m.
 		MoonRun(ctx, "scripts:build").
-		Directory("/mnt/app/public")
+		Directory("/mnt/apps/app/public")
 }
 
 func (m *Runner) Publish(ctx context.Context) (string, error) {

@@ -8,3 +8,5 @@ await cleanBuild();
 cd(workDirs.etc.runner.path);
 
 await $`dagger call --dir ${workDirs.path} test`;
+
+await $`dagger call --dir ${workDirs.path} build`;
