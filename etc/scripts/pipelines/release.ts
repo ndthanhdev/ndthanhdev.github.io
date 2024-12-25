@@ -5,17 +5,17 @@ import { workDirs } from "@n8v/scripts/utils/work-dir";
 
 await cleanBuild();
 
-cd(workDirs.path);
+cd(workDirs.etc.runner.path);
 
 await $`dagger call \
---dir . \
+--dir ${workDirs.path} \
 --mode ${$.env.MODE ?? "dev"} \
 build \
 export --path ${workDirs.app.public.path} \
 `;
 
 await $`dagger call \
---dir . \
+--dir ${workDirs.path} \
 --mode ${$.env.MODE ?? "dev"} \
 --gh-token env:GH_TOKEN \
 publish \

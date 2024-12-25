@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"dagger/ndthanhdev-github-io/internal/dagger"
+	"dagger/runner/internal/dagger"
 	"fmt"
 )
 
@@ -10,7 +10,7 @@ type Con struct {
 	*dagger.Container
 }
 
-func (c *Con) SetEnvs(ctx context.Context, m *NdthanhdevGithubIo) *Con {
+func (c *Con) SetEnvs(ctx context.Context, m *Runner) *Con {
 	c.Container = c.Container.
 		WithEnvVariable("MODE", m.Mode)
 

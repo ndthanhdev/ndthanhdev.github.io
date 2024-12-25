@@ -16,7 +16,6 @@ projects:
   - "packages/*"
   - "etc/*"
   - app
-  - dagger
 
 # Configures the version control system to utilize within the workspace. A VCS
 # is required for determining touched (added, modified, etc) files, calculating file hashes,

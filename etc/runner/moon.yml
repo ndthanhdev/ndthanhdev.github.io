@@ -1,2 +1,2 @@
 # yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
-type: configuration
+type: tool

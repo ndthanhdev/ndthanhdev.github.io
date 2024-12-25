@@ -1,4 +1,4 @@
-// A generated module for NdthanhdevGithubIo functions
+// A generated module for Runner functions
 //
 // This module has been generated via dagger init and serves as a reference to
 // basic module structure as you get started with Dagger.
@@ -16,10 +16,10 @@ package main
 
 import (
 	"context"
-	"dagger/ndthanhdev-github-io/internal/dagger"
+	"dagger/runner/internal/dagger"
 )
 
-type NdthanhdevGithubIo struct {
+type Runner struct {
 	Dir     *dagger.Directory
 	Mode    string
 	GhToken *dagger.Secret
@@ -34,15 +34,15 @@ func New(
 	mode string,
 	// +optional
 	ghToken *dagger.Secret,
-) *NdthanhdevGithubIo {
-	return &NdthanhdevGithubIo{
+) *Runner {
+	return &Runner{
 		Dir:     dir,
 		Mode:    mode,
 		GhToken: ghToken,
 	}
 }
 
-func (m *NdthanhdevGithubIo) BuildEnv(ctx context.Context) *Con {
+func (m *Runner) BuildEnv(ctx context.Context) *Con {
 	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
 		Exclude: []string{"node_modules", ".cache", ".moon/cache"},
 	})
@@ -70,26 +70,26 @@ func (m *NdthanhdevGithubIo) BuildEnv(ctx context.Context) *Con {
 	return (&Con{con}).SetEnvs(ctx, m)
 }
 
-func (m *NdthanhdevGithubIo) MoonRun(ctx context.Context, command string) *dagger.Container {
+func (m *Runner) MoonRun(ctx context.Context, command string) *dagger.Container {
 	return m.
 		BuildEnv(ctx).
 		MoonRun(command).
 		Container
 }
 
-func (m *NdthanhdevGithubIo) Test(ctx context.Context) (string, error) {
+func (m *Runner) Test(ctx context.Context) (string, error) {
 	return m.
 		MoonRun(ctx, "scripts:test").
 		Stdout(ctx)
 }
 
-func (m *NdthanhdevGithubIo) Build(ctx context.Context) *dagger.Directory {
+func (m *Runner) Build(ctx context.Context) *dagger.Directory {
 	return m.
 		MoonRun(ctx, "scripts:build").
 		Directory("/mnt/app/public")
 }
 
-func (m *NdthanhdevGithubIo) Publish(ctx context.Context) (string, error) {
+func (m *Runner) Publish(ctx context.Context) (string, error) {
 	return m.
 		MoonRun(ctx, "scripts:publish").
 		Stdout(ctx)
