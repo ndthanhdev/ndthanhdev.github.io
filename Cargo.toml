@@ -1,5 +1,5 @@
 [workspace]
-members = ["apps/recorder", "apps/counter"]
+members = ["apps/counter"]
 resolver = "2"
 [workspace.package]
 edition = "2021"

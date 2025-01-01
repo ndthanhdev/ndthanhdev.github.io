@@ -2,7 +2,19 @@ use iced::widget::{button, column, row, text, Column, Row};
 use iced::Center;
 
 pub fn main() -> iced::Result {
-    iced::run("A cool counter", Counter::update, Counter::view)
+    #[cfg(target_arch = "wasm32")]
+    {
+        console_log::init().expect("Initialize logger");
+        std::panic::set_hook(Box::new(console_error_panic_hook::hook));
+    }
+
+    #[cfg(not(target_arch = "wasm32"))]
+    tracing_subscriber::fmt::init();
+
+    iced::application("A cool counter", Counter::update, Counter::view)
+        .centered()
+        .theme(Counter::theme)
+        .run()
 }
 
 #[derive(Default)]
@@ -29,16 +41,6 @@ impl Counter {
     }
 
     fn view(&self) -> Column<Message> {
-        // row![column![
-        //     button("Increment").on_press(Message::Increment),
-        //     text(self.value).size(50),
-        //     button("Decrement")
-        //         .on_press(Message::Decrement)
-        // ]
-        // .padding(20)
-        // .align_x(Center)]
-        // .align_y(Center)
-
         column![row![
             button("Decrement").on_press(Message::Decrement),
             text(self.value).size(50),
@@ -50,6 +52,10 @@ impl Counter {
         .align_y(Center)]
         .align_x(Center)
         .width(iced::Length::Fill)
-        // .height(iced::Length::Fill)
+        .height(iced::Length::Fill)
+    }
+
+    fn theme(&self) -> iced::Theme {
+        iced::Theme::Nord
     }
 }

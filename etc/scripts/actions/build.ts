@@ -13,4 +13,8 @@ $.env.GATSBY_BUILD_NUMBER = getBuildNumber();
 $.env.GATSBY_REV = await getRev();
 $.env.GATSBY_MODE = $.env.MODE;
 
-await $`yarn build`;
+await $`moon run app:build`;
+
+await $`moon run counter:build`;
+
+await $`cp -r ${workDirs.apps.counter.dist.apps.path} ${workDirs.apps.app.public.path}`;

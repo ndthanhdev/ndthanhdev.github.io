@@ -25,6 +25,8 @@ const Constants = {
 	ignoreFiles: [
 		"**/?(.)cache/",
 		"**/public/",
+		"**/dist/",
+		"**/target/",
 		".yarn/",
 		"node_modules/",
 		"apps/recorder/assets/sw.js",
