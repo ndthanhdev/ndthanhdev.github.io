@@ -10,7 +10,7 @@
 	],
 	"workspaces": [
 		"etc/*",
-		"packages/*",
+		"libs/*",
 		"apps/*"
 	],
 	"scripts": {

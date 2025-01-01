@@ -2,6 +2,8 @@
 language: typescript
 platform: node
 type: application
+tags:
+  - typescript
 project:
   name: "@n8v/app"
   description: app
