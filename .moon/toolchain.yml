@@ -19,3 +19,14 @@ node:
   dedupeOnLockfileChange: true
   inferTasksFromScripts: false
   syncProjectWorkspaceDependencies: true
+
+rust:
+  version: 1.83.0
+  syncToolchainConfig: true
+  bins:
+    - trunk@0.21.5
+  targets:
+    - wasm32-wasip2
+  components:
+    - rustfmt
+    - clippy

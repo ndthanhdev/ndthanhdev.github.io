@@ -1,0 +1,16 @@
+$schema: "https://moonrepo.dev/schemas/tasks.json"
+
+tasks:
+  serve:
+    command: trunk serve
+    local: true
+  mkDist:
+    command: mkdir -p dist/apps
+  build:
+    command: trunk build
+    inputs:
+      - src/**/*
+      - "*.html"
+      - "*.toml"
+    deps:
+      - mkDist
