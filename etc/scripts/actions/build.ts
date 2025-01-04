@@ -4,6 +4,7 @@ import { cleanBuild } from "@n8v/scripts/utils/clean-build";
 import { getBuildNumber } from "@n8v/scripts/utils/get-build-number";
 import { getRev } from "@n8v/scripts/utils/get-rev";
 import { workDirs } from "@n8v/scripts/utils/work-dir";
+import fs from "fs-extra";
 
 await cleanBuild();
 
@@ -17,4 +18,4 @@ await $`moon run app:build`;
 
 await $`moon run counter:build`;
 
-await $`cp -r ${workDirs.apps.counter.dist.apps.path} ${workDirs.apps.app.public.path}`;
+await fs.copy(workDirs.apps.counter.dist.path, workDirs.apps.app.public.path);

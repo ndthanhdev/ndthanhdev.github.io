@@ -4272,7 +4272,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/fs-extra@npm:>=11":
+"@types/fs-extra@npm:>=11, @types/fs-extra@npm:^11":
   version: 11.0.4
   resolution: "@types/fs-extra@npm:11.0.4"
   dependencies:
@@ -14348,6 +14348,7 @@ __metadata:
   resolution: "ndthanhdev@workspace:."
   dependencies:
     "@eslint/js": "npm:^8.57.1"
+    "@types/fs-extra": "npm:^11"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
     eslint: "npm:^8.57.1"
@@ -14359,6 +14360,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.2"
     eslint-plugin-unicorn: "npm:^56.0.1"
     eslint-plugin-yml: "npm:^1.16.0"
+    fs-extra: "npm:^11.2.0"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^15.2.11"
     prettier: "npm:^3.4.2"
