@@ -3,3 +3,5 @@ $schema: "https://moonrepo.dev/schemas/tasks.json"
 tasks:
   typecheck:
     command: tsc --noEmit
+    inputs:
+      - src/**/*

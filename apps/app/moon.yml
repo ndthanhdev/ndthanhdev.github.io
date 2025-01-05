@@ -13,8 +13,8 @@ tasks:
     inputs:
       - src/**/*
       - content/**/*
-      - gatsby-config.js
-      - gatsby-node.js
+      - gatsby-config.ts
+      - gatsby-node.ts
     outputs:
       - public
   typecheck:
@@ -22,8 +22,8 @@ tasks:
     inputs:
       - src/**/*
       - content/**/*
-      - gatsby-config.js
-      - gatsby-node.js
+      - gatsby-config.ts
+      - gatsby-node.ts
   clean:
     command: gatsby clean
   build:
@@ -34,7 +34,7 @@ tasks:
     inputs:
       - src/**/*
       - content/**/*
-      - gatsby-config.js
-      - gatsby-node.js
+      - gatsby-config.ts
+      - gatsby-node.ts
     outputs:
       - public
