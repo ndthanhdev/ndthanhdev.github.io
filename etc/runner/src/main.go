@@ -54,7 +54,9 @@ func (m *Runner) BuildBaseEnv(ctx context.Context) *dagger.Container {
 		WithWorkdir("/mnt").
 		WithFile("/mnt/.prototools", m.Dir.File(".prototools")).
 		// proto use
-		WithExec([]string{"bash", "-l", "-c", "proto use"})
+		WithExec([]string{"bash", "-l", "-c", "proto use"}).
+		// rm .prototools
+		WithoutFile("/mnt/.prototools")
 }
 
 func (m *Runner) BuildEnv(ctx context.Context) *Con {
