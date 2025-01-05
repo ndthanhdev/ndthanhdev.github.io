@@ -23,8 +23,8 @@ node:
 rust:
   version: 1.83.0
   syncToolchainConfig: true
-  # bins:
-  #   - trunk@0.21.5
+  bins:
+    - trunk@0.21.5
   targets:
     - wasm32-wasip2
   components:

@@ -7,7 +7,13 @@ tasks:
   mkDist:
     command: mkdir -p dist/apps
   build:
-    command: trunk build
+    command: trunk
+    args:
+      - --no-color
+      - build
+    env:
+      # trunk doesn't support NO_COLOR=1
+      NO_COLOR: "true"
     inputs:
       - src/**/*
       - "*.html"
