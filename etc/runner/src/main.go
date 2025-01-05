@@ -27,7 +27,7 @@ type Runner struct {
 
 func New(
 	// +required
-	// +ignore=["node_modules/", ".moon/cache/", "app/public/", "dagger/"]
+	// +ignore=["node_modules/", ".moon/cache/", "app/public/", "etc/runner/"]
 	dir *dagger.Directory,
 	// +optional
 	// +default="dev"
@@ -42,26 +42,28 @@ func New(
 	}
 }
 
-func (m *Runner) BuildEnv(ctx context.Context) *Con {
-	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
-		Exclude: []string{"node_modules", ".cache", ".moon/cache"},
-	})
-
-	con := dag.
+func (m *Runner) BuildBaseEnv(ctx context.Context) *dagger.Container {
+	return dag.
 		Container().
-		// From("alpine:3.14").
-		// // apk add --no-cache curl git unzip gzip xz
-		// WithExec([]string{"apk", "add", "--no-cache", "curl", "git", "unzip", "bash", "gzip", "xz"}).
 		From("debian:bookworm").
 		// apt-get update && apt-get install -y curl git unzip gzip xz-utils
 		WithExec([]string{"apt-get", "update"}).
 		WithExec([]string{"apt-get", "install", "-y", "build-essential", "curl", "git", "unzip", "bash", "gzip", "xz-utils"}).
 		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
 		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.43.3 --yes"}).
-		WithMountedDirectory("/mnt", source).
 		WithWorkdir("/mnt").
+		WithFile("/mnt/.prototools", m.Dir.File(".prototools")).
 		// proto use
-		WithExec([]string{"bash", "-l", "-c", "proto use"}).
+		WithExec([]string{"bash", "-l", "-c", "proto use"})
+}
+
+func (m *Runner) BuildEnv(ctx context.Context) *Con {
+	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
+		Exclude: []string{"node_modules", ".cache", ".moon/cache"},
+	})
+
+	con := m.BuildBaseEnv(ctx).
+		WithMountedDirectory("/mnt", source).
 		// // moon setup
 		WithExec([]string{"bash", "-l", "-c", "moon setup"}).
 		// yarn install --immutable
