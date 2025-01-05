@@ -50,7 +50,7 @@ func (m *Runner) BuildBaseEnv(ctx context.Context) *dagger.Container {
 		WithExec([]string{"apt-get", "update"}).
 		WithExec([]string{"apt-get", "install", "-y", "build-essential", "curl", "git", "unzip", "bash", "gzip", "xz-utils"}).
 		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
-		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.43.3 --yes"}).
+		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.44.1 --yes"}).
 		WithWorkdir("/mnt").
 		WithFile("/mnt/.prototools", m.Dir.File(".prototools")).
 		// proto use
@@ -68,34 +68,34 @@ func (m *Runner) BuildEnv(ctx context.Context) *Con {
 	con := m.BuildBaseEnv(ctx).
 		WithMountedDirectory("/mnt", source).
 		// // moon setup
-		WithExec([]string{"bash", "-l", "-c", "moon setup"})
+		WithExec([]string{"bash", "-l", "-c", "moon setup"}).
 		// yarn install --immutable
-		// WithExec([]string{"bash", "-l", "-c", "yarn install --immutable"})
+		WithExec([]string{"bash", "-l", "-c", "yarn install --immutable"})
 
 	return (&Con{con}).SetEnvs(ctx, m)
 }
 
-func (m *Runner) MoonRun(ctx context.Context, command string) *dagger.Container {
+func (m *Runner) WithAction(ctx context.Context, command string) *dagger.Container {
 	return m.
 		BuildEnv(ctx).
-		MoonRun(command).
+		WithAction(command).
 		Container
 }
 
 func (m *Runner) Test(ctx context.Context) (string, error) {
 	return m.
-		MoonRun(ctx, "scripts:test").
+		WithAction(ctx, "test").
 		Stdout(ctx)
 }
 
 func (m *Runner) Build(ctx context.Context) *dagger.Directory {
 	return m.
-		MoonRun(ctx, "scripts:build").
+		WithAction(ctx, "build").
 		Directory("/mnt/apps/app/public")
 }
 
 func (m *Runner) Publish(ctx context.Context) (string, error) {
 	return m.
-		MoonRun(ctx, "scripts:publish").
+		WithAction(ctx, "publish").
 		Stdout(ctx)
 }
