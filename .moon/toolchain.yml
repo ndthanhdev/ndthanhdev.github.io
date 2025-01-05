@@ -11,17 +11,14 @@ typescript:
 
 # Configures Node.js within the toolchain.
 node:
-  version: 22.12.0
   packageManager: yarn
-  yarn:
-    version: 4.5.3
+  yarn: {}
   addEnginesConstraint: true
   dedupeOnLockfileChange: true
   inferTasksFromScripts: false
   syncProjectWorkspaceDependencies: true
 
 rust:
-  version: 1.83.0
   syncToolchainConfig: true
   # binstallVersion: latest
   bins:
