@@ -57,6 +57,7 @@ func (m *Runner) BuildBaseEnv(ctx context.Context) *dagger.Container {
 		WithExec([]string{"bash", "-l", "-c", "proto use"}).
 		// rm .prototools
 		WithoutFile("/mnt/.prototools")
+	// use docker scaffold to optimize build time
 }
 
 func (m *Runner) BuildEnv(ctx context.Context) *Con {
@@ -67,9 +68,9 @@ func (m *Runner) BuildEnv(ctx context.Context) *Con {
 	con := m.BuildBaseEnv(ctx).
 		WithMountedDirectory("/mnt", source).
 		// // moon setup
-		WithExec([]string{"bash", "-l", "-c", "moon setup"}).
+		WithExec([]string{"bash", "-l", "-c", "moon setup"})
 		// yarn install --immutable
-		WithExec([]string{"bash", "-l", "-c", "yarn install --immutable"})
+		// WithExec([]string{"bash", "-l", "-c", "yarn install --immutable"})
 
 	return (&Con{con}).SetEnvs(ctx, m)
 }
