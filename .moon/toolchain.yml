@@ -23,6 +23,7 @@ node:
 rust:
   version: 1.83.0
   syncToolchainConfig: true
+  # binstallVersion: latest
   bins:
     - trunk@0.21.5
   targets:
