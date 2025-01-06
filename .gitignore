@@ -15,3 +15,7 @@ node_modules/
 .moon/docker
 
 public/
+
+target/
+
+dist/

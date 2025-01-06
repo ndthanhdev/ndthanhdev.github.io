@@ -27,7 +27,7 @@ type Runner struct {
 
 func New(
 	// +required
-	// +ignore=["node_modules/", ".moon/cache/", "app/public/", "dagger/"]
+	// +ignore=["node_modules/", ".moon/cache/", "app/public/", "etc/runner/"]
 	dir *dagger.Directory,
 	// +optional
 	// +default="dev"
@@ -42,26 +42,31 @@ func New(
 	}
 }
 
+func (m *Runner) BuildBaseEnv(ctx context.Context) *dagger.Container {
+	return dag.
+		Container().
+		From("debian:bookworm").
+		// apt-get update && apt-get install -y curl git unzip gzip xz-utils
+		WithExec([]string{"apt-get", "update"}).
+		WithExec([]string{"apt-get", "install", "-y", "build-essential", "curl", "git", "unzip", "bash", "gzip", "xz-utils"}).
+		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
+		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.44.1 --yes"}).
+		WithWorkdir("/mnt").
+		WithFile("/mnt/.prototools", m.Dir.File(".prototools")).
+		// proto use
+		WithExec([]string{"bash", "-l", "-c", "proto use"}).
+		// rm .prototools
+		WithoutFile("/mnt/.prototools")
+	// use docker scaffold to optimize build time
+}
+
 func (m *Runner) BuildEnv(ctx context.Context) *Con {
 	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
 		Exclude: []string{"node_modules", ".cache", ".moon/cache"},
 	})
 
-	con := dag.
-		Container().
-		// From("alpine:3.14").
-		// // apk add --no-cache curl git unzip gzip xz
-		// WithExec([]string{"apk", "add", "--no-cache", "curl", "git", "unzip", "bash", "gzip", "xz"}).
-		From("debian:bookworm").
-		// apt-get update && apt-get install -y curl git unzip gzip xz-utils
-		WithExec([]string{"apt-get", "update"}).
-		WithExec([]string{"apt-get", "install", "-y", "curl", "git", "unzip", "bash", "gzip", "xz-utils"}).
-		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
-		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.43.3 --yes"}).
+	con := m.BuildBaseEnv(ctx).
 		WithMountedDirectory("/mnt", source).
-		WithWorkdir("/mnt").
-		// proto use
-		WithExec([]string{"bash", "-l", "-c", "proto use"}).
 		// // moon setup
 		WithExec([]string{"bash", "-l", "-c", "moon setup"}).
 		// yarn install --immutable
@@ -70,27 +75,27 @@ func (m *Runner) BuildEnv(ctx context.Context) *Con {
 	return (&Con{con}).SetEnvs(ctx, m)
 }
 
-func (m *Runner) MoonRun(ctx context.Context, command string) *dagger.Container {
+func (m *Runner) WithAction(ctx context.Context, command string) *dagger.Container {
 	return m.
 		BuildEnv(ctx).
-		MoonRun(command).
+		WithAction(command).
 		Container
 }
 
 func (m *Runner) Test(ctx context.Context) (string, error) {
 	return m.
-		MoonRun(ctx, "scripts:test").
+		WithAction(ctx, "test").
 		Stdout(ctx)
 }
 
 func (m *Runner) Build(ctx context.Context) *dagger.Directory {
 	return m.
-		MoonRun(ctx, "scripts:build").
+		WithAction(ctx, "build").
 		Directory("/mnt/apps/app/public")
 }
 
 func (m *Runner) Publish(ctx context.Context) (string, error) {
 	return m.
-		MoonRun(ctx, "scripts:publish").
+		WithAction(ctx, "publish").
 		Stdout(ctx)
 }

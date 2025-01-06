@@ -4,6 +4,7 @@ import { cleanBuild } from "@n8v/scripts/utils/clean-build";
 import { getBuildNumber } from "@n8v/scripts/utils/get-build-number";
 import { getRev } from "@n8v/scripts/utils/get-rev";
 import { workDirs } from "@n8v/scripts/utils/work-dir";
+import fs from "fs-extra";
 
 await cleanBuild();
 
@@ -13,4 +14,8 @@ $.env.GATSBY_BUILD_NUMBER = getBuildNumber();
 $.env.GATSBY_REV = await getRev();
 $.env.GATSBY_MODE = $.env.MODE;
 
-await $`yarn build`;
+await $`moon run app:build`;
+
+await $`moon run counter:build`;
+
+await fs.copy(workDirs.apps.counter.dist.path, workDirs.apps.app.public.path);

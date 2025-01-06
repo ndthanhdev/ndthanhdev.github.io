@@ -11,11 +11,19 @@ typescript:
 
 # Configures Node.js within the toolchain.
 node:
-  version: 22.12.0
   packageManager: yarn
-  yarn:
-    version: 4.5.3
+  yarn: {}
   addEnginesConstraint: true
   dedupeOnLockfileChange: true
   inferTasksFromScripts: false
   syncProjectWorkspaceDependencies: true
+
+rust:
+  syncToolchainConfig: true
+  bins:
+    - trunk@0.21.5
+  targets:
+    - wasm32-unknown-unknown
+  components:
+    - rustfmt
+    - clippy

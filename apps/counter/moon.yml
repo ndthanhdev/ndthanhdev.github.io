@@ -1,0 +1,8 @@
+# yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
+platform: rust
+type: application
+project:
+  name: "@n8v/counter"
+  description: app
+tags:
+  - trunk
