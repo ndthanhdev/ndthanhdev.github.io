@@ -2,19 +2,19 @@ import { Container } from "@mui/material";
 import {
 	AppDrawer,
 	type AppDrawerProps,
-} from "@n8v/app/components/organisms/app-drawer";
+} from "@n8v/app/components/fragments/app-drawer";
 import {
 	AppFooter,
 	type AppFooterProps,
-} from "@n8v/app/components/organisms/app-footer";
+} from "@n8v/app/components/fragments/app-footer";
 import {
 	AppHeader,
 	type AppHeaderProps,
-} from "@n8v/app/components/organisms/app-header";
+} from "@n8v/app/components/fragments/app-header";
 import {
 	PostHeader,
 	type PostHeaderProps,
-} from "@n8v/app/components/organisms/post-header";
+} from "@n8v/app/components/fragments/post-header";
 import React from "react";
 
 import { styles } from "./styles";

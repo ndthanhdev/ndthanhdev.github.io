@@ -1,5 +1,5 @@
-import { HomeFrame } from "@n8v/app/components/frames/home";
-import { type PostItemProps } from "@n8v/app/components/organisms/post-item";
+import { type PostItemProps } from "@n8v/app/components/fragments/post-item";
+import { HomeFrame } from "@n8v/app/components/screens/home";
 import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 import { graphql, type PageProps } from "gatsby";
 

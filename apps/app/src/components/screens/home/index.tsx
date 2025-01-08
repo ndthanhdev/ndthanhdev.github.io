@@ -2,11 +2,11 @@ import Box from "@mui/material/Box";
 import {
 	PostItem,
 	type PostItemProps,
-} from "@n8v/app/components/organisms/post-item";
+} from "@n8v/app/components/fragments/post-item";
 import {
 	MainTemplate,
 	type MainTemplateProps,
-} from "@n8v/app/components/templates/main";
+} from "@n8v/app/components/layouts/main";
 
 export interface HomeFrameProps {
 	mainTemplateProps: MainTemplateProps;

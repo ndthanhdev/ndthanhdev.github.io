@@ -1,4 +1,4 @@
-import { NotFoundFrame } from "@n8v/app/components/frames/not-found";
+import { NotFoundFrame } from "@n8v/app/components/screens/not-found";
 import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 
 const NotFoundPage = () => {

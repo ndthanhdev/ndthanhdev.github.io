@@ -1,4 +1,4 @@
-import { ProjectFrame } from "@n8v/app/components/frames/projects";
+import { ProjectFrame } from "@n8v/app/components/screens/projects";
 import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 
 function Projects() {

@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import {
 	MainTemplate,
 	type MainTemplateProps,
-} from "@n8v/app/components/templates/main";
+} from "@n8v/app/components/layouts/main";
 
 export interface NotFoundFrameProps {
 	mainTemplateProps: MainTemplateProps;
