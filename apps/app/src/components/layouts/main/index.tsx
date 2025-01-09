@@ -1,4 +1,4 @@
-import Container from "@mui/material/Container";
+import * as mui from "@mui/material";
 import {
 	AppDrawer,
 	type AppDrawerProps,
@@ -11,28 +11,30 @@ import {
 	AppHeader,
 	type AppHeaderProps,
 } from "@n8v/app/components/fragments/app-header";
-import * as React from "react";
+import React from "react";
 
 import { styles } from "./styles";
 
-export type MainTemplateProps = React.PropsWithChildren<{
+export interface MainTemplateProps
+	extends Omit<mui.ContainerProps<"main">, "sx"> {
 	appDrawerProps: AppDrawerProps;
 	appFooterProps: AppFooterProps;
 	appHeaderProps: AppHeaderProps;
-}>;
+}
 
 export const MainTemplate = ({
 	appDrawerProps,
 	appFooterProps,
 	appHeaderProps,
 	children,
+	...otherProps
 }: MainTemplateProps) => (
-	<>
+	<React.Fragment>
 		<AppHeader {...appHeaderProps} />
 		<AppDrawer {...appDrawerProps} />
-		<Container component="main" css={styles.main}>
+		<mui.Container component="main" css={styles.main} {...otherProps}>
 			{children}
-		</Container>
+		</mui.Container>
 		<AppFooter {...appFooterProps} />
-	</>
+	</React.Fragment>
 );

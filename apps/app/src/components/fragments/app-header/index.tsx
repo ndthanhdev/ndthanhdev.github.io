@@ -52,15 +52,15 @@ export const AppHeader = ({
 						>
 							about
 						</Button>
-						{/* <Button
+						<Button
+							arial-label="Apps"
 							component={GatsbyLink}
-							variant="text"
 							size="large"
-							to="/projects"
-							arial-label="Projects"
+							to="/apps"
+							variant="text"
 						>
-							Projects
-						</Button> */}
+							apps
+						</Button>
 					</Stack>
 					<Stack alignItems="center" css={styles.right.root} direction="row">
 						<IconButton

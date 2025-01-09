@@ -5,7 +5,10 @@ import { envs } from "@n8v/app/utils/envs";
 import { DateTime } from "luxon";
 import * as React from "react";
 
-export const useMainTemplateProps = (): MainTemplateProps => {
+export const useMainTemplateProps = (): Pick<
+	MainTemplateProps,
+	"appDrawerProps" | "appFooterProps" | "appHeaderProps"
+> => {
 	const drawer = useAppDrawerStore(),
 		theme = useThemeModeStore(),
 		year = React.useMemo(() => DateTime.now().year.toString(), []);
