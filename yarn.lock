@@ -5466,57 +5466,6 @@ __metadata:
 "app@workspace:apps/app":
   version: 0.0.0-use.local
   resolution: "app@workspace:apps/app"
-  dependencies:
-    "@emotion/css": "npm:^11.13.5"
-    "@emotion/react": "npm:^11.14.0"
-    "@emotion/styled": "npm:^11.14.0"
-    "@fontsource/roboto": "npm:^5.1.0"
-    "@mdx-js/mdx": "npm:^3.1.0"
-    "@mdx-js/react": "npm:^3.1.0"
-    "@mui/icons-material": "npm:^5.16.12"
-    "@mui/material": "npm:^5.16.12"
-    "@sindresorhus/slugify": "npm:^2.2.1"
-    "@theme-ui/css": "npm:^0.16.2"
-    "@theme-ui/preset-sketchy": "npm:^0.16.2"
-    "@theme-ui/presets": "npm:^0.16.2"
-    "@types/luxon": "npm:^3.4.2"
-    "@types/node": "npm:^22.10.2"
-    "@types/prismjs": "npm:^1.26.5"
-    "@types/ramda": "npm:^0.29.12"
-    "@types/react": "npm:^18.3.18"
-    "@types/react-dom": "npm:^18.3.5"
-    "@types/react-helmet": "npm:^6.1.11"
-    gatsby: "npm:^5.14.1"
-    gatsby-plugin-emotion: "npm:^8.14.0"
-    gatsby-plugin-google-tagmanager: "npm:^5.14.0"
-    gatsby-plugin-image: "npm:^3.14.0"
-    gatsby-plugin-layout: "npm:^4.14.0"
-    gatsby-plugin-manifest: "npm:^5.14.0"
-    gatsby-plugin-mdx: "npm:^5.14.0"
-    gatsby-plugin-page-creator: "npm:^5.14.0"
-    gatsby-plugin-sass: "npm:^6.14.0"
-    gatsby-plugin-sharp: "npm:^5.14.0"
-    gatsby-plugin-sitemap: "npm:^6.14.0"
-    gatsby-remark-images: "npm:^7.14.0"
-    gatsby-remark-prismjs: "npm:^7.14.0"
-    gatsby-source-filesystem: "npm:^5.14.0"
-    gatsby-transformer-sharp: "npm:^5.14.0"
-    gh-pages: "npm:^6.2.0"
-    localforage: "npm:^1.10.0"
-    luxon: "npm:^3.5.0"
-    modern-normalize: "npm:^2.0.0"
-    prismjs: "npm:^1.29.0"
-    ramda: "npm:^0.29.1"
-    react: "npm:^18.3.1"
-    react-dom: "npm:^18.3.1"
-    react-helmet: "npm:^6.1.0"
-    rooks: "npm:^7.14.1"
-    sass: "npm:^1.83.0"
-    theme-ui-sketchy-preset: "npm:^0.1.3"
-    type-fest: "npm:^4.30.2"
-    typescript: "npm:^5.7.2"
-    zustand: "npm:^4.5.5"
-    zx: "npm:^8.3.0"
   languageName: unknown
   linkType: soft
 
@@ -14525,8 +14474,27 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ndthanhdev@workspace:."
   dependencies:
+    "@emotion/css": "npm:^11.13.5"
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.0"
     "@eslint/js": "npm:^8.57.1"
+    "@fontsource/roboto": "npm:^5.1.0"
+    "@mdx-js/mdx": "npm:^3.1.0"
+    "@mdx-js/react": "npm:^3.1.0"
+    "@mui/icons-material": "npm:^5.16.12"
+    "@mui/material": "npm:^5.16.12"
+    "@sindresorhus/slugify": "npm:^2.2.1"
+    "@theme-ui/css": "npm:^0.16.2"
+    "@theme-ui/preset-sketchy": "npm:^0.16.2"
+    "@theme-ui/presets": "npm:^0.16.2"
     "@types/fs-extra": "npm:^11"
+    "@types/luxon": "npm:^3.4.2"
+    "@types/node": "npm:^22.10.2"
+    "@types/prismjs": "npm:^1.26.5"
+    "@types/ramda": "npm:^0.29.12"
+    "@types/react": "npm:^18.3.18"
+    "@types/react-dom": "npm:^18.3.5"
+    "@types/react-helmet": "npm:^6.1.11"
     "@typescript-eslint/eslint-plugin": "npm:^7.18.0"
     "@typescript-eslint/parser": "npm:^7.18.0"
     eslint: "npm:^8.57.1"
@@ -14539,14 +14507,45 @@ __metadata:
     eslint-plugin-unicorn: "npm:^56.0.1"
     eslint-plugin-yml: "npm:^1.16.0"
     fs-extra: "npm:^11.2.0"
+    gatsby: "npm:^5.14.1"
+    gatsby-plugin-emotion: "npm:^8.14.0"
+    gatsby-plugin-google-tagmanager: "npm:^5.14.0"
+    gatsby-plugin-image: "npm:^3.14.0"
+    gatsby-plugin-layout: "npm:^4.14.0"
+    gatsby-plugin-manifest: "npm:^5.14.0"
+    gatsby-plugin-mdx: "npm:^5.14.0"
+    gatsby-plugin-page-creator: "npm:^5.14.0"
+    gatsby-plugin-sass: "npm:^6.14.0"
+    gatsby-plugin-sharp: "npm:^5.14.0"
+    gatsby-plugin-sitemap: "npm:^6.14.0"
+    gatsby-remark-images: "npm:^7.14.0"
+    gatsby-remark-prismjs: "npm:^7.14.0"
+    gatsby-source-filesystem: "npm:^5.14.0"
+    gatsby-transformer-sharp: "npm:^5.14.0"
+    gh-pages: "npm:^6.2.0"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^15.2.11"
+    localforage: "npm:^1.10.0"
+    luxon: "npm:^3.5.0"
+    modern-normalize: "npm:^2.0.0"
     polished: "npm:^4.3.1"
     prettier: "npm:^3.4.2"
+    prismjs: "npm:^1.29.0"
+    ramda: "npm:^0.29.1"
+    react: "npm:^18.3.1"
+    react-dom: "npm:^18.3.1"
+    react-helmet: "npm:^6.1.0"
+    react-toastify: "npm:^11.0.2"
+    rooks: "npm:^7.14.1"
+    sass: "npm:^1.83.0"
     syncpack: "npm:^13.0.0"
+    theme-ui-sketchy-preset: "npm:^0.1.3"
     tsconfig-moon: "npm:^1.3.0"
+    type-fest: "npm:^4.30.2"
     typescript: "npm:^5.7.2"
     typescript-eslint: "npm:^7.18.0"
+    zustand: "npm:^4.5.5"
+    zx: "npm:^8.3.0"
   languageName: unknown
   linkType: soft
 
@@ -16337,6 +16336,18 @@ __metadata:
   peerDependencies:
     react: ^16.3.0 || ^17.0.0 || ^18.0.0
   checksum: 10/8c31aaec5b383d942ff1775b12c45022239d1250d1a00a238bac3c07e0fe266c71991e2814ae16a5d9b855bcd96ba95817d48ab3f34738f0bb32036ebb1abb1a
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^11.0.2":
+  version: 11.0.2
+  resolution: "react-toastify@npm:11.0.2"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  peerDependencies:
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  checksum: 10/41ad8aad518dca587d398fb39002db0bd034124c3fc12a6fb5ea959c84da8b655ed2afabbd34e5bbe3e96a4f24b46884ea8feeff0c8f828fbc9057c72992c3c5
   languageName: node
   linkType: hard
 
