@@ -2,6 +2,8 @@ import "zx/globals";
 // eslint-disable-next-line unicorn/import-style
 import * as path from "node:path";
 
+$.verbose = true;
+
 const root = path.resolve(import.meta.dirname, "../../../");
 const apps = path.resolve(root, "apps");
 const etc = path.resolve(root, "etc");

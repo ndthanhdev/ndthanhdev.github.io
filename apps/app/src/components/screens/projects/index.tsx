@@ -1,17 +1,39 @@
-import { Wip } from "@n8v/app/components/fragments/wip";
+import * as mui from "@mui/material";
+import { ProjectCard } from "@n8v/app/components/fragments/project-card";
 import {
 	MainTemplate,
 	type MainTemplateProps,
 } from "@n8v/app/components/layouts/main";
 
-export interface HomeFrameProps {
-	mainTemplateProps: MainTemplateProps;
+import { styles } from "./styles";
+
+export interface Project {
+	description?: string;
+	title: string;
+	url: string;
 }
 
-export const ProjectFrame = ({ mainTemplateProps }: HomeFrameProps) => {
+export interface ProjectsScreenProps {
+	mainTemplateProps: MainTemplateProps;
+	projects: Project[];
+}
+
+export const ProjectsScreen = ({
+	mainTemplateProps,
+	projects,
+}: ProjectsScreenProps) => {
 	return (
-		<MainTemplate {...mainTemplateProps}>
-			<Wip />
+		<MainTemplate css={styles.root} maxWidth="xl" {...mainTemplateProps}>
+			<mui.Stack direction="row" spacing={2}>
+				{projects.map((project) => (
+					<ProjectCard
+						description={project.description}
+						key={project.url}
+						title={project.title}
+						url={project.url}
+					/>
+				))}
+			</mui.Stack>
 		</MainTemplate>
 	);
 };

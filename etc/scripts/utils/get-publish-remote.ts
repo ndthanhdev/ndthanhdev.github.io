@@ -12,6 +12,8 @@ const Constants = {
 	token: $.env.GH_TOKEN,
 };
 
+$.verbose = true;
+
 export const getPublishRemote = () => {
 	if (!Constants.mode) {
 		throw new Error("MODE is required");

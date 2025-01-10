@@ -56,10 +56,10 @@ export const AppHeader = ({
 							arial-label="Apps"
 							component={GatsbyLink}
 							size="large"
-							to="/apps"
+							to="/projects"
 							variant="text"
 						>
-							apps
+							projects
 						</Button>
 					</Stack>
 					<Stack alignItems="center" css={styles.right.root} direction="row">
