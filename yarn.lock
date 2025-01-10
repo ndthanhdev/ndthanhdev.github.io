@@ -5466,6 +5466,9 @@ __metadata:
 "app@workspace:apps/app":
   version: 0.0.0-use.local
   resolution: "app@workspace:apps/app"
+  dependencies:
+    gatsby: "npm:^5.14.1"
+    typescript: "npm:^5.7.2"
   languageName: unknown
   linkType: soft
 
