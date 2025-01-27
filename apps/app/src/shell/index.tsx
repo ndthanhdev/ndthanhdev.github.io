@@ -4,6 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import * as React from "react";
 
+import { NotificationProvider } from "../providers/notification-provider";
 import { AppThemeProvider } from "../providers/theme-provider";
 import { DefaultHeaders } from "./default-headers";
 
@@ -16,6 +17,7 @@ const Shell = ({ children }: ShellProps) => (
 	<AppThemeProvider>
 		<DefaultHeaders />
 		{children}
+		<NotificationProvider />
 	</AppThemeProvider>
 );
 

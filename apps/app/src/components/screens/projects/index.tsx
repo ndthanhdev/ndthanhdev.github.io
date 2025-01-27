@@ -15,11 +15,13 @@ export interface Project {
 
 export interface ProjectsScreenProps {
 	mainTemplateProps: MainTemplateProps;
+	onCopy?: (url: string) => void;
 	projects: Project[];
 }
 
 export const ProjectsScreen = ({
 	mainTemplateProps,
+	onCopy,
 	projects,
 }: ProjectsScreenProps) => {
 	return (
@@ -29,6 +31,9 @@ export const ProjectsScreen = ({
 					<ProjectCard
 						description={project.description}
 						key={project.url}
+						onCopy={() => {
+							onCopy?.(project.url);
+						}}
 						title={project.title}
 						url={project.url}
 					/>
