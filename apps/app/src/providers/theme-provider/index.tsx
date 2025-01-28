@@ -10,13 +10,14 @@ import * as React from "react";
 import { useThemeModeStore } from "../../stores/use-theme-mode-store";
 import { GlobalStyles } from "./global-styles";
 
+// https://www.canva.com/colors/color-palettes/balloon-parade/
 const themeOption = {
 	palette: {
 		primary: {
-			main: "#6750A4",
+			main: "#0e63c2",
 		},
 		secondary: {
-			main: "#958da4",
+			main: "#6bcae2",
 		},
 	},
 } satisfies ThemeOptions;
