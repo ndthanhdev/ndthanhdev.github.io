@@ -1,9 +1,19 @@
-// import { useCopyToClipboard } from "usehooks-ts";
-// import { useNotifyCopied } from "@n8v/app/hooks/notifications";
+import { useNotifyCopied } from "@n8v/app/hooks/notifications";
+import { useCopyToClipboard } from "usehooks-ts";
 
-export const useCopy = () => {
-	// const [copiedText, copy] = useCopyToClipboard();
-	// const copyText = async (text: string) => {
-	// 	copy(text);
-	// };
+export const useCopyText = () => {
+	const [, copy] = useCopyToClipboard();
+	const notifyCopied = useNotifyCopied();
+
+	const copyText = (text: string) => {
+		copy(text)
+			.then(() => {
+				notifyCopied();
+			})
+			.catch(() => {
+				// Do nothing
+			});
+	};
+
+	return copyText;
 };

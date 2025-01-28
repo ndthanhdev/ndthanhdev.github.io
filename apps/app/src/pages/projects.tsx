@@ -1,16 +1,18 @@
 import { ProjectsScreen } from "@n8v/app/components/screens/projects";
-import { useNotifyCopied } from "@n8v/app/hooks/notifications";
 import { useProjects } from "@n8v/app/hooks/use-apps";
 import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 
+import { useCopyText } from "../hooks/use-copy-text";
+
 export const AppsPage = () => {
 	const mainTemplateProps = useMainTemplateProps();
-	const handleCopied = useNotifyCopied("Copied!");
+	const handleCopy = useCopyText();
+
 	return (
 		<ProjectsScreen
 			mainTemplateProps={mainTemplateProps}
-			onCopy={() => {
-				handleCopied();
+			onCopy={(url) => {
+				handleCopy(new URL(url, globalThis.origin).href);
 			}}
 			projects={useProjects()}
 		/>
