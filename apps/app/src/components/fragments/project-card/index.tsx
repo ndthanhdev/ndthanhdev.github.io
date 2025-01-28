@@ -4,6 +4,19 @@ import { Link as GatsbyLink } from "gatsby";
 
 import { styles } from "./styles";
 
+export interface MediaProps {
+	title: string;
+	url: string;
+}
+
+export const Media = ({ title, url }: MediaProps) => {
+	return (
+		<mui.Box css={styles.media}>
+			<iframe css={styles.mediaIframe} src={url} title={title} />
+		</mui.Box>
+	);
+};
+
 export interface ProjectCardProps {
 	description?: string;
 	onCopy?: () => void;
@@ -19,12 +32,7 @@ export const ProjectCard = ({
 }: ProjectCardProps) => {
 	return (
 		<mui.Card css={styles.root}>
-			<mui.CardMedia
-				component="iframe"
-				css={styles.media}
-				src={url}
-				title={title}
-			/>
+			<mui.CardMedia component={Media} title={title} url={url} />
 			<mui.Divider />
 			<mui.CardContent css={styles.content}>
 				<mui.Typography gutterBottom variant="h5">

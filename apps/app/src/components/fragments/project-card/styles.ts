@@ -18,12 +18,22 @@ export const styles = {
 
 	media: (theme: AppTheme) =>
 		css({
-			border: 0,
-			height: theme.spacing(300),
+			height: theme.spacing(27),
 			overflow: "hidden",
 			pointerEvents: "none",
-			width: theme.spacing(400),
-			zoom: 0.1,
+			position: "relative",
+			width: theme.spacing(40),
+		}),
+
+	mediaIframe: () =>
+		css({
+			border: 0,
+			height: "500%",
+			overflow: "hidden",
+			pointerEvents: "none",
+			transform: "scale(0.2)",
+			transformOrigin: "top left",
+			width: "500%",
 		}),
 
 	root: (theme: AppTheme) =>
