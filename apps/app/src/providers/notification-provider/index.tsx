@@ -1,16 +1,15 @@
-import { ToastContainer } from "react-toastify";
+import { NotificationContainer } from "@n8v/app/components/fragments/notification-container";
 
-import { styles } from "./styles";
+const Constants = {
+	limit: 3,
+	position: "bottom-center" as const,
+};
 
 export const NotificationProvider = () => {
 	return (
-		<ToastContainer
-			closeButton={false}
-			css={styles.root}
-			customProgressBar
-			icon={false}
-			limit={3}
-			position="bottom-center"
+		<NotificationContainer
+			limit={Constants.limit}
+			position={Constants.position}
 		/>
 	);
 };
