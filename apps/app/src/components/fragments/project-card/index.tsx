@@ -43,11 +43,12 @@ export const ProjectCard = ({
 				</mui.Typography>
 			</mui.CardContent>
 			<mui.CardActions css={styles.actions}>
-				<mui.IconButton onClick={onCopy} size="medium">
+				<mui.IconButton color="primary" onClick={onCopy} size="medium">
 					<muiIcon.CopyAll />
 				</mui.IconButton>
 				<mui.IconButton
 					aria-label={`Open ${title}`}
+					color="primary"
 					href={url}
 					LinkComponent={GatsbyLink}
 					size="medium"
