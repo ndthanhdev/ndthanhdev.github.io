@@ -6,9 +6,19 @@
 		<title>Counter</title>
 		<base href="/apps/counter/" />
 	<link rel="modulepreload" href="/apps/counter/n8v_counter.js" crossorigin=anonymous integrity="sha384-QvpE98KyR8ALZsOmfzLnubABfiL6tAgGw1AJZrAS2NSIq0QfOUjXuxnTKbiN05av"><link rel="preload" href="/apps/counter/n8v_counter_bg.wasm" crossorigin=anonymous integrity="sha384-Nc4WvHVsxuM9NGoBU4CQvEozzjQeJHyVPoqpt6jBBeM4NPMeLrevXYRn1mpIQWK0" as="fetch" type="application/wasm"></head>
-	<body style="height: 100%; margin: 0">
+	<body style="height: 100vh; margin: 0">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript
+			><iframe
+				src="https://www.googletagmanager.com/ns.html?id=GTM-KX72TPPN"
+				height="0"
+				width="0"
+				style="display: none; visibility: hidden"
+			></iframe
+		></noscript>
+		<!-- End Google Tag Manager (noscript) -->
 		
-<script type="module" nonce="VAvftxgCh1kNr3zXW0X5AA==">
+<script type="module" nonce="5irOG1oheOpKJylaNn9CXg==">
 import init, * as bindings from '/apps/counter/n8v_counter.js';
 const wasm = await init({ module_or_path: '/apps/counter/n8v_counter_bg.wasm' });
 
