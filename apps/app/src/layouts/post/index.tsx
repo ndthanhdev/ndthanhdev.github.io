@@ -1,5 +1,5 @@
-import { MyHelmet } from "@n8v/app/components/atoms/my-helmet";
-import { PostTemplate } from "@n8v/app/components/templates/post";
+import { MyHelmet } from "@n8v/app/components/elements/my-helmet";
+import { PostTemplate } from "@n8v/app/components/layouts/post";
 import { useMainTemplateProps } from "@n8v/app/hooks/use-main-template-props";
 import { AppMDXProvider } from "@n8v/app/providers/mdx-provider";
 import { useSiteMetadata } from "@n8v/app/shell/default-headers";

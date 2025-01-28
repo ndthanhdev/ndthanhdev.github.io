@@ -1,11 +1,14 @@
-import { type MainTemplateProps } from "@n8v/app/components/templates/main";
+import { type MainTemplateProps } from "@n8v/app/components/layouts/main";
 import { useAppDrawerStore } from "@n8v/app/stores/use-app-drawer-store";
 import { useThemeModeStore } from "@n8v/app/stores/use-theme-mode-store";
 import { envs } from "@n8v/app/utils/envs";
 import { DateTime } from "luxon";
 import * as React from "react";
 
-export const useMainTemplateProps = (): MainTemplateProps => {
+export const useMainTemplateProps = (): Pick<
+	MainTemplateProps,
+	"appDrawerProps" | "appFooterProps" | "appHeaderProps"
+> => {
 	const drawer = useAppDrawerStore(),
 		theme = useThemeModeStore(),
 		year = React.useMemo(() => DateTime.now().year.toString(), []);

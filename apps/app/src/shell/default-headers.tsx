@@ -2,7 +2,7 @@ import "modern-normalize/modern-normalize.css";
 
 import type { SetNonNullable } from "type-fest";
 
-import { MyHelmet } from "@n8v/app/components/atoms/my-helmet";
+import { MyHelmet } from "@n8v/app/components/elements/my-helmet";
 import { graphql, useStaticQuery } from "gatsby";
 import * as R from "ramda";
 

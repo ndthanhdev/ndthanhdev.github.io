@@ -2,7 +2,7 @@
 import "zx/globals";
 import { pipeOutput } from "@n8v/scripts/utils/pipe-output";
 import { workDirs } from "@n8v/scripts/utils/work-dir";
-
+$.verbose = true;
 cd(workDirs.path);
 
 await pipeOutput($`yarn eslint .`);

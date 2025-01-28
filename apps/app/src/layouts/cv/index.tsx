@@ -1,5 +1,5 @@
-import { MyHelmet } from "@n8v/app/components/atoms/my-helmet";
-import { CVTemplate } from "@n8v/app/components/templates/cv";
+import { MyHelmet } from "@n8v/app/components/elements/my-helmet";
+import { CVTemplate } from "@n8v/app/components/layouts/cv";
 import { AppMDXProvider } from "@n8v/app/providers/mdx-provider";
 import { AppThemeProvider } from "@n8v/app/providers/theme-provider";
 import { ThemeMode } from "@n8v/app/theme";

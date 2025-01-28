@@ -10,6 +10,8 @@ const Constants = {
 	},
 };
 
+$.verbose = true;
+
 cd(workDirs.apps.app.path);
 
 try {

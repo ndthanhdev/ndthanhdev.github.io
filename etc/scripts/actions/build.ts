@@ -6,6 +6,8 @@ import { getRev } from "@n8v/scripts/utils/get-rev";
 import { workDirs } from "@n8v/scripts/utils/work-dir";
 import fs from "fs-extra";
 
+$.verbose = true;
+
 await cleanBuild();
 
 cd(workDirs.apps.app.path);
