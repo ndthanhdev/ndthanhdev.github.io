@@ -1,4 +1,4 @@
-// A generated module for Runner functions
+// A generated module for WorkflowRuntime functions
 //
 // This module has been generated via dagger init and serves as a reference to
 // basic module structure as you get started with Dagger.

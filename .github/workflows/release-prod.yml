@@ -17,7 +17,7 @@ jobs:
         with:
           version: 0.18.9
           verb: functions
-          workdir: ./etc/runner
+          workdir: ./etc/workflow-runtime
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
