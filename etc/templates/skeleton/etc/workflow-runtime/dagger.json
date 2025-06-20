@@ -1,5 +1,5 @@
 {
-	"name": "runner",
+	"name": "workflow-runtime",
 	"engineVersion": "v0.18.9",
 	"sdk": {
 		"source": "go"
