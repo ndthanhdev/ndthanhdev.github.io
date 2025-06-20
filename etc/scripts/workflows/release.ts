@@ -22,6 +22,7 @@ await $`${[
 	"--action",
 	"build",
 	"with-action",
+	"--action",
 	"publish",
 	"container",
 	"directory",
