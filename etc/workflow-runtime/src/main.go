@@ -60,13 +60,13 @@ func (m *WorkflowRuntime) BuildEnv(ctx context.Context) *WorkflowRuntime {
 
 	m.Con = m.BuildBaseEnv(ctx).
 		Con.
-		WithWorkdir("/mnt").
-		WithFile("/mnt/.prototools", m.Dir.File(".prototools")).
+		WithWorkdir("/workspace").
+		WithFile("/workspace/.prototools", m.Dir.File(".prototools")).
 		// proto use
 		WithExec([]string{"proto", "use"}).
 		// rm .prototools
-		WithoutFile("/mnt/.prototools").
-		WithMountedDirectory("/mnt", source).
+		WithoutFile("/workspace/.prototools").
+		WithMountedDirectory("/workspace", source).
 		// moon setup
 		WithExec([]string{"moon", "setup"}).
 		// yarn install --immutable

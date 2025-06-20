@@ -70,8 +70,8 @@ func (m *NdthanhdevGithubIo) Init(ctx context.Context, dir *Directory) *Containe
 		Container().
 		From("node:lts").
 		WithExec([]string{"yarn", "global", "add", "tsx"}).
-		WithMountedDirectory("/mnt", source).
-		WithWorkdir("/mnt").
+		WithMountedDirectory("/workspace", source).
+		WithWorkdir("/workspace").
 		WithExec([]string{"yarn", "install", "--immutable"})
 }
 ```
