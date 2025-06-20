@@ -1,9 +1,9 @@
-dagger = "^0.15.1"
-go = "^1.23.4"
-moon = "^1.31.1"
-node = "^22.13.0"
-yarn = "^4.6.0"
-rust = "^1.81.0"
+dagger = "^0"
+go = "^1"
+moon = "^1"
+node = "^22"
+yarn = "^4"
+rust = "^1"
 
 [plugins]
 dagger = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/dagger/plugin.toml"

@@ -9,7 +9,7 @@ const apps = path.resolve(root, "apps");
 const etc = path.resolve(root, "etc");
 const app = path.resolve(apps, "app");
 const counter = path.resolve(apps, "counter");
-const runner = path.resolve(etc, "runner");
+const workflowRuntime = path.resolve(etc, "workflow-runtime");
 const scripts = path.resolve(etc, "scripts");
 
 // eslint-disable-next-line unicorn/prevent-abbreviations
@@ -38,11 +38,11 @@ export const workDirs = {
 
 	etc: {
 		path: etc,
-		runner: {
-			path: runner,
-		},
 		scripts: {
 			path: scripts,
+		},
+		workflowRuntime: {
+			path: workflowRuntime,
 		},
 	},
 	path: root,

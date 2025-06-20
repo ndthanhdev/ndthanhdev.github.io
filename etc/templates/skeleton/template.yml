@@ -1,0 +1,7 @@
+$schema: "https://moonrepo.dev/schemas/template.json"
+
+id: skeleton
+title: Monorepo Skeleton Template
+description: |
+  This is a skeleton template for Moon monorepos.
+  It can be used as a starting point for new projects.

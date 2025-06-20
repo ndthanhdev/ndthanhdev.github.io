@@ -1,8 +1,15 @@
-node_modules/
+# General
 .cache/
+.tmp/
+*.local.*
+
+# OS
 .DS_Store
 
-# Yarn
+# Node.js
+node_modules/
+
+## Yarn
 .yarn/*
 !.yarn/cache
 !.yarn/patches
@@ -10,12 +17,12 @@ node_modules/
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
 # moon
 .moon/cache
 .moon/docker
 
+# Repo specific
 public/
-
 target/
-
 dist/
