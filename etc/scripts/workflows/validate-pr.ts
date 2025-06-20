@@ -7,8 +7,19 @@ $.verbose = true;
 
 await cleanBuild();
 
-cd(workDirs.etc.runner.path);
+cd(workDirs.etc.workflowRuntime.path);
 
-await $`dagger call --dir ${workDirs.path} test`;
-
-await $`dagger call --dir ${workDirs.path} build`;
+await $`${[
+	"dagger",
+	"call",
+	"--dir",
+	workDirs.path,
+	"build-env",
+	"with-action",
+	"--action",
+	"test",
+	"with-action",
+	"--action",
+	"build",
+	"stdout",
+]}`;

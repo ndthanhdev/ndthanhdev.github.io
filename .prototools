@@ -1,7 +1,7 @@
 dagger = "^0"
 go = "^1"
 moon = "^1"
-node = "^24"
+node = "^22"
 yarn = "^4"
 rust = "^1"
 
