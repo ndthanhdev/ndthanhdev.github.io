@@ -26,6 +26,8 @@ await $`${[
 	"publish",
 	"container",
 	"directory",
+	"--path",
+	"/workspace/apps/app/public",
 	"export",
 	"--path",
 	workDirs.apps.app.public.path,
