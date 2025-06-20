@@ -7,5 +7,5 @@
   - `runner/`: Contains `functions` that run an `pipeline` under `etc/scripts/pipelines/` inside `dagger` container.
   - `scripts/`
     - `utils/`: Contains utility modules for reuse in other scripts.
-    - `actions/`: Contains the main scripts that perform small tasks should be able to run independently. Requires `tsx` to be installed
-    - `pipelines/`: Contains the main scripts that run a series of `dagger functions`. Requires `dagger` && `tsx` to be installed.
+    - `actions/`: Contains scripts that perform small tasks should be able to run independently. Requires `tsx` to be installed
+    - `workflows/`: Contains scripts that run a series of `actions` inside `workflow-runtime`

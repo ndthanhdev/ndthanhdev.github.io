@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  call-function:
-    name: Call function
+  run-workflow:
+    name: Run Workflow
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,6 +27,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Call script
-        working-directory: ./etc/scripts/pipelines
+      - name: Run workflow
+        working-directory: ./etc/scripts/workflows
         run: ./validate-pr.ts
