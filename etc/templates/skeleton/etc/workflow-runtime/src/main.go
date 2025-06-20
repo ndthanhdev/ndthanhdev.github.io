@@ -17,7 +17,7 @@ package main
 import (
 	"context"
 	"dagger/workflow_runtime/internal/dagger"
-	"dagger/workflow_runtime/utils"
+	"fmt"
 )
 
 func New(
@@ -38,8 +38,8 @@ func New(
 }
 
 // Setup Proto
-func (m *WorkflowRuntime) BuildBaseEnv(ctx context.Context) *dagger.Container {
-	return dag.
+func (m *WorkflowRuntime) BuildBaseEnv(ctx context.Context) *WorkflowRuntime {
+	m.Con = dag.
 		Container().
 		From("ubuntu:plucky").
 		// apt-get update && apt-get install -y curl git unzip gzip xz-utils
@@ -49,72 +49,54 @@ func (m *WorkflowRuntime) BuildBaseEnv(ctx context.Context) *dagger.Container {
 		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.44.1 --yes"}).
 		WithEnvVariable("PROTO_HOME", "/root/.proto", dagger.ContainerWithEnvVariableOpts{Expand: true}).
 		WithEnvVariable("PATH", "$PATH:$PROTO_HOME/shims:$PROTO_HOME/bin", dagger.ContainerWithEnvVariableOpts{Expand: true})
+
+	return m
 }
 
-func (m *WorkflowRuntime) BuildBase(ctx context.Context) *WorkflowRuntime {
+func (m *WorkflowRuntime) BuildEnv(ctx context.Context) *WorkflowRuntime {
 	source := dag.Directory().WithDirectory("/", m.Dir, dagger.DirectoryWithDirectoryOpts{
 		Exclude: []string{"node_modules", ".cache", ".moon/cache"},
 	})
 
-	con := m.BuildBaseEnv(ctx).
+	m.Con = m.BuildBaseEnv(ctx).
+		Con.
 		WithWorkdir("/mnt").
 		WithFile("/mnt/.prototools", m.Dir.File(".prototools")).
 		// proto use
-		// WithExec([]string{"bash", "-l", "-c", "proto use"}).
 		WithExec([]string{"proto", "use"}).
 		// rm .prototools
 		WithoutFile("/mnt/.prototools").
 		WithMountedDirectory("/mnt", source).
 		// moon setup
-		// WithExec([]string{"bash", "-l", "-c", "moon setup"}).
 		WithExec([]string{"moon", "setup"}).
 		// yarn install --immutable
-		// WithExec([]string{"bash", "-l", "-c", "yarn install --immutable"})
 		WithExec([]string{"yarn", "install", "--immutable"})
 
-	utils.SetEnvs(con, ctx, m)
-
-	m.con = con
+	m = m.setEnvs(ctx)
 
 	return m
 }
 
 func (m *WorkflowRuntime) WithAction(ctx context.Context, command string) *WorkflowRuntime {
-	m.
-		BuildBase(ctx)
-
-	utils.RunActionScript(m.con, command)
+	m.Con = m.Con.WithExec([]string{"bash", "-l", "-c", fmt.Sprintf("./etc/scripts/actions/%s.ts", command)})
 
 	return m
 }
 
-func (m *WorkflowRuntime) Test(ctx context.Context) (string, error) {
-	return m.
-		WithAction(ctx, "test").
-		con.
-		Stdout(ctx)
+func (m *WorkflowRuntime) Container(ctx context.Context) *dagger.Container {
+	return m.Con
 }
 
-func (m *WorkflowRuntime) Build(ctx context.Context) *dagger.Directory {
-	return m.
-		WithAction(ctx, "build").
-		con.
-		Directory("/mnt/apps/app/public")
-}
+func (m *WorkflowRuntime) setEnvs(ctx context.Context) *WorkflowRuntime {
+	m.Con = m.Con.
+		WithEnvVariable("MODE", m.Mode)
 
-func (m *WorkflowRuntime) Publish(ctx context.Context) (string, error) {
-	return m.
-		WithAction(ctx, "publish").
-		con.
-		Stdout(ctx)
-}
+	if m.GhToken != nil {
+		tokenString, _ := m.GhToken.Plaintext(ctx)
 
-// GetMode returns the Mode field of the Runner
-func (m *WorkflowRuntime) GetMode() string {
-	return m.Mode
-}
+		m.Con = m.Con.
+			WithEnvVariable("GH_TOKEN", tokenString)
+	}
 
-// GetGhToken returns the GhToken field of the Runner
-func (m *WorkflowRuntime) GetGhToken() *dagger.Secret {
-	return m.GhToken
+	return m
 }

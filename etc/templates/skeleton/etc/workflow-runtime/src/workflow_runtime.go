@@ -6,5 +6,5 @@ type WorkflowRuntime struct {
 	Dir     *dagger.Directory
 	Mode    string
 	GhToken *dagger.Secret
-	con     *dagger.Container
+	Con     *dagger.Container
 }
