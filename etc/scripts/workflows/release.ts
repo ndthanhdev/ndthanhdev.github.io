@@ -22,7 +22,7 @@ await $`${[
 	$.env.MODE ?? "dev",
 	"with-secret-variable",
 	"--name",
-	"Gh_TOKEN",
+	"GH_TOKEN",
 	"--secret",
 	"env:GH_TOKEN",
 	"with-action",
