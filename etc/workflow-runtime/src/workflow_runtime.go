@@ -15,10 +15,10 @@ type WorkflowRuntime struct {
 func (m *WorkflowRuntime) BuildBaseEnv(ctx context.Context) *WorkflowRuntime {
 	m.Con = dag.
 		Container().
-		From("ubuntu:noble").
+		From("ubuntu:plucky").
 		// apt-get update && apt-get install -y curl git unzip gzip xz-utils
 		WithExec([]string{"apt-get", "update"}).
-		WithExec([]string{"apt-get", "install", "-y", "build-essential", "curl", "git", "unzip", "bash", "gzip", "xz-utils"}).
+		WithExec([]string{"apt-get", "install", "-y", "build-essential", "curl", "git", "unzip", "bash", "gzip", "xz-utils", "pkg-config", "libssl-dev"}).
 		// curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.35.3 --yes
 		WithExec([]string{"bash", "-l", "-c", "curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s 0.44.1 --yes"}).
 		WithEnvVariable("PROTO_HOME", "/root/.proto", dagger.ContainerWithEnvVariableOpts{Expand: true}).
