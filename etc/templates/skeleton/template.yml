@@ -5,3 +5,8 @@ title: Monorepo Skeleton Template
 description: |
   This is a skeleton template for Moon monorepos.
   It can be used as a starting point for new projects.
+variables:
+  workspace:
+    type: string
+    prompt: What is the name of the workspace?
+    required: true
