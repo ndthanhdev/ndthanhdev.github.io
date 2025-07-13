@@ -3,7 +3,7 @@ import "zx/globals";
 import { cleanBuild } from "@n8v/scripts/utils/clean-build";
 import { getBuildNumber } from "@n8v/scripts/utils/get-build-number";
 import { getRev } from "@n8v/scripts/utils/get-rev";
-import { workDirs } from "@n8v/scripts/utils/work-dir";
+import { workDirs } from "@n8v/scripts/utils/work-dirs";
 import fs from "fs-extra";
 
 $.verbose = true;
