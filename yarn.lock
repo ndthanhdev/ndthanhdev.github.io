@@ -2991,7 +2991,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@n8v/scripts@workspace:etc/scripts"
   dependencies:
-    "@types/luxon": "npm:^3.4.2"
     luxon: "npm:^3.5.0"
     tsx: "npm:^4.19.2"
     typescript: "npm:^5.7.3"

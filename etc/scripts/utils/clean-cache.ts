@@ -1,5 +1,5 @@
 import "zx/globals";
-import { workDirs } from "@n8v/scripts/utils/work-dir";
+import { workDirs } from "@n8v/scripts/utils/work-dirs";
 
 $.verbose = true;
 

@@ -1,5 +1,5 @@
 {
-	"name": "@n8v/scripts",
+	"name": "@{{ workspace }}/scripts",
 	"packageManager": "yarn@4.2.2",
 	"type": "module",
 	"devDependencies": {

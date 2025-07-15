@@ -1,0 +1,8 @@
+# yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
+language: typescript
+platform: node
+type: tool
+
+project:
+  name: "@{{ workspace }}/scripts"
+  description: scripts
