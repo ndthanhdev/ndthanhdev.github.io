@@ -20,4 +20,4 @@ await $`moon run app:build`;
 
 await $`moon run counter:build`;
 
-await fs.copy(workDirs.apps.counter.dist.path, workDirs.apps.app.public.path);
+await fs.copy(workDirs.apps.counter.target.path, workDirs.apps.app.public.path);

@@ -21,7 +21,7 @@ node:
 rust:
   syncToolchainConfig: true
   bins:
-    - trunk@0.21.5
+    - trunk@0.21.14
   targets:
     - wasm32-unknown-unknown
   components:

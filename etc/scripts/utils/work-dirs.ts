@@ -25,13 +25,13 @@ export const workDirs = {
 			},
 		},
 		counter: {
-			dist: {
-				apps: {
-					path: path.resolve(counter, "dist/apps"),
-				},
-				path: path.resolve(counter, "dist"),
-			},
 			path: counter,
+			target: {
+				apps: {
+					path: path.resolve(counter, "target/apps"),
+				},
+				path: path.resolve(counter, "target"),
+			},
 		},
 		path: apps,
 	},

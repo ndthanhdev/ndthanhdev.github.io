@@ -43,7 +43,7 @@ impl Counter {
     fn view(&self) -> Column<Message> {
         column![row![
             button("Decrement").on_press(Message::Decrement),
-            text(self.value).size(50),
+            text(self.value).size(50).align_x(iced::alignment::Horizontal::Center).width(100),
             button("Increment").on_press(Message::Increment)
         ]
         .spacing(20)

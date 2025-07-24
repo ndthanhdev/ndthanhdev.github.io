@@ -1,4 +1,4 @@
 [build]
 filehash = false
 public_url = "/apps/counter/"
-dist = "dist/apps/counter/"
+dist = "target/apps/counter/"

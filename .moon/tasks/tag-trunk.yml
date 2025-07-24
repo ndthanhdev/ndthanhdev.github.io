@@ -4,8 +4,8 @@ tasks:
   serve:
     command: trunk serve
     local: true
-  mkDist:
-    command: mkdir -p dist/apps
+  mkTarget:
+    command: mkdir -p target/apps
   build:
     command: trunk
     args:
@@ -19,4 +19,4 @@ tasks:
       - "*.html"
       - "*.toml"
     deps:
-      - mkDist
+      - mkTarget

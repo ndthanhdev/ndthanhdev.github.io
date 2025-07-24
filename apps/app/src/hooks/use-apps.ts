@@ -11,6 +11,12 @@ export const useProjects = () =>
 					title: "Wasm Counter",
 					url: "/apps/counter",
 				},
+				{
+					description:
+						"An MCP Server that enables AI assistants to interact with your local browsers.",
+					title: "MCP Browser Kit",
+					url: "https://github.com/ndthanhdev/mcp-browser-kit",
+				},
 			] satisfies Project[],
 		[],
 	);
