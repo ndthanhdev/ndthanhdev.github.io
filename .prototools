@@ -3,7 +3,7 @@ go = "^1"
 moon = "^1"
 node = "^22"
 yarn = "^4"
-rust = "^1"
+rust = "^1.88"
 
 [plugins]
 dagger = "source:https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/dagger/plugin.toml"
