@@ -2,23 +2,32 @@ import * as muiIcon from "@mui/icons-material";
 import * as mui from "@mui/material";
 import { Link as GatsbyLink } from "gatsby";
 
-import { styles } from "./styles";
+import { styles, useMediaStyles } from "./styles";
 
 export interface MediaProps {
+	frameUrl?: string;
 	title: string;
-	url: string;
 }
 
-export const Media = ({ title, url }: MediaProps) => {
+export const Media = (props: MediaProps) => {
+	const { frameUrl, title } = props;
+
+	const styles = useMediaStyles(props);
+
 	return (
 		<mui.Box css={styles.media}>
-			<iframe css={styles.mediaIframe} src={url} title={title} />
+			{frameUrl ? (
+				<iframe css={styles.mediaIframe} src={frameUrl} title={title} />
+			) : (
+				<muiIcon.Language css={styles.mediaNoFrame} />
+			)}
 		</mui.Box>
 	);
 };
 
 export interface ProjectCardProps {
 	description?: string;
+	frameUrl?: string;
 	onCopy?: () => void;
 	title: string;
 	url: string;
@@ -26,13 +35,14 @@ export interface ProjectCardProps {
 
 export const ProjectCard = ({
 	description,
+	frameUrl,
 	onCopy,
 	title,
 	url,
 }: ProjectCardProps) => {
 	return (
 		<mui.Card css={styles.root}>
-			<mui.CardMedia component={Media} title={title} url={url} />
+			<mui.CardMedia component={Media} frameUrl={frameUrl} title={title} />
 			<mui.Divider />
 			<mui.CardContent css={styles.content}>
 				<mui.Typography gutterBottom variant="h5">

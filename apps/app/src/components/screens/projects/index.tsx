@@ -9,6 +9,7 @@ import { styles } from "./styles";
 
 export interface Project {
 	description?: string;
+	frameUrl?: string;
 	title: string;
 	url: string;
 }
@@ -30,6 +31,7 @@ export const ProjectsScreen = ({
 				{projects.map((project) => (
 					<ProjectCard
 						description={project.description}
+						frameUrl={project.frameUrl}
 						key={project.url}
 						onCopy={() => {
 							onCopy?.(project.url);

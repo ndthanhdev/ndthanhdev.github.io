@@ -8,6 +8,7 @@ export const useProjects = () =>
 				{
 					description:
 						"A simple counter app compiled to WebAssembly, written in Rust.",
+					frameUrl: "/apps/counter",
 					title: "Wasm Counter",
 					url: "/apps/counter",
 				},
