@@ -2,6 +2,8 @@ import { css } from "@emotion/react";
 import { type AppTheme } from "@n8v/app/theme";
 import { ellipsis } from "polished";
 
+import type { MediaProps } from ".";
+
 export const styles = {
 	actions: () => css({ justifyContent: "end", marginTop: "auto" }),
 
@@ -16,14 +18,32 @@ export const styles = {
 		...ellipsis("100%", 3),
 	}),
 
-	media: (theme: AppTheme) =>
+	root: (theme: AppTheme) =>
 		css({
-			height: theme.spacing(27),
-			overflow: "hidden",
-			pointerEvents: "none",
-			position: "relative",
+			display: "flex",
+			flexDirection: "column",
+			height: theme.spacing(50),
 			width: theme.spacing(40),
 		}),
+};
+
+export const useMediaStyles = (props: MediaProps) => ({
+	media: (theme: AppTheme) =>
+		css([
+			{
+				color: theme.palette.text.secondary,
+				height: theme.spacing(27),
+				overflow: "hidden",
+				pointerEvents: "none",
+				position: "relative",
+				width: theme.spacing(40),
+			},
+			!props.frameUrl && {
+				alignItems: "center",
+				display: "flex",
+				justifyContent: "center",
+			},
+		]),
 
 	mediaIframe: () =>
 		css({
@@ -36,11 +56,9 @@ export const styles = {
 			width: "500%",
 		}),
 
-	root: (theme: AppTheme) =>
+	mediaNoFrame: (theme: AppTheme) =>
 		css({
-			display: "flex",
-			flexDirection: "column",
-			height: theme.spacing(50),
-			width: theme.spacing(40),
+			height: theme.spacing(10),
+			width: theme.spacing(10),
 		}),
-};
+});
