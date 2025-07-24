@@ -1,4 +1,4 @@
-use iced::widget::{button, column, row, text, Column, Row};
+use iced::widget::{button, column, row, text, Column};
 use iced::Center;
 
 pub fn main() -> iced::Result {
