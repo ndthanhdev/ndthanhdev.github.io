@@ -1,11 +1,10 @@
 import "prismjs/themes/prism-okaidia.css";
-
-import type { AppTheme } from "@n8v/app/theme";
-
 import { MDXProvider } from "@mdx-js/react";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+
+import { styles } from "./mdx-provider/styles";
 
 export type AppMDXProviderProps = React.PropsWithChildren<object>;
 
@@ -23,36 +22,19 @@ const text = (props: any) => <Typography variant="body1" {...props} />;
 const strong = (props: any) => (
 	<Typography
 		component="strong"
-		css={(theme: AppTheme) => ({
-			fontWeight: theme.typography.fontWeightBold,
-		})}
+		css={styles.strong}
 		variant="body1"
 		{...props}
 	/>
 );
 
 const p = (props: any) => (
-	<Typography
-		{...props}
-		css={(theme: AppTheme) => ({
-			marginBlockEnd: theme.spacing(1),
-		})}
-		paragraph
-		variant="body1"
-	/>
+	<Typography {...props} css={styles.p} paragraph variant="body1" />
 );
 
-const ul = (props: any) => (
-	<ul
-		{...props}
-		css={(theme: AppTheme) => ({
-			marginBlockEnd: theme.spacing(2),
-			marginBlockStart: theme.spacing(0),
-		})}
-	/>
-);
+const ul = (props: any) => <ul {...props} css={styles.ul} />;
 
-const li = (props: any) => <li {...props} css={{}} />;
+const li = (props: any) => <li {...props} css={styles.li} />;
 
 const a = (props: any) => <Link component="a" target="_blank" {...props} />;
 

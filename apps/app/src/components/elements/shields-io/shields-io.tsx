@@ -57,6 +57,7 @@ export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
 			sUrl += leftText ? `${leftText}-` : "-";
 			sUrl += rightText ? `${rightText}-` : "-";
 			sUrl += encodeURIComponent(rightBg);
+			logo && (sUrl += `?logo=${logo}`);
 
 			/*
 			 * FIXME: support other extensions
@@ -65,16 +66,9 @@ export const ShieldsIO = React.forwardRef<HTMLElement, ShieldsIO>(
 
 			const url = new URL(sUrl);
 
-			logo && url.searchParams.append("logo", logo);
 			logoColor && url.searchParams.append("logoColor", logoColor);
 			logoWidth && url.searchParams.append("logoWidth", logoWidth.toString());
-
-			// Url.searchParams.set("label", leftText);
 			leftBg && url.searchParams.append("labelColor", leftBg);
-
-			// Url.searchParams.append("color", rightBg);
-
-			// RightText && url.searchParams.set("message", rightText);
 
 			url.searchParams.append("style", shieldStyle);
 
