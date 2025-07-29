@@ -5,8 +5,6 @@ date: 2023-09-15
 
 {/* * @jsx jsx */}
 import { jsx } from "theme-ui";
-import Avatar from "./images/avatar.png";
-import Cover from "./images/cover.png";
 import Box from "@mui/material/Box";
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -17,7 +15,10 @@ import { Connect } from "@n8v/app/components/elements/shields-io/variants/connec
 import { CvSectionDivider } from "@n8v/app/components/fragments/cv-section-divider";
 import Grid from '@mui/material/Unstable_Grid2';
 import Link from '@mui/material/Link';
+import { envs } from "@n8v/app/utils/envs";
 
+import Avatar from "./images/avatar.png";
+import Cover from "./images/cover.png";
 import PermIdentity from "./images/perm_identity.svg";
 import Gender from "./images/gender.svg";
 import Github from "./images/github.svg";
@@ -286,6 +287,12 @@ _Ton Duc Thang University, Ho Chi Minh - 2018_
 		width: "100%",
 	}}
 >
-	Latest at{" "}
-	<Link href="https://ndthanhdev.github.io/cv">ndthanhdev.github.io/cv</Link>
+	<Typography variant="caption" color="text.secondary">
+		<>
+			{`Build ${envs.buildNumber}, latest version at `}
+			<Link href="https://ndthanhdev.github.io/cv" color="primary">
+				{"ndthanhdev.github.io/cv"}
+			</Link>
+		</>
+	</Typography>
 </Stack>
