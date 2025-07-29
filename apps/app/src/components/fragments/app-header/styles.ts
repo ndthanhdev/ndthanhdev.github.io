@@ -25,8 +25,7 @@ export const styles = {
 	},
 
 	right: {
-		root: (theme: AppTheme) =>
-			css({ gap: theme.spacing(2), gridArea: "right" }),
+		root: () => css({ gridArea: "right" }),
 	},
 
 	toolbar: (theme: AppTheme) =>
