@@ -1,6 +1,6 @@
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import React, { type ReactNode } from "react";
+import { type ReactNode } from "react";
 
 import { styles } from "./styles";
 
