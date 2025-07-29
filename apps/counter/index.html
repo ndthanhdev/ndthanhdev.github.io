@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Counter</title>
 		<base href="/apps/counter/" />
-	<link rel="modulepreload" href="/apps/counter/n8v_counter.js" crossorigin=anonymous integrity="sha384-QvpE98KyR8ALZsOmfzLnubABfiL6tAgGw1AJZrAS2NSIq0QfOUjXuxnTKbiN05av"><link rel="preload" href="/apps/counter/n8v_counter_bg.wasm" crossorigin=anonymous integrity="sha384-Nc4WvHVsxuM9NGoBU4CQvEozzjQeJHyVPoqpt6jBBeM4NPMeLrevXYRn1mpIQWK0" as="fetch" type="application/wasm"></head>
+	<link rel="modulepreload" href="/apps/counter/n8v_counter.js" crossorigin="anonymous" integrity="sha384-4cKcxkwaXii6qR5sqOAhsorrMz9KpU/VheUMTR1CXfdSidIfkCT2ZJZxGb3KTwJL"><link rel="preload" href="/apps/counter/n8v_counter_bg.wasm" crossorigin="anonymous" integrity="sha384-rDa8kreal5ICp0C81JBKGDV0V0JDESCRfLL7GpeLcgubdol4x2JDCNF5aJFDk0Kj" as="fetch" type="application/wasm"></head>
 	<body style="height: 100vh; margin: 0">
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
@@ -18,7 +18,7 @@
 		></noscript>
 		<!-- End Google Tag Manager (noscript) -->
 		
-<script type="module" nonce="5irOG1oheOpKJylaNn9CXg==">
+<script type="module">
 import init, * as bindings from '/apps/counter/n8v_counter.js';
 const wasm = await init({ module_or_path: '/apps/counter/n8v_counter_bg.wasm' });
 
