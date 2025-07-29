@@ -17,9 +17,11 @@ export const styles = {
 			flexDirection: "column",
 		}),
 
-	rightWrapper: () =>
+	rightWrapper: (theme: AppTheme) =>
 		css({
+			color: theme.palette.text.secondary,
 			display: "flex",
+			flexDirection: "column",
 			justifyContent: "flex-end",
 		}),
 

@@ -5,7 +5,7 @@
 	"devDependencies": {
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.3",
-		"zx": "^8.3.0"
+		"zx": "^8.7.1"
 	},
 	"dependencies": {
 		"luxon": "^3.5.0"

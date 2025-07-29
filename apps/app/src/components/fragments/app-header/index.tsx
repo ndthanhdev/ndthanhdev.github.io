@@ -1,4 +1,5 @@
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import AppBar from "@mui/material/AppBar";
@@ -53,7 +54,7 @@ export const AppHeader = ({
 							about
 						</Button>
 						<Button
-							arial-label="Apps"
+							aria-label="Apps"
 							component={GatsbyLink}
 							size="large"
 							to="/projects"
@@ -64,9 +65,18 @@ export const AppHeader = ({
 					</Stack>
 					<Stack alignItems="center" css={styles.right.root} direction="row">
 						<IconButton
-							area-label="Toggle theme mode"
+							aria-label="GitHub"
 							color="primary"
-							edge="end"
+							component={Link}
+							href="https://github.com/ndthanhdev/ndthanhdev.github.io"
+							size="large"
+							target="_blank"
+						>
+							<GitHubIcon />
+						</IconButton>
+						<IconButton
+							aria-label="Toggle theme mode"
+							color="primary"
 							onClick={onToggleThemeMode}
 							size="large"
 						>
