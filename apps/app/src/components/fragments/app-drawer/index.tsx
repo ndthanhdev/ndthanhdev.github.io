@@ -1,4 +1,3 @@
-import { css } from "@emotion/react";
 import CloseIcon from "@mui/icons-material/Close";
 import DarkModeIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeIcon from "@mui/icons-material/LightModeOutlined";
@@ -30,7 +29,7 @@ export const AppDrawer = ({
 }: AppDrawerProps) => (
 	<Drawer anchor="right" css={styles.root} onClose={onClose} open={open}>
 		<Box css={styles.header}>
-			<Typography css={css({})} fontWeight="500" variant="body1">
+			<Typography fontWeight="500" variant="body1">
 				Settings
 			</Typography>
 			<IconButton color="inherit" edge="end" onClick={onClose}>
