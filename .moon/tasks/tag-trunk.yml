@@ -1,9 +1,8 @@
-$schema: "https://moonrepo.dev/schemas/tasks.json"
-
+$schema: https://moonrepo.dev/schemas/tasks.json
 tasks:
   serve:
     command: trunk serve
-    local: true
+    preset: server
   mkTarget:
     command: mkdir -p target/apps
   build:
@@ -12,7 +11,6 @@ tasks:
       - --no-color
       - build
     env:
-      # trunk doesn't support NO_COLOR=1
       NO_COLOR: "true"
     inputs:
       - src/**/*
@@ -20,3 +18,5 @@ tasks:
       - "*.toml"
     deps:
       - mkTarget
+inheritedBy:
+  tag: trunk

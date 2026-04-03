@@ -1,8 +1,9 @@
 # yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
-platform: rust
-type: application
-project:
-  name: "@n8v/recorder"
-  description: app
 tags:
   - trunk
+toolchains:
+  default: rust
+project:
+  description: app
+  title: "@n8v/recorder"
+layer: application

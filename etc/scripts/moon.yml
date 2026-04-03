@@ -1,11 +1,5 @@
 # yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
 language: typescript
-platform: node
-type: tool
-
-project:
-  name: "@n8v/scripts"
-  description: scripts
 tasks:
   lint:
     command: tsx ./actions/lint.ts
@@ -17,8 +11,13 @@ tasks:
     command: tsx ./actions/build.ts
   publish:
     command: tsx ./actions/publish.ts
-
   release:
     command: tsx ./pipelines/release.ts
   validate-pr:
     command: tsx ./pipelines/validate-pr.ts
+toolchains:
+  default: node
+project:
+  description: scripts
+  title: "@n8v/scripts"
+layer: tool
