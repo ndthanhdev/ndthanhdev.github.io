@@ -3,13 +3,17 @@
 	"compilerOptions": {
 		"baseUrl": "."
 	},
-	"include": ["apps/**/*", "packages/**/*", "etc/**/*"],
+	"include": [
+		"apps/**/*",
+		"packages/**/*",
+		"etc/**/*"
+	],
 	"references": [
 		{
-			"path": "apps/app"
+			"path": "./apps/app"
 		},
 		{
-			"path": "etc/scripts"
+			"path": "./etc/scripts"
 		}
 	]
 }

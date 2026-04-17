@@ -3,3 +3,11 @@ trailingComma: all
 useTabs: true
 semi: true
 endOfLine: lf
+overrides:
+  - files:
+      - tsconfig.json
+      - "apps/*/tsconfig.json"
+      - "etc/*/tsconfig.json"
+      - "libs/*/tsconfig.json"
+    options:
+      parser: json-stringify

@@ -1,4 +1,4 @@
-import { ProcessPromise } from "zx";
+import type { ProcessPromise } from "zx";
 
 export const pipeOutput = (po: ProcessPromise) => {
 	const poSilent = po.quiet();

@@ -1,7 +1,8 @@
 #!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
-import { cleanBuild } from "@n8v/scripts/utils/clean-build";
-import { workDirs } from "@n8v/scripts/utils/work-dirs";
+
+import { cleanBuild } from "../utils/clean-build";
+import { workDirs } from "../utils/work-dirs";
 
 $.verbose = true;
 
@@ -20,11 +21,11 @@ await $`${[
 	"MODE",
 	"--value",
 	"dev",
-	"with-action",
-	"--action",
-	"test",
-	"with-action",
-	"--action",
-	"build",
+	"with-moon-task",
+	"--task",
+	"scripts:test",
+	"with-moon-task",
+	"--task",
+	"scripts:build",
 	"stdout",
 ]}`;

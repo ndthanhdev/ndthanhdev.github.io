@@ -5,7 +5,9 @@
 		"jsxImportSource": "@emotion/react",
 		"baseUrl": ".",
 		"paths": {
-			"@n8v/app/*": ["src/*"]
+			"@n8v/app/*": [
+				"src/*"
+			]
 		},
 		"outDir": "../../.moon/cache/types/apps/app"
 	},

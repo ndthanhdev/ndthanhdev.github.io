@@ -6,12 +6,8 @@ tasks:
   mkTarget:
     command: mkdir -p target/apps
   build:
-    command: trunk
-    args:
-      - --no-color
-      - build
-    env:
-      NO_COLOR: "true"
+    script: env -u NO_COLOR trunk build
+    toolchain: system
     inputs:
       - src/**/*
       - "*.html"

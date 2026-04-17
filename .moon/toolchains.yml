@@ -1,4 +1,8 @@
 $schema: https://moonrepo.dev/schemas/toolchain.json
+node:
+  version: ^24
+yarn:
+  version: 4.10.3
 typescript:
   routeOutDirToCache: true
   syncProjectReferencesToPaths: true
@@ -7,7 +11,6 @@ javascript:
   dedupeOnLockfileChange: true
   inferTasksFromScripts: false
   syncProjectWorkspaceDependencies: true
-yarn: {}
 rust:
   syncToolchainConfig: true
   bins:
