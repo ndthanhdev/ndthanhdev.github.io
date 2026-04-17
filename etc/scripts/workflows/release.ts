@@ -1,7 +1,8 @@
 #!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
-import { cleanBuild } from "@n8v/scripts/utils/clean-build";
-import { workDirs } from "@n8v/scripts/utils/work-dirs";
+
+import { cleanBuild } from "../utils/clean-build";
+import { workDirs } from "../utils/work-dirs";
 
 $.verbose = true;
 
@@ -25,12 +26,12 @@ await $`${[
 	"GH_TOKEN",
 	"--secret",
 	"env:GH_TOKEN",
-	"with-action",
-	"--action",
-	"build",
-	"with-action",
-	"--action",
-	"publish",
+	"with-moon-task",
+	"--task",
+	"scripts:build",
+	"with-moon-task",
+	"--task",
+	"scripts:publish",
 	"container",
 	"directory",
 	"--path",

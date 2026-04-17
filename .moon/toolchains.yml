@@ -1,0 +1,22 @@
+$schema: https://moonrepo.dev/schemas/toolchain.json
+node:
+  version: ^24
+yarn:
+  version: 4.10.3
+typescript:
+  routeOutDirToCache: true
+  syncProjectReferencesToPaths: true
+javascript:
+  packageManager: yarn
+  dedupeOnLockfileChange: true
+  inferTasksFromScripts: false
+  syncProjectWorkspaceDependencies: true
+rust:
+  syncToolchainConfig: true
+  bins:
+    - trunk@0.21.14
+  targets:
+    - wasm32-unknown-unknown
+  components:
+    - rustfmt
+    - clippy

@@ -10,19 +10,21 @@ jobs:
     name: Run Workflow
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
 
       - name: Setup Dagger
-        uses: dagger/dagger-for-github@8.0.0
+        uses: dagger/dagger-for-github@v8.2.0
         with:
-          version: 0.18.9
+          version: v0.20.3
           verb: functions
           workdir: ./etc/workflow-runtime
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: Install dependencies
         run: yarn install

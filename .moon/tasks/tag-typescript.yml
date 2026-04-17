@@ -1,7 +1,8 @@
-$schema: "https://moonrepo.dev/schemas/tasks.json"
-
+$schema: https://moonrepo.dev/schemas/tasks.json
 tasks:
   typecheck:
     command: tsc --noEmit
     inputs:
       - src/**/*
+inheritedBy:
+  tag: typescript

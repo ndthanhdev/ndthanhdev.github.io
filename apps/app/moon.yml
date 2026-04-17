@@ -1,12 +1,5 @@
 # yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
 language: typescript
-platform: node
-type: application
-tags:
-  - typescript
-project:
-  name: "@n8v/app"
-  description: app
 tasks:
   dev:
     command: gatsby develop
@@ -38,3 +31,11 @@ tasks:
       - gatsby-node.ts
     outputs:
       - public
+toolchains:
+  default: node
+tags:
+  - typescript
+project:
+  description: app
+  title: "@n8v/app"
+layer: application

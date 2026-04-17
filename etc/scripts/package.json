@@ -1,13 +1,15 @@
 {
 	"name": "@n8v/scripts",
-	"packageManager": "yarn@4.2.2",
 	"type": "module",
+	"packageManager": "yarn@4.2.2",
+	"dependencies": {
+		"fs-extra": "^11.3.3",
+		"luxon": "^3.5.0"
+	},
 	"devDependencies": {
+		"@types/fs-extra": "^11.0.4",
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.3",
 		"zx": "^8.7.1"
-	},
-	"dependencies": {
-		"luxon": "^3.5.0"
 	}
 }
