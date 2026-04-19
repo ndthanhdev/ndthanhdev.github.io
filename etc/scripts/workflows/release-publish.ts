@@ -1,14 +1,16 @@
 #!/usr/bin/env -S yarn dlx tsx
 import "zx/globals";
+import fse from "fs-extra";
 
-import { cleanBuild } from "../utils/clean-build";
 import { workDirs } from "../utils/work-dirs";
 
 $.verbose = true;
 
-await cleanBuild();
+await fse.emptyDir(workDirs.apps.app.public.path);
 
 cd(workDirs.etc.workflowRuntime.path);
+
+const mode = $.env.MODE ?? "dev";
 
 await $`${[
 	"dagger",
@@ -20,7 +22,7 @@ await $`${[
 	"--name",
 	"MODE",
 	"--value",
-	$.env.MODE ?? "dev",
+	mode,
 	"with-secret-variable",
 	"--name",
 	"GH_TOKEN",
@@ -34,9 +36,7 @@ await $`${[
 	"scripts:publish",
 	"container",
 	"directory",
-	"--path",
-	"/workspace/apps/app/public",
+	"--path=/workspace/apps/app/public",
 	"export",
-	"--path",
-	workDirs.apps.app.public.path,
+	`--path=${workDirs.apps.app.public.path}`,
 ]}`;

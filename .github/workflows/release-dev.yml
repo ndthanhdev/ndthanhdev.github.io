@@ -6,8 +6,8 @@ on:
       - main
 
 jobs:
-  run-workflow:
-    name: Run Workflow
+  release-dev:
+    name: Release Dev
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -29,9 +29,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run workflow
-        working-directory: ./etc/scripts/workflows
-        run: ./release.ts
+      - run: ./etc/scripts/workflows/release-publish.ts
         env:
           MODE: dev
           GH_TOKEN: ${{ secrets.GH_TOKEN_DEV }}

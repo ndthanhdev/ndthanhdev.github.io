@@ -1,13 +1,13 @@
-name: Validate PR
+name: Workspace Check
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  run-workflow:
-    name: Run Workflow
+  workspace-check:
+    name: Workspace Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -29,6 +29,4 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run workflow
-        working-directory: ./etc/scripts/workflows
-        run: ./validate-pr.ts
+      - run: ./etc/scripts/workflows/workspace-check.ts

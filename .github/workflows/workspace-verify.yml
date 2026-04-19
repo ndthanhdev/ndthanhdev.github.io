@@ -1,13 +1,13 @@
-name: Release Prod
+name: Workspace Verify
 
 on:
-  push:
-    tags:
-      - v*.*.*
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  release-prod:
-    name: Release Prod
+  workspace-verify:
+    name: Workspace Verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -29,7 +29,4 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - run: ./etc/scripts/workflows/release-publish.ts
-        env:
-          MODE: prod
-          GH_TOKEN: ${{ secrets.GH_TOKEN_PROD }}
+      - run: ./etc/scripts/workflows/workspace-verify.ts
