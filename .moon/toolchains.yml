@@ -15,6 +15,7 @@ rust:
   syncToolchainConfig: true
   bins:
     - trunk@0.21.14
+    - wasm-bindgen-cli@0.2.118
   targets:
     - wasm32-unknown-unknown
   components:
