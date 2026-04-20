@@ -3,13 +3,12 @@ language: typescript
 tasks:
   dev:
     command: gatsby develop
+    preset: server
     inputs:
       - src/**/*
       - content/**/*
       - gatsby-config.ts
       - gatsby-node.ts
-    outputs:
-      - public
   typecheck:
     command: tsc --noEmit
     inputs:
