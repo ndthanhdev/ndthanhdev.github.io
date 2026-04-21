@@ -5,3 +5,4 @@ if test $(git rev-parse --abbrev-ref HEAD) = "main" ; then
 fi
 
 yarn lint-staged
+moon run scripts:syncpack-lint

@@ -1,18 +1,24 @@
 $schema: https://moonrepo.dev/schemas/tasks.json
+fileGroups:
+  sources:
+    - src/**/*
+  trunk-config:
+    - Trunk.toml
+    - Cargo.toml
+    - "*.html"
+  trunk-dist:
+    - ./target/trunk/dist/**/*
 tasks:
   serve:
     command: trunk serve
     preset: server
-  mkTarget:
-    command: mkdir -p target/apps
-  build:
+  trunk-build:
     script: env -u NO_COLOR trunk build
     toolchain: system
     inputs:
-      - src/**/*
-      - "*.html"
-      - "*.toml"
-    deps:
-      - mkTarget
+      - "@group(sources)"
+      - "@group(trunk-config)"
+    outputs:
+      - "@group(trunk-dist)"
 inheritedBy:
   tag: trunk

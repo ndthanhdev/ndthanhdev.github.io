@@ -3,6 +3,10 @@ tags:
   - trunk
 toolchains:
   default: rust
+tasks:
+  build:
+    deps:
+      - ~:trunk-build
 project:
   description: app
   title: "@n8v/counter"
