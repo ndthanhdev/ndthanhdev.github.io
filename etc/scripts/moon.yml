@@ -1,5 +1,7 @@
 # yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
 language: typescript
+tags:
+  - syncpack
 tasks:
   lint:
     preset: utility
@@ -15,6 +17,13 @@ tasks:
   publish:
     preset: utility
     script: $projectRoot/moon-tasks/publish.ts
+  collect-workspace-targets:
+    preset: utility
+    script: $projectRoot/moon-tasks/collect-workspace-targets.ts
+  check:
+    preset: utility
+    deps:
+      - ~:syncpack-lint
 toolchains:
   default: node
 project:
