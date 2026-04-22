@@ -14,7 +14,7 @@ tasks:
     preset: server
   trunk-build:
     script: env -u NO_COLOR trunk build
-    toolchain: rust
+    toolchain: system
     inputs:
       - "@group(sources)"
       - "@group(trunk-config)"

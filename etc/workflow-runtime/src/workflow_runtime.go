@@ -42,6 +42,10 @@ func (m *WorkflowRuntime) BuildEnv(ctx context.Context) *WorkflowRuntime {
 		WithFile("/workspace/.prototools", m.Dir.File(".prototools")).
 		// proto use
 		WithExec([]string{"proto", "use"}).
+		// Install cargo-binstall (fast prebuilt installer for cargo bins)
+		WithExec([]string{"bash", "-l", "-c", "curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash"}).
+		// Install trunk and wasm-bindgen-cli via cargo-binstall (matches .moon/toolchains.yml)
+		WithExec([]string{"bash", "-l", "-c", "cargo binstall --no-confirm --locked trunk@0.21.14 wasm-bindgen-cli@0.2.118"}).
 		WithMountedDirectory("/workspace", source).
 		WithMountedDirectory("/workspace/.git", m.Dir.Directory(".git")).
 		// moon setup
