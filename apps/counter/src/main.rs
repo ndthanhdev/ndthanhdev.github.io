@@ -11,7 +11,8 @@ pub fn main() -> iced::Result {
     #[cfg(not(target_arch = "wasm32"))]
     tracing_subscriber::fmt::init();
 
-    iced::application("A cool counter", Counter::update, Counter::view)
+    iced::application(Counter::default, Counter::update, Counter::view)
+        .title("A cool counter")
         .centered()
         .theme(Counter::theme)
         .run()
@@ -40,7 +41,7 @@ impl Counter {
         }
     }
 
-    fn view(&self) -> Column<Message> {
+    fn view(&self) -> Column<'_, Message> {
         column![row![
             button("Decrement").on_press(Message::Decrement),
             text(self.value).size(50).align_x(iced::alignment::Horizontal::Center).width(100),
