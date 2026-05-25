@@ -10,10 +10,16 @@
 	],
 	"references": [
 		{
+			"path": "./apps/agent"
+		},
+		{
 			"path": "./apps/app"
 		},
 		{
 			"path": "./etc/scripts"
+		},
+		{
+			"path": "apps/agent"
 		},
 		{
 			"path": "apps/app"

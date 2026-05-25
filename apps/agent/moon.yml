@@ -1,0 +1,26 @@
+# yaml-language-server: $schema: 'https://moonrepo.dev/schemas/project.json'
+language: typescript
+tags:
+  - typescript
+toolchains:
+  default: node
+tasks:
+  build:
+    command: vite build
+    inputs:
+      - src/**/*
+      - index.html
+      - vite.config.ts
+    outputs:
+      - dist
+  dev:
+    command: vite dev
+    preset: server
+    inputs:
+      - src/**/*
+      - index.html
+      - vite.config.ts
+project:
+  description: Browser-based AI agent powered by MLC Web LLM and LangGraph
+  title: "@n8v/agent"
+layer: application

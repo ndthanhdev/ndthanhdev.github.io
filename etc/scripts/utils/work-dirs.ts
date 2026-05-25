@@ -7,6 +7,7 @@ $.verbose = true;
 const root = path.resolve(import.meta.dirname, "../../../");
 const apps = path.resolve(root, "apps");
 const etc = path.resolve(root, "etc");
+const agent = path.resolve(apps, "agent");
 const app = path.resolve(apps, "app");
 const counter = path.resolve(apps, "counter");
 const recorder = path.resolve(apps, "recorder");
@@ -17,6 +18,12 @@ const target = path.resolve(root, "target");
 // eslint-disable-next-line unicorn/prevent-abbreviations
 export const workDirs = {
 	apps: {
+		agent: {
+			dist: {
+				path: path.resolve(agent, "dist"),
+			},
+			path: agent,
+		},
 		app: {
 			cache: {
 				path: path.resolve(app, ".cache"),
