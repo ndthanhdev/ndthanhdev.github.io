@@ -29,6 +29,8 @@ const Constants = {
 		"**/target/",
 		".yarn/",
 		"node_modules/",
+		".agents/",
+		"skills/",
 		"apps/recorder/assets/sw.js",
 		"apps/app/src/gatsby-types.d.ts",
 	],
