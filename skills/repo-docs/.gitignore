@@ -1,0 +1,3 @@
+# Ignore all dynamic runtime data
+state/*
+!state/.gitkeep

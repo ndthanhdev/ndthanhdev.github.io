@@ -17,6 +17,11 @@ tasks:
   publish:
     preset: utility
     script: $projectRoot/moon-tasks/publish.ts
+    # Deploy step: never run during `moon ci` / `moon check` (PR verify and
+    # the main check workflow don't provide GH_TOKEN). Release workflows
+    # invoke it explicitly via `with-moon-task`, which ignores runInCI.
+    options:
+      runInCI: false
   collect-workspace-targets:
     preset: utility
     script: $projectRoot/moon-tasks/collect-workspace-targets.ts
